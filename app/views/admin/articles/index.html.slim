@@ -1,0 +1,10 @@
+.p-articles
+  .p-articles__inner
+    .p-articles__new = link_to '新規作成', new_admin_article_path
+    ul.p-articles__list
+      - @articles.each do |article|
+        li.p-articles__item
+          = link_to l(article.updated_at, format: :long), admin_article_path(article)
+          = link_to article.title, admin_article_path(article)
+          = link_to '編集', edit_admin_article_path(article)
+          = link_to '削除', admin_article_path(article), method: :delete

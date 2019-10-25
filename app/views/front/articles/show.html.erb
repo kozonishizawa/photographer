@@ -1,0 +1,15 @@
+<div class='p-articles'>
+  <div class='p-articles__inner'>
+    <div class='p-articles__article'>
+      <h1 class='p-articles__header'>
+        <%= @article.title %>
+      </h1>
+      <p>
+        <%= l(@article.updated_at, format: :long) %>
+      </p>
+      <div class='p-articles__body'>
+        <%= @article.body %>
+      </div>
+    </div>
+  </div>
+</div>

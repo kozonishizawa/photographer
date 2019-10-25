@@ -1,0 +1,26 @@
+.p-home
+  .p-home__inner
+    .p-home__topImage
+      = image_tag("/images/top.jpg", :alt=>"MSC", :width=>"100%", class: "p-top__top")
+    .p-home__main
+      .p-home__contents
+        h2.p-home__heading
+         span.p-home__index NEWS
+        ul.p-home__list
+          - @articles.each do |article|
+            li.p-home__item
+              = link_to l(article.updated_at, format: :long), front_article_path(article), class: 'p-news__date'
+              = link_to article.title, front_article_path(article), class: 'p-news__title'
+        .p-home__buttonWrapper
+          = link_to 'VIEW ALL', front_articles_path, class: 'p-home__button'
+      .p-home__contents
+        h2.p-home__heading
+          span.p-home__index GALLERY
+        .p-home__buttonWrapper
+          = link_to 'VIEW ALL', front_root_path, class: 'p-home__button'
+      .p-home__contents
+        h2.p-home__heading
+          span.p-home__index Instagram
+        .p-home__buttonWrapper
+          = link_to 'VIEW ALL', front_root_path, class: 'p-home__button'
+

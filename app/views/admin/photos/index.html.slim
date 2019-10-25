@@ -1,0 +1,10 @@
+.p-photos
+  .p-photos__inner
+    h1.p-photos__heading
+    .p-photos__new = link_to '新規登録', new_admin_photo_path, class: 'p-photos__link'
+    ul.p-photos__list
+        - @photos.each do |photo|
+          li.p-photos__item
+            = link_to photo.title, admin_photo_path(photo), class: 'p-photos__title'
+            = link_to '編集', edit_admin_photo_path(photo), class: 'p-photos__edit'
+            = link_to '削除', admin_photo_path(photo), method: :delete, class: 'p-photo__delete'

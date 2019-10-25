@@ -1,0 +1,10 @@
+.p-news
+  .p-news__inner
+    .p-news__header
+      = image_tag("/images/title.png", :alt=>"MSC", :width=>"100%", class: "p-news__logo")
+    .p-news__list
+      - @articles.each do |article|
+        .p-news__item
+          = link_to l(article.updated_at, format: :long), front_article_path(article), class: 'p-news__date'
+          = link_to article.title, front_article_path(article), class: 'p-news__title'
+

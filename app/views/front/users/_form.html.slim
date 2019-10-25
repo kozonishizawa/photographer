@@ -1,0 +1,31 @@
+.p-form
+  .p-form__inner
+    .message
+      - if @user.errors.present?
+        ul#error_explanation
+          - @user.errors.full_messages.each do |message|
+            li = message
+    .p-form__form
+      .p-form__formInner
+        .p-form__heading
+          h1 = yield(:heading)
+        = form_with model: [:front, @user], local: true do |f|
+          .p-form__formItem
+            = f.label :name, "代表の方のお名前", class: 'p-form__label'
+            = f.text_field :name, class: 'p-form__field'
+          .p-form__formItem
+            = f.label :tel, "電話番号", class: 'p-form__label'
+            = f.telephone_field :tel, class: 'p-form__field'
+          .p-form__formItem
+            = f.label :email, "メールアドレス", class: 'p-form__label'
+            = f.email_field :email, class: 'p-form__field'
+          .p-form__formItem
+            = f.label :password, "パスワード(6字以上10字以内)", class: 'p-form__label'
+            = f.password_field :password, class: 'p-form__field'
+          .p-form__formItem
+            = f.label :password_confirmation, "パスワード(確認のため再度入力して下さい。)", class: 'p-form__label'
+            = f.password_field :password_confirmation, class: 'p-form__field'
+          .p-form__submit
+            = f.submit yield(:button_text), class: 'p-form__button'
+
+            

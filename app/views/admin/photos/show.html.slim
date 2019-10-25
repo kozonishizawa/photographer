@@ -1,0 +1,3 @@
+- if @photo.images.attached?
+  - @photo.images.each do |image|
+    = image_tag image
