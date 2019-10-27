@@ -10,21 +10,21 @@ const chatChannel = consumer.subscriptions.create({ channel: "RoomChannel", room
   disconnected() {
     // Called when the subscription has been terminated by the server
   },
-
-  received(data) {
-    // Called when there's incoming data on the websocket for this channel
-    let div = document.createElement('div');
-    div.innerHTML = data['message'];
-    document.getElementById('message').appendChild(div);
-  },
-
+  
   speak: function(message) {
     console.log('message:', message);
     return this.perform('speak', {
       message: message,
       room: room_id,
     });
-  }
+  },
+
+  received: function(data) {
+    let div = document.createElement('div');
+    div.innerHTML = data['message'];
+    document.getElementById('message').appendChild(div);
+  },
+
 });
 
 document.onkeydown = (e) => {

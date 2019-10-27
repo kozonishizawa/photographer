@@ -6,7 +6,6 @@ class Admin::RoomsController < ApplicationController
 
   def show
     @room = Room.find params[:id]
-    @message = @room.message
+    @messages = @room.messages
   end
-  
 end

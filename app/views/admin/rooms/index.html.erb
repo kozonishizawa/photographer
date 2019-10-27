@@ -1,8 +1,8 @@
 <div>
   <h1>チャット一覧</h1>
   <ul>
-    <%= @rooms.each do |room| %>
-      <li><%= link_to "ROOM#{room.id}", room_path(room) %></li>
+    <% @rooms.each do |room| %>
+      <li><%= link_to "ROOM#{room.id}", admin_room_path(room) %></li>
     <% end %>
   </ul>
 </div>

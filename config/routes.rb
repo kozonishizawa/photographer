@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
     # 記事
     resources :articles
+
+    # チャット
+    resources :rooms, only: [:index, :show]
     
     #お問い合わせ
     resources :contacts, only: [:index, :show]

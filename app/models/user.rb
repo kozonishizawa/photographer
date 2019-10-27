@@ -10,6 +10,7 @@
 #  admin           :boolean          default("0"), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  remember_digest :string(255)
 #
 
 class User < ApplicationRecord

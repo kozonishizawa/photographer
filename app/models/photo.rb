@@ -2,12 +2,12 @@
 #
 # Table name: photos
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)
-#  description    :string(255)
-#  status     :integer          default("0"), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  description :string(255)
+#  status      :integer          default("0"), not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 
 class Photo < ApplicationRecord
