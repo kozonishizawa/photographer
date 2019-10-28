@@ -1,7 +1,16 @@
-<h1>Chat room</h1>
-<div id='messages' data-room="<%= @room.id %>"> 
-  <%= render partial: '/admin/messages/message', collection: @messages, as: :message %>
+<div class='p-chat'>
+  <div class='p-chat__inner'>
+    <div class='p-chat__room'>
+      <div class='p-chat__heading'>
+        <h1>Chat room</h1>
+      </div>
+      <div class='p-chat__message' id='messages' data-room="<%= @room.id %>">
+        <%= render partial: '/messages/message', collection: @messages, as: :message %>
+      </div>
+    </div>
+    <div class='p-chat__form'>
+      <%= label_tag :content, 'Say something:' %>
+      <%= text_field_tag :content, nil, data: { behavior: 'room_speaker' } %>
+    </div>
+  </div>
 </div>
-
-<%= label_tag :content, 'Say something:' %>
-<%= text_field_tag :content, nil, data: { behavior: 'room_speaker' } %>

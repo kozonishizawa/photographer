@@ -1,8 +1,14 @@
-<div>
-  <h1>チャット一覧</h1>
-  <ul>
-    <% @rooms.each do |room| %>
-      <li><%= link_to "ROOM#{room.id}", admin_room_path(room) %></li>
-    <% end %>
-  </ul>
+<div class='p-chat'>
+  <div class='p-chat__inner'>
+    <div class='p-chat__rooms'>
+      <div class='p-chat__heading'>
+        <h1>チャットルーム一覧</h1>
+      </div>
+      <ul class=p-chat__roomList>
+        <% @rooms.each do |room| %>
+          <li><%= link_to "ROOM#{room.id}", admin_room_path(room), class: 'p-chat__roomLink' %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>

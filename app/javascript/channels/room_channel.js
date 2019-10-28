@@ -22,7 +22,7 @@ const chatChannel = consumer.subscriptions.create({ channel: "RoomChannel", room
   received: function(data) {
     let div = document.createElement('div');
     div.innerHTML = data['message'];
-    document.getElementById('message').appendChild(div);
+    document.getElementById('messages').appendChild(div);
   },
 
 });
