@@ -5,10 +5,16 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: session_params[:email].downcase)
-    if user&.authenticate(session_params[:password])
-      log_in user
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to user.admin? ? admin_root_path : front_root_path, flash: {success: 'ログインしました'}
+    if user && user.authenticate(session_params[:password])
+      if user.activated?
+        log_in(user)
+        session_params[:remember_me] == '1' ? remember(user) : forget(user)
+        redirect_to user.admin? ? admin_root_path : front_root_path, flash: {success: 'ログインしました'}
+      else
+        message = 'アカウントが有効ではありません'
+        message += 'Eメールの有効化リンクにアクセスしてください'
+        redirect_to root_url, flash: {warning: 'ログアウトしました'}
+      end
     else
       flash.now[:danger] = 'メールアドレスまたはパスワードが正しく入力されていません。'
       render :new
@@ -22,7 +28,7 @@ class SessionsController < ApplicationController
 
   private
     def session_params
-      params.require(:session).permit(:email, :password)
+      params.require(:session).permit(:email, :password, :remember_me)
     end
     
 end

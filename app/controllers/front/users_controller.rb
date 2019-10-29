@@ -6,8 +6,8 @@ class Front::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      redirect_to @user, flash: {success: "「ご登録ありがとうございます"}
+      @user.send_activation_email
+      redirect_to front_root_url, flash: {info: 'アカウント有効化メールを送信いたしました。ご確認ください。'}
     else
       render :new
     end

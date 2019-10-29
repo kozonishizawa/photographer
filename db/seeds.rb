@@ -11,6 +11,8 @@ User.create!(
   tel: "09000000000",
   password: "111111",
   admin: true,
+  activated: true,
+  activated_at: Time.zone.now
 )
 User.create!(
   name: "sample",
@@ -18,4 +20,6 @@ User.create!(
   tel: "09000000000",
   password: "222222",
   admin: false,
+  activated: true,
+  activated_at: Time.zone.now
 )
