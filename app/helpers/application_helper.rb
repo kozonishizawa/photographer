@@ -9,6 +9,12 @@ module ApplicationHelper
 		]
 	end
 
+	def user_menu
+		[
+			{ name: '利用者情報', url: front_user_path(current_user.id)},
+		]
+	end
+
 	def full_title(page_title = '')
 
 		"#{page_title.blank?? nil : page_title+' | '}BigDay_photograph"

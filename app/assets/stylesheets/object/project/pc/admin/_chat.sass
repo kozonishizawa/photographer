@@ -2,7 +2,7 @@
   &__inner
     display: flex
     flex-direction: column
-    height: 100vh
+    min-height: 100vh
   &__rooms
     margin: 0 auto
     width: 50%
@@ -16,14 +16,49 @@
 
   &__room
     margin: 0 auto
-    width: 50%
-  &__message
+    width: 45%
+  &__messages
     font-size: 1.2em
+    display: flex
+    flex-direction: column
   &__form
     margin: 0 auto
+    margin-top: 30px
     width: 50%
     font-size: 1.5em
-    input
-      margin: 10px
-      padding: 10px
-      width: 100%
+  &__field
+    margin: 10px
+    padding: 10px
+    width: 100%
+    background-color:  #f1f0f0
+    color: rgba(0, 0, 0, 1)
+    border-radius: 25px
+    border: none
+  &__message
+  &__opponent-content
+    display: flex
+    justify-content: flex-start
+  &__opponent
+    background-color:  #f1f0f0
+    color: rgba(0, 0, 0, 1)
+    border-radius: 10px
+    margin: 2px
+    max-width: 55%
+    padding: 0 15px
+    word-break: break-all
+  &__self-content
+    display: flex
+    justify-content: flex-end
+  &__self
+    background-color: rgb(0, 153, 255)
+    color: #fff
+    border-radius: 10px
+    margin-right: 0 auto
+    margin: 2px
+    max-width: 55%
+    padding: 0 15px
+    word-break: break-all
+  &__name
+    color: rgba(0, 0, 0, 0.4)
+    font-size: 0.75em
+

@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       else
         message = 'アカウントが有効ではありません'
         message += 'Eメールの有効化リンクにアクセスしてください'
-        redirect_to root_url, flash: {warning: 'ログアウトしました'}
+        redirect_to root_url, flash: {warning: message}
       end
     else
       flash.now[:danger] = 'メールアドレスまたはパスワードが正しく入力されていません。'

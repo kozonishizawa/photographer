@@ -1,21 +1,41 @@
 class Front::ContactsController < ApplicationController
-
+  before_action :valid_contact, only: [:new, :create]
   def new
-    @contact = Contact.new
+    @contact = Contact.find_or_initialize_by(id: session[:contact_id])
   end
 
   def create
-    @contact = Contact.new(contact_params)
-
+    @contact = Contact.new contact_params
     if @contact.save
-      redirect_to new_front_contact_path, flash: {success: "送信しました"}
+      session[:contact_id] = @contact.id
+      redirect_to params[:new] ? front_contact_signup_path(session[:contact_id]) : front_contact_login_path(session[:contact_id])
     else
       render :new
     end
   end
 
+  def edit
+    @contact = Contact.find_by(id: session[:contact_id])
+  end
+
+  def update
+    @contact = Contact.find(session[:contact_id])
+    @contact.update! contact_params
+    redirect_to params[:new] ? new_front_user_path : front_contact_login_path(session[:contact_id])
+  end
+
+  def login
+  end
+
   private
     def contact_params
-      params.require(:contact).permit(:name, :email, :tel, :subject, :date, :location, :request, :approval)
+      params.require(:contact).permit(:subject, :date, :location, :request)
+    end
+
+    # session[:contact_id]がすでに存在する場合は編集画面へリダイレクトする
+    def valid_contact
+      if session[:contact_id]
+        redirect_to edit_front_contact_path(session[:contact_id])
+      end
     end
 end

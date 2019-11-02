@@ -3,14 +3,10 @@
 # Table name: contacts
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)      not null
-#  email      :string(255)      not null
-#  tel        :string(255)      not null
 #  subject    :integer          not null
 #  date       :date             not null
 #  location   :string(255)      not null
 #  request    :text(65535)
-#  approval   :integer          default("0"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -33,9 +29,6 @@ class Contact < ApplicationRecord
   #----------------------------------------
   #  ** Validations **
   #----------------------------------------
-  validates :name, presence: true
-  validates :email, presence: true, uniqueness: true
-  validates :tel, presence: true
   validates :subject, presence: true
   validates :date, presence: true
   validates :location, presence: true

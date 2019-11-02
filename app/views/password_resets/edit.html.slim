@@ -1,0 +1,21 @@
+.p-form
+  .p-form__inner
+    .message
+      / - if @user.errors.present?
+      / ul#error_explanation
+      /   - @user.errors.full_messages.each do |message|
+      /     li = message
+    .p-form__form
+      .p-form__formInner
+        .p-form__heading
+          h1 パスワード再設定
+        = form_with model: @user, url: password_reset_path(params[:id]), local: true do |f|
+          = hidden_field_tag :email, @user.email
+          .p-form__formItem
+            = f.label :password, '新しいパスワード（６字以上１０字以内）', class: 'p-form__label'
+            = f.password_field :password, class: 'p-form__field'
+          .p-form__formItem
+            = f.label :password_confirmation, '新しいパスワード（確認用）', class: 'p-form__label'
+            = f.password_field :password_confirmation, class: 'p-form__field'
+          .p-form__submit
+            = f.submit '送信', class: 'p-form__button'

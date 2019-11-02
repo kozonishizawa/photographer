@@ -1,0 +1,8 @@
+.p-chat
+  .p-chat__inner
+    .p-chat__rooms
+      .p-chat__heading
+        h1チャットルーム一覧
+      ul.p-chat__roomList
+        - @users.each do |user|
+          li = link_to "#{user.name}", admin_room_path(user), class: 'p-chat__roomLink'

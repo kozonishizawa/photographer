@@ -2,19 +2,24 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)      not null
-#  email           :string(255)      not null
-#  tel             :string(255)      not null
-#  password_digest :string(255)      not null
-#  admin           :boolean          default("0"), not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  remember_digest :string(255)
+#  id                :integer          not null, primary key
+#  name              :string(255)      not null
+#  email             :string(255)      not null
+#  tel               :string(255)      not null
+#  password_digest   :string(255)      not null
+#  admin             :boolean          default("0"), not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  remember_digest   :string(255)
+#  activation_digest :string(255)
+#  activated         :boolean          default("0")
+#  activated_at      :datetime
+#  reset_digest      :string(255)
+#  reset_sent_at     :datetime
 #
 
 class User < ApplicationRecord
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token, :reset_token
   
   #----------------------------------------
   #  ** Includes **
@@ -41,6 +46,7 @@ class User < ApplicationRecord
   #  ** Associations **
   #----------------------------------------
   has_many :photos
+  has_many :messages
   #----------------------------------------
   #  ** Delegates **
   #----------------------------------------
@@ -94,6 +100,23 @@ class User < ApplicationRecord
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
   end
+
+  # パスワード再設定用の属性を設定する
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_columns(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
+  end
+
+  # パスワード設定用のメールを送信する  
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
+   # パスワード再設定の期限が切れている場合はtrueを返す
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
+  end
+
   private
   
   # メールアドレスを全て小文字にする

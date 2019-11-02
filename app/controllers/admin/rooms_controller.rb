@@ -1,11 +1,11 @@
 class Admin::RoomsController < ApplicationController
   def index
-    Room.create! if Room.first.blank?
-    @rooms = Room.all.order(:id)
+    @users = User.all.order(:id)
   end
 
   def show
-    @room = Room.find params[:id]
-    @messages = @room.messages
+    @user = User.find params[:id]
+    admin_user = User.find_by(admin: true)
+    @messages = @user.messages || admin_user.messages
   end
 end

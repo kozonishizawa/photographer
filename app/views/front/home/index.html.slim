@@ -1,0 +1,7 @@
+.l-dashboard
+  .l-dashboard__inner
+    h1.l-dashboard__heading マイページ
+    .l-dashboard__menu
+      - user_menu.each do |menu|
+        = link_to menu[:url], class: 'l-dashboard__card' do
+          p.l-dashboard__name = menu[:name]

@@ -1,20 +1,2 @@
-.p-login
-  .p-login__inner
-    h1.p-login__heading
-    .p-login__form
-      .p-login__formInner
-        = form_with scope: :session, local: true do |f|
-          .p-login__formItem
-            = f.label :email, "メールアドレス", class: 'p-login__label'
-            = f.email_field :email, class: 'p-login__field'
-          .p-login__formItem
-            = f.label :password, "パスワード", class: 'p-login__label'
-            = f.password_field :password, class: 'p-login__field'
-          .p-login__formItem
-            = f.label :remember_me, class: "p-login__checkBox" do
-              = f.check_box :remember_me
-              span ログイン状態を保持する
-          .p-login__submit
-            = f.submit 'ログイン', class: 'p-login__button'
-        .p-login__link
-          = link_to "初めての方はこちら", new_front_contact_path
+- provide(:button_text, 'ログイン')
+= render 'form'

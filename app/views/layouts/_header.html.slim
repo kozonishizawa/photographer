@@ -8,14 +8,13 @@ nav.l-nav
     li.l-nav__item = link_to "HOME", root_path, class: "l-nav__link"
     li.l-nav__item = link_to "NEWS", front_articles_path, class: "l-nav__link"
     li.l-nav__item = link_to "GALLERY", front_root_path, class: "l-nav__link"
-    li.l-nav__item = link_to "CONTACT", new_front_contact_path, class: "l-nav__link"
     li.l-nav__item = link_to "CALENDAR", front_root_path, class: "l-nav__link"
     li.l-nav__item = link_to "PRICE", front_root_path, class: "l-nav__link"
     li.l-nav__item = link_to "PRODUCT", front_root_path, class: "l-nav__link"
     li.l-nav__item = link_to "INFORMATION", front_root_path, class: "l-nav__link"
     li.l-nav__item = link_to "PROFILE", front_root_path, class: "l-nav__link"
     - unless logged_in?
-      li.l-nav__item = link_to "新規登録", new_front_user_path, class: "l-nav__link"
+      li.l-nav__item = link_to "撮影のご依頼", new_front_contact_path, class: "l-nav__link"
       li.l-nav__item = link_to "ログイン", login_path, class: "l-nav__link"
     - else
       li.l-nav__item = link_to "ログアウト", logout_path, class: "l-nav__link"
