@@ -41,6 +41,9 @@ Rails.application.routes.draw do
     # 記事
     resources :articles, only: [:index, :show]
 
+    # チャット
+    resources :rooms, only: [:show]
+
     # お問い合わせ
     resources :contacts, only: [:new, :create, :edit, :update] do
       get :login

@@ -1,10 +1,5 @@
 class Front::RoomsController < ApplicationController
-  def index
-    @rooms = Room.all.order(:id)
-  end
-
   def show
-    @room = Room.find(params[:id])
-    @messages = @room.messages
+    @messages = @current_user.messages
   end
 end

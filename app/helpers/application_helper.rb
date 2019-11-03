@@ -12,6 +12,7 @@ module ApplicationHelper
 	def user_menu
 		[
 			{ name: '利用者情報', url: front_user_path(current_user.id)},
+			{ name: 'チャット', url: front_room_path(current_user.id)},
 		]
 	end
 
