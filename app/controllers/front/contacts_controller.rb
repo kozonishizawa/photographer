@@ -8,7 +8,7 @@ class Front::ContactsController < ApplicationController
     @contact = Contact.new contact_params
     if @contact.save
       session[:contact_id] = @contact.id
-      redirect_to params[:new] ? front_contact_signup_path(session[:contact_id]) : front_contact_login_path(session[:contact_id])
+      redirect_to params[:new] ? new_front_user_path(session[:contact_id]) : front_contact_login_path(session[:contact_id])
     else
       render :new
     end

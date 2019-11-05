@@ -29,8 +29,12 @@ if (message_element) {
     },
     // room_channel.rbでブロードキャストされたものがここに届く
     received: function(data) {
+      // createElementでdiv要素を生成
       let div = document.createElement('div');
+      // 生成したdiv要素にブロードキャストされた値を表示する
       div.innerHTML = data['message'];
+      // ブロードキャストされた値が表示されたdiv要素が
+      // id'messages'のノードに子ノードとして追加される
       message_element.appendChild(div);
     },
 
@@ -43,6 +47,7 @@ if (message_element) {
       chatChannel.speak(e.target.value);
       // 入力された値を空欄に戻す
       e.target.value = '';
+      // イベントの無効化
       return e.preventDefault();
     }
   }

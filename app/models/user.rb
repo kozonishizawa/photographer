@@ -45,8 +45,8 @@ class User < ApplicationRecord
   #----------------------------------------
   #  ** Associations **
   #----------------------------------------
-  has_many :photos
-  has_many :messages
+  has_many :albums, dependent: :destroy
+  has_many :messages, dependent: :destroy
   #----------------------------------------
   #  ** Delegates **
   #----------------------------------------

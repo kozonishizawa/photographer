@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     # ユーザー管理
     resources :users
     
+    # アルバム管理
+    resources :albums
+
     # 写真管理
     resources :photos
 

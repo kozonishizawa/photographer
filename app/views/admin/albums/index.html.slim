@@ -1,0 +1,10 @@
+.p-albums
+  .p-albums__inner
+    h1.p-albums__heading
+    .p-albums__new = link_to '新規登録', new_admin_album_path, class: 'p-albums__link'
+    ul.p-albums__list
+        - @albums.each do |album|
+          li.p-albums__item
+            = link_to album.title, admin_album_path(album), class: 'p-albums__title'
+            = link_to '編集', edit_admin_album_path(album), class: 'p-albums__edit'
+            = link_to '削除', admin_album_path(album), method: :delete, class: 'p-albums__delete'

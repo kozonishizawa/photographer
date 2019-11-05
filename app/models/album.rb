@@ -1,14 +1,20 @@
 # == Schema Information
 #
-# Table name: photos
+# Table name: albums
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  album_id   :integer          not null
+#  id              :integer          not null, primary key
+#  title           :string(255)
+#  description     :text(65535)
+#  status          :integer
+#  category        :integer
+#  photographed_at :date
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  user_id         :integer
 #
 
-class Photo < ApplicationRecord
+class Album < ApplicationRecord
+  has_many_attached :images
   #----------------------------------------
   #  ** Includes **
   #----------------------------------------
@@ -20,16 +26,17 @@ class Photo < ApplicationRecord
   #----------------------------------------
   #  ** Enums **
   #----------------------------------------
-  
+  enum status: { closed: 0, personal: 1, open: 2 }
   #----------------------------------------
   #  ** Validations **
   #----------------------------------------
-  
+  validates :title, presence: true
+  validates :title, presence: true
   #----------------------------------------
   #  ** Associations **
   #----------------------------------------
-  belongs_to :album
-  has_many_attached :images, dependent: :detouch
+  belongs_to :user
+  has_many :photos, dependent: :destroy
   
   #----------------------------------------
   #  ** Delegates **
@@ -42,7 +49,4 @@ class Photo < ApplicationRecord
   #----------------------------------------
   #  ** Methods **
   #----------------------------------------
-  def thumbnail
-    self.image.variant(combine_options: {resize: '640x640^', crop:'640x640+0+0',gravity: :center}).processed
-  end
 end
