@@ -34,7 +34,7 @@ class Front::ContactsController < ApplicationController
 
     # session[:contact_id]がすでに存在する場合は編集画面へリダイレクトする
     def valid_contact
-      if session[:contact_id]
+      if session[:contact_id] && @contact.present?
         redirect_to edit_front_contact_path(session[:contact_id])
       end
     end

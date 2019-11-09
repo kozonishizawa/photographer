@@ -1,10 +1,24 @@
 .p-albums
+
   .p-albums__inner
-    h1.p-albums__heading
-    .p-albums__new = link_to '新規登録', new_admin_album_path, class: 'p-albums__link'
-    ul.p-albums__list
+    = link_to '新規のアルバムを作成する', new_admin_album_path, class: 'p-albums__link'
+    table.p-albums__table
+      thread.p-albums__thread
+        tr.p-albums__row
+          th.p-albums__header ID
+          th.p-albums__header 撮影日
+          th.p-albums__header クライアント名
+          th.p-albums__header アルバム名
+          th.p-albums__header 公開設定
+          th.p-albums__header
+          th.p-albums__header
+      tbody.p-albums__tbody
         - @albums.each do |album|
-          li.p-albums__item
-            = link_to album.title, admin_album_path(album), class: 'p-albums__title'
-            = link_to '編集', edit_admin_album_path(album), class: 'p-albums__edit'
-            = link_to '削除', admin_album_path(album), method: :delete, class: 'p-albums__delete'
+          tr.p-albums__row
+            td.p-albums__data = album.id
+            td.p-albums__data = album.photographed_at
+            td.p-albums__data = link_to album.title, admin_album_path(album), class: 'p-albums__title'
+            td.p-albums__data = album.user.name
+            td.p-albums__data = album.status
+            td.p-albums__data = link_to '編集', edit_admin_album_path(album), class: 'p-albums__edit'
+            td.p-albums__data = link_to '削除', admin_album_path(album.id), method: :delete, class: 'p-albums__delete'

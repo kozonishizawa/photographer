@@ -13,7 +13,7 @@
         = form_with model: [:front, @contact], local: true do |f|
           .p-form__formItem
             = f.label :subject, '撮影内容（必須）', class: 'p-form__label'
-            = f.select :subject, Contact.subjects.keys.map {|k| [I18n.t("enums.contact.subject.#{k}"), k]}, {}, {class: 'p-form__field'}
+            = f.select :subject, Contact.subjects.keys.map {|k| [I18n.t("enums.contact.subject.#{k}"), k]}, {}
           .p-form__formItem
             = f.label :date, '撮影希望日（必須）', class: 'p-form__label'
             = f.date_field :date, class: 'p-form__field'
@@ -22,7 +22,7 @@
             = f.text_field :location, class: 'p-form__field'
           .p-form__formItem
             = f.label :request, 'ご要望・ご質問', class: 'p-form__label'
-            = f.text_area :request, class: 'p-form__field'
+            = f.text_area :request, class: 'p-form__area'
           .p-form__submit
             = f.submit '次へ', name: :new, class: 'p-form__button'
             p 利用者登録画面に進みます

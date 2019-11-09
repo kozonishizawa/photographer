@@ -14,7 +14,6 @@ module SessionsHelper
   
   # 記憶トークンcookieに対応するユーザーを返す
   def current_user
-
     # すでにユーザー情報を取得済みの場合はそのまま返却
     return @current_user if @current_user.present?
 

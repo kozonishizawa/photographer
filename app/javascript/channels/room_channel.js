@@ -6,9 +6,9 @@ if (message_element) {
 
   // idが'message'のタグからカスタムデータ属性'data-xxx'を取得し定数に格納
   const room_id = message_element.dataset.room;
-  const type = message_element.dataset.type;
+  const speaker = message_element.dataset.speaker;
   
-  const chatChannel = consumer.subscriptions.create({ channel: "RoomChannel", room: room_id, type: type }, {
+  const chatChannel = consumer.subscriptions.create({ channel: "RoomChannel", room: room_id, speaker: speaker }, {
     connected() {
       // Called when the subscription is ready for use on the server
     },
@@ -24,14 +24,14 @@ if (message_element) {
       return this.perform('speak', {
         message: message,
         room: room_id,
-        type: type,
+        speaker: speaker,
       });
     },
     // room_channel.rbでブロードキャストされたものがここに届く
     received: function(data) {
       // createElementでdiv要素を生成
       let div = document.createElement('div');
-      // 生成したdiv要素にブロードキャストされた値を表示する
+      // 生成したdiv要素にブロードキャストされた値を代入する
       div.innerHTML = data['message'];
       // ブロードキャストされた値が表示されたdiv要素が
       // id'messages'のノードに子ノードとして追加される

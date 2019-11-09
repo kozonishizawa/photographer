@@ -4,10 +4,10 @@
 #
 #  id         :integer          not null, primary key
 #  content    :text(65535)
-#  admin      :boolean          default("0"), not null
+#  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :integer          not null
+#  room_id    :integer
 #
 
 class Message < ApplicationRecord
@@ -32,7 +32,7 @@ class Message < ApplicationRecord
   #  ** Associations **
   #----------------------------------------
   belongs_to :user
-  
+  belongs_to :room
   #----------------------------------------
   #  ** Delegates **
   #----------------------------------------

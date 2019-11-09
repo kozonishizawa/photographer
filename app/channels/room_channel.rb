@@ -8,7 +8,7 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    # jsで実行されたspeakのmessageを受け取り、room_channelのreceivedにブロードキャストする
-    Message.create! content: data['message'], user_id: data['room'], admin: data['type']
+    # jsで実行されたspeakのmessageを保存
+    Message.create! content: data['message'], room_id: data['room'], user_id: data['speaker']
   end
 end
