@@ -1,5 +1,6 @@
 class Front::RoomsController < ApplicationController
   def show
-    @messages = @current_user.messages
+    @room = Room.find current_user.id
+    @messages = @room.messages
   end
 end
