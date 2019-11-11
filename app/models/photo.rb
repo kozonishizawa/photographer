@@ -29,7 +29,7 @@ class Photo < ApplicationRecord
   #  ** Associations **
   #----------------------------------------
   belongs_to :album
-  has_many_attached :images, dependent: :detouch
+  has_one_attached :image, dependent: :detouch
   
   #----------------------------------------
   #  ** Delegates **
@@ -43,6 +43,6 @@ class Photo < ApplicationRecord
   #  ** Methods **
   #----------------------------------------
   def thumbnail
-    self.image.variant(combine_options: {resize: '640x640^', crop:'640x640+0+0',gravity: :center}).processed
+    self.image.variant(combine_options: {resize: '320x320^', crop:'320x320+0+0',gravity: :center}).processed
   end
 end

@@ -16,7 +16,7 @@ class Admin::PhotosController < ApplicationController
 
   def create
     @photo = Photo.create!(photo_params)
-    redirect_to admin_albums_path, flash: {success: "写真を登録しました"}
+    redirect_to admin_album_path(params[:photo][:album_id]), flash: {success: "写真を登録しました"}
   end
 
   def edit
@@ -34,13 +34,13 @@ class Admin::PhotosController < ApplicationController
 
   def destroy
     @photo = Photo.find(params[:id])
-    @photo.images.purge
+    @photo.image.purge
     @photo.destroy
-    redirect_to admin_photos_url, flash: {success: '写真を削除しました'}
+    head :no_content
   end
 
   private
     def photo_params
-      params.require(:photo).permit(:album_id, images: [])
+      params.require(:photo).permit(:album_id, :image)
     end
 end

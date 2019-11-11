@@ -1,11 +1,5 @@
 .p-chat__message
-  / - if message.user_id === current_user
   .p-chat__self-content
     .p-chat__self
       p #{message.content}
-    .p-chat__name 自分
-  / - else
-    .p-chat__opponent-content
-      .p-chat__name 相手
-      .p-chat__opponent
-        p #{message.content}
+    .p-chat__name = message.user.name

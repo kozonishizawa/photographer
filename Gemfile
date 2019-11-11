@@ -21,6 +21,8 @@ gem 'webpacker', '~> 4.0'
 gem 'slim'
 gem 'html2slim'
 
+gem 'font-awesome-rails'
+
 
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

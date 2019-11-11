@@ -7,7 +7,7 @@ class Admin::AlbumsController < ApplicationController
   
   def show
     @album = Album.find(params[:id])
-    @photos = @album.photos
+    @photos = @album.photos.all
   end
 
   def new
@@ -37,7 +37,7 @@ class Admin::AlbumsController < ApplicationController
 
   private
   def album_params
-    params.require(:album).permit(:title, :description, :status, :user_id, images: [])
+    params.require(:album).permit(:title, :description, :status, :user_id, :image)
   end
 
 end
