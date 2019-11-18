@@ -15,8 +15,8 @@ class Admin::PhotosController < ApplicationController
   end
 
   def create
-    @photo = Photo.create!(photo_params)
-    redirect_to admin_album_path(params[:photo][:album_id]), flash: {success: "写真を登録しました"}
+    photo = Photo.create! photo_params
+    render json: { status: :success, photo: photo }
   end
 
   def edit
@@ -41,6 +41,6 @@ class Admin::PhotosController < ApplicationController
 
   private
     def photo_params
-      params.require(:photo).permit(:album_id, :image)
+      params.require(:photo).permit :album_id, :image
     end
 end

@@ -1,5 +1,5 @@
-.p-chat__message
-  .p-chat__self-content
-    .p-chat__self
-      p #{message.content}
-    .p-chat__name = message.user.name
+/ ログイン中のユーザーとメッセージの発言者が一致するかどうかによりclassを分類し、それぞれのスタイルを割り当てる
+.p-chat__message class=(local_assigns[:current_user_id] == message.user.id ? 'self' : 'opponent')
+ .p-chat__content
+   p #{message.content}
+ .p-chat__name = message.user.name

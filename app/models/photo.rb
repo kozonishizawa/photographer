@@ -42,7 +42,9 @@ class Photo < ApplicationRecord
   #----------------------------------------
   #  ** Methods **
   #----------------------------------------
-  def thumbnail
-    self.image.variant(combine_options: {resize: '320x320^', crop:'320x320+0+0',gravity: :center}).processed
+  # トリミング（正方形）
+  def square_image(length)
+    self.image.variant(combine_options: {resize: "#{length}x#{length}^", crop:"#{length}x#{length}+0+0",gravity: :center}).processed
   end
+
 end

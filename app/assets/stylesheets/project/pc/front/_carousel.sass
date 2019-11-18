@@ -1,0 +1,113 @@
+.c-carousel
+  margin: 0 auto
+  position: relative
+  overflow: hidden
+  padding: 0
+  z-index: 1
+  &__list
+    position: relative
+    width: 100%
+    height: 100%
+    z-index: 1
+    display: flex
+    box-sizing: content-box
+    list-style: none
+  &__item
+    flex-shrink: 0
+
+    height: 100%
+    position: relative
+    transition-property: transform
+  &__prev, &__next
+    cursor: pointer
+    display: block
+    width: 40px
+    height: 40px
+    position: absolute
+    bottom: 30%
+    transform: translateY(-50%)
+    z-index: 3
+    &:before
+      content: ""
+      position: absolute
+      // border-bottom: solid 2px map-get($layoutColors, 'lightGray')
+      // border-right: solid 2px map-get($layoutColors, 'lightGray')
+      width: 40%
+      height: 40%
+      top: 30%
+  &__prev
+    left: 1%
+    &:before
+      left: 10px
+      top: 12px
+      transform: rotate(135deg)
+  &__next
+    right: 1%
+    &:before
+      left: 10px
+      transform: rotate(315deg)
+  &__nav
+    position: absolute
+    bottom: 2px
+    left: 0
+    text-align: center
+    width: 100%
+    z-index: 1
+    & > span
+      // background: map-get($layoutColors, 'darkGray')
+      display: inline-block
+      border-radius: 50%
+      cursor: pointer
+      margin: 0 5px
+      width: 8px
+      height: 8px
+      &.swiper-pagination-bullet-active
+        // background: map-get($layoutColors, 'lightGray')
+        cursor: default
+        pointer-events: none
+  &__list.thumbnail
+    position: relative
+    height: 100%
+    z-index: 1
+    display: flex
+    box-sizing: content-box
+    list-style: none
+  &__item.thumbnail
+    flex-shrink: 0
+    height: 100%
+    position: relative
+    transition-property: transform
+
+.thumbnail .c-carousel
+  display: -webkit-box
+  display: -webkit-flex
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-align: center
+  -webkit-align-items: center
+  -ms-flex-align: center
+  align-items: center
+  -webkit-box-pack: center
+  -webkit-justify-content: center
+  -ms-flex-pack: center
+  justify-content: center
+  padding: 15px
+  font-size: 18px
+  font-weight: 900
+  border: 1px solid #ccc
+
+
+.thumbnail .c-carousel::before
+  pointer-events: none
+  opacity: 0
+  content: ""
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 10
+  display: block
+  width: 100%
+  height: 100%
+  border: 6px solid #007aff
+  transition: .3s ease
+

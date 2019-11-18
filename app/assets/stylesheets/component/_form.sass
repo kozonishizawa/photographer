@@ -1,0 +1,238 @@
+// ==============================================
+// 汎用フォーム
+// ==============================================
+
+%formStyle
+  display: inline-block
+  padding: 10px
+  border: 1px solid #aab4b9
+  border-radius: 5px
+  appearance: none
+  &:focus
+    outline: none
+    border: solid 1px map-get($layoutColors, 'main')
+
+.c-form
+  // 項目
+  // ------------------------------------
+  &-label
+    display: inline-block
+    margin-bottom: 5px
+    font-weight: bold
+    color: map-get($fontColors, 'darkGray')
+  // 必須
+  &-required
+    border-radius: 4px
+    background-color: map-get($layoutColors, 'accent')
+    color: map-get($fontColors, 'white')
+    font-size: map-get($fontSizes, 's')
+    line-height: 1.4rem
+    padding: 0 5px
+    font-weight: bold
+  &-field
+    & + &
+      margin-top: 10px
+    &[data-isvalid="false"]
+      background: #ffffde
+  &-error
+    margin: 5px 0
+    color: map-get($fontColors, 'red')
+    font-weight: bold
+    font-size: map-get($fontSizes, 's')
+  // テキスト・テキストエリア
+  // ------------------------------------
+  &-text, &-textarea
+    @extend %formStyle
+    width: 100%
+    line-height: 2rem
+    min-height: 40px
+    vertical-align: bottom
+    &:disabled, &[disabled]
+      background-color: map-get($layoutColors, 'lightGray')
+    &:read-only
+      background-color: map-get($layoutColors, 'lightGray')
+    &::placeholder
+      color: map-get($fontColors, 'gray')
+
+  // チェックボックス
+  // ------------------------------------
+  &-checkboxLabel
+    cursor: pointer
+    &:hover
+      & > .c-form-checkboxIcon
+        border-color: map-get($layoutColors, 'main')
+        box-shadow: 0 0 0 1px map-get($layoutColors, 'accent')
+  &-checkboxIcon
+    @extend %formStyle
+    position: relative
+    width: 30px
+    height: 30px
+    margin-right: 10px
+    vertical-align: middle
+    &:hover
+      border-color: map-get($layoutColors, 'main')
+      box-shadow: 0 0 0 1px map-get($layoutColors, 'accent')
+    &::before
+      content: ''
+      position: absolute
+      left: 0
+      right: 0
+      top: 1px
+      display: block
+      width: 6px
+      height: 16px
+      margin: 0 auto
+      border-right: 4px solid map-get($layoutColors, 'white')
+      border-bottom: 4px solid map-get($layoutColors, 'white')
+      transform: rotate(45deg)
+  &-checkbox
+    opacity: 0
+    width: 1px
+    height: 1px
+    padding: 0
+    margin: 0
+    &:focus
+      & + .c-form-checkboxIcon
+        border-color: map-get($layoutColors, 'main')
+        box-shadow: 0 0 0 1px #04a9f4
+    &:hover
+      & + .c-form-checkboxIcon
+        border-color: map-get($layoutColors, 'main')
+        box-shadow: 0 0 0 1px #04a9f4
+        cursor: pointer
+    &:checked
+      & + .c-form-checkboxIcon
+        border-color: map-get($layoutColors, 'main')
+        background-color: map-get($layoutColors, 'main')
+
+  // ラジオボタン
+  // ------------------------------------
+  &-radioLabel
+    cursor: pointer
+    &:hover
+      & > .c-form-radioIcon
+        border-width: 2px
+        border-color: map-get($layoutColors, 'main')
+  &-radioIcon
+    @extend %formStyle
+    width: 30px
+    height: 30px
+    border-radius: 50%
+    background-size: cover
+    position: relative
+    margin-right: 10px
+    vertical-align: middle
+    &:hover
+      border-width: 2px
+      border-color: map-get($layoutColors, 'main')
+  &-radio
+    display: none
+    width: 1px
+    height: 1px
+    padding: 0
+    margin: 0
+    &:focus
+      & + .c-form-radioIcon
+        border: 2px solid map-get($layoutColors, 'main')
+    &:hover
+      & + .c-form-radioIcon
+        border-width: 2px
+        border-color: map-get($layoutColors, 'main')
+        cursor: pointer
+    &:checked
+      & + .c-form-radioIcon
+        border-width: 2px
+        border-color: map-get($layoutColors, 'main')
+        background: map-get($layoutColors, 'white')
+        &:after
+          content: ''
+          display: block
+          position: absolute
+          left: 50%
+          top: 50%
+          width: 22px
+          height: 22px
+          margin-top: -11px
+          margin-left: -11px
+          border-radius: 50%
+          background: map-get($layoutColors, 'main')
+
+  // セレクトボックス
+  // ------------------------------------
+  &-selectWrap
+    position: relative
+    &:before
+      content: ''
+      height: 46%
+      border-left: 1px solid map-get($layoutColors, 'gray')
+      position: absolute
+      right: 36px
+      top: 27%
+      pointer-events: none
+    &:after
+      content: ''
+      width: 8px
+      height: 8px
+      display: inline-block
+      position: absolute
+      margin-top: -8px
+      top: 50%
+      right: 15px
+      border-right: 2px solid map-get($layoutColors, 'gray')
+      border-bottom: 2px solid map-get($layoutColors, 'gray')
+      transform: rotate(45deg)
+      pointer-events: none
+  &-select
+    @extend %formStyle
+    cursor: pointer
+    padding-right: 45px
+    background: none
+    background-color: map-get($layoutColors, 'white')
+    width: 100%
+    line-height: 2rem
+    &::-ms-expand
+      display: none
+
+  &-toggle
+    user-select: none
+    input[type='checkbox']
+      display: none
+
+    & > input + span
+      min-width: 60px
+      height: 40px
+      background: map-get($layoutColors, 'gray')
+      position: relative
+      display: inline-block
+      border-radius: 46px
+      transition: ease all .2s
+      cursor: pointer
+      padding: 0 15px 0 40px
+      line-height: 38px
+      font-weight: bold
+      &:before
+        content: attr(data-off)''
+      &:after
+        content: ''
+        position: absolute
+        width: 30px
+        height: 30px
+        border-radius: 50%
+        left: 4px
+        top: 5px
+        z-index: 1
+        background: map-get($layoutColors, 'white')
+        box-shadow: 0 0 5px rgba(map-get($layoutColors, 'black'), 0.4)
+        transition: .2s
+
+    & > input:checked + span
+      background: #53BC9F
+      padding: 0 40px 0 15px
+      color: map-get($fontColors, 'white')
+      &:before
+        content: attr(data-on)''
+      &:after
+        left: calc(100% - 34px)
+
+    &:hover > input + span
+      opacity: .8

@@ -31,10 +31,13 @@ if (message_element) {
     received: function(data) {
       // createElementでdiv要素を生成
       let div = document.createElement('div');
-      // 生成したdiv要素にブロードキャストされた値を代入する
+      // 生成したdiv要素にブロードキャストされた値を書き込む(innerHTML)
       div.innerHTML = data['message'];
-      // ブロードキャストされた値が表示されたdiv要素が
-      // id'messages'のノードに子ノードとして追加される
+      // 'p-chat__message'クラスの最初の要素を取得し、そのクラスに対し、発言者が誰かによって'self'または'opponent'を加える
+      div.getElementsByClassName('p-chat__message')[0].classList.add(data['speaker'] == speaker ? 'self' : 'opponent');
+
+      // ブロードキャストされた値が書き込まれたdiv要素が
+      // id'messages'の要素に子要素として追加される
       message_element.appendChild(div);
     },
 

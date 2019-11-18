@@ -4,15 +4,11 @@ import { Cat } from 'react-kawaii'
 
 import { COLORS } from './properties.es6'
 
-/**
- *  記事エディター
- *  @version 2018/06/10
- */
 export default class Kawaii extends React.Component {
 
   /**
    *  キャラクターのDOMを生成する
-   *  @version 2018/06/10
+   *  @version 2019/11/10
    */
   _setComponent = () => {
 
@@ -30,7 +26,7 @@ export default class Kawaii extends React.Component {
 
   /**
    *  表示処理
-   *  @version 2018/06/10
+   *  @version 2019/11/10
    */
   render() {
 

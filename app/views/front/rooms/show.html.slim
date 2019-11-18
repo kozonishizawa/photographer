@@ -4,7 +4,7 @@
       .p-chat__heading
         h1 チャット
       .p-chat__messages#messages data-room="#{@room.id}" data-speaker="#{current_user.id}"
-        = render partial: '/messages/message', collection: @messages, as: :message
+        = render partial: '/messages/message', collection: @messages, as: :message, locals: { current_user_id: current_user.id }
     .p-chat__form
       = label_tag :content, 'メッセージを入力'
       = text_field_tag :content, nil, data: { behavior: 'room_speaker' }, class: 'p-chat__field'

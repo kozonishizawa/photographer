@@ -1,3 +1,5 @@
+= react_component 'uploader', album_id: @album.id
+
 = form_with model: [:admin, Photo], local: true do |f|
 
   .p-photos__formInner
@@ -5,12 +7,13 @@
     = f.hidden_field :album_id, value: @album.id
 
   = f.submit '登録', class: 'p-photos__submitButton'
-- if @photos.present?
-  - @photos.each do |photo|
-    - if photo.image.attached?
-      .p-photos__image
-        = image_tag photo.thumbnail
-        = link_to '削除', admin_photo_path(photo.id), method: :delete, remote: true, data: { confirm: '本当に削除しますか？'}, class: 'delete'
-- else
-  = react_component 'Kawaii'
-  p まだ写真がアップロードされていません
+.p-photos__imagesWrapper
+  - if @photos.present?
+    - @photos.each do |photo|
+      - if photo.image.attached?
+        .p-photos__image
+          = image_tag photo.square_image(200)
+          = link_to '削除', admin_photo_path(photo.id), method: :delete, remote: true, data: { confirm: '本当に削除しますか？'}, class: 'delete'
+  - else
+    = react_component 'kawaii'
+    p まだ写真がアップロードされていません

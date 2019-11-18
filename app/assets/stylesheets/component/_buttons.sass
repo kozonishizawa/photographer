@@ -1,0 +1,79 @@
+// ==============================================
+// 汎用ボタン
+// ==============================================
+
+%btn
+  position: relative
+  transition: all .2s ease-out
+  display: inline-block
+  padding: 10px 20px
+  border-radius: 5px
+  border: none
+  font-size: map-get($fontSizes, 'm')
+  text-decoration: none
+  text-align: center
+  color: map-get($fontColors, 'white')
+  background-color: map-get($buttonColors, 'standard')
+  background-clip: border-box
+  cursor: pointer
+  box-shadow: 0 2px 5px 0 rgba(map-get($layoutColors, 'black'), .2)
+  &:hover
+    color: map-get($fontColors, 'white')
+
+.c-btn
+  &Main
+    @each $type in map-keys($buttonColors)
+      &-#{$type}
+        @extend %btn
+        background-color: map-get($buttonColors, $type)
+        &:hover
+          opacity: .8
+  &Sub
+    @each $type in map-keys($buttonColors)
+      &-#{$type}
+        @extend %btn
+        background-color: transparent
+        color: map-get($buttonColors, $type)
+        font-weight: bold
+        border: 2px solid map-get($buttonColors, $type)
+        padding: 8px 20px
+        &:hover
+          background-color: map-get($buttonColors, $type)
+          border-color: map-get($buttonColors, $type)
+          color: map-get($fontColors, 'white')
+          font-weight: bold
+  &-icon
+    padding-right: 30px
+    &::after
+      content: ''
+      position: absolute
+      top: calc(50% - 5px)
+      right: 15px
+      display: inline-block
+      width: 8px
+      height: 8px
+      border-right: 2px solid map-get($layoutColors, 'white')
+      border-top: 2px solid map-get($layoutColors, 'white')
+      transform: rotate(45deg)
+      margin-left: 5px
+  &-default
+    background-color: map-get($buttonColors, 'standard')
+    &:hover
+      opacity: .8
+  &-red
+    background-color: #ea3033
+    &:hover
+      background-color: #ef5e61
+  &-green
+    background-color: #27ae60
+    &:hover
+      background-color: #7acc9e
+
+  &-blue
+    background-color: #3664c9
+    &:hover
+      background-color: #5e83d4
+  &-orange
+    background-color: #ff8c00
+    &:hover
+      background-color: #ffa333

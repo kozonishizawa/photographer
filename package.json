@@ -17,6 +17,7 @@
     "react-dropzone": "^10.1.10",
     "react-kawaii": "^0.14.4",
     "react_ujs": "^2.6.0",
+    "swiper": "^5.2.0",
     "trix": "^1.0.0",
     "turbolinks": "^5.2.0",
     "webpack-merge": "^4.2.2"

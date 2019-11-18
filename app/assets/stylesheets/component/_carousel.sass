@@ -1,0 +1,67 @@
+.c-carousel
+  margin: 0 auto
+  position: relative
+  overflow: hidden
+  list-style: none
+  padding: 0
+  z-index: 1
+  &__list
+    position: relative
+    width: 100%
+    height: 100%
+    z-index: 1
+    display: flex
+    box-sizing: content-box
+  &__item
+    flex-shrink: 0
+    width: 100%
+    height: 100%
+    position: relative
+    transition-property: transform
+  &__prev, &__next
+    cursor: pointer
+    display: block
+    width: 40px
+    height: 40px
+    position: absolute
+    bottom: 30%
+    transform: translateY(-50%)
+    z-index: 3
+    &:before
+      content: ""
+      position: absolute
+      border-bottom: solid 2px map-get($layoutColors, 'lightGray')
+      border-right: solid 2px map-get($layoutColors, 'lightGray')
+      width: 40%
+      height: 40%
+      top: 30%
+  &__prev
+    left: 1%
+    &:before
+      left: 10px
+      top: 12px
+      transform: rotate(135deg)
+  &__next
+    right: 1%
+    &:before
+      left: 10px
+      transform: rotate(315deg)
+  &__nav
+    position: absolute
+    bottom: 2px
+    left: 0
+    text-align: center
+    width: 100%
+    z-index: 1
+    & > span
+      background: map-get($layoutColors, 'darkGray')
+      display: inline-block
+      border-radius: 50%
+      cursor: pointer
+      margin: 0 5px
+      width: 8px
+      height: 8px
+      &.swiper-pagination-bullet-active
+        background: map-get($layoutColors, 'lightGray')
+        cursor: default
+        pointer-events: none

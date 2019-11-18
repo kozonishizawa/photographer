@@ -1,0 +1,13 @@
+.p-albums
+
+  .p-albums__inner
+    table.p-albums__table
+      thread.p-albums__thread
+        tr.p-albums__row
+          th.p-albums__header 撮影日
+          th.p-albums__header アルバム名
+      tbody.p-albums__tbody
+        - @albums.each do |album|
+          tr.p-albums__row
+            td.p-albums__data = album.photographed_at
+            td.p-albums__data = link_to album.title, front_album_path(album), class: 'p-albums__title'

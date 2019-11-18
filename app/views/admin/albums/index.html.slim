@@ -19,6 +19,6 @@
             td.p-albums__data = album.photographed_at
             td.p-albums__data = link_to album.title, admin_album_path(album), class: 'p-albums__title'
             td.p-albums__data = album.user.name
-            td.p-albums__data = album.status
+            td.p-albums__data = album.status_i18n
             td.p-albums__data = link_to '編集', edit_admin_album_path(album), class: 'p-albums__edit'
-            td.p-albums__data = link_to '削除', admin_album_path(album.id), method: :delete, class: 'p-albums__delete'
+            td.p-albums__data = link_to '削除', admin_album_path(album.id), method: :delete, data: { confirm: '削除してよろしいですか？' }, class: 'p-albums__delete'

@@ -7,7 +7,7 @@ class Admin::AlbumsController < ApplicationController
   
   def show
     @album = Album.find(params[:id])
-    @photos = @album.photos.all
+    @photos = @album.photos.order('created_at DESC')
   end
 
   def new
@@ -26,18 +26,17 @@ class Admin::AlbumsController < ApplicationController
 
   def update
     @album = Album.find(params[:id])
-
   end
 
   def destroy
     @album = Album.find(params[:id])
     @album.destroy
-    redirect_to admin_album_url, flash: {success: 'アルバムを削除しました'}
+    redirect_to admin_albums_url, flash: {success: 'アルバムを削除しました'}
   end
 
   private
   def album_params
-    params.require(:album).permit(:title, :description, :status, :user_id, :image)
+    params.require(:album).permit(:title, :description, :photographed_at, :status, :user_id, :image)
   end
 
 end

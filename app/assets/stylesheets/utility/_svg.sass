@@ -1,0 +1,17 @@
+// ==============================================
+// svg sizes
+// ==============================================
+
+.u-svg-
+  @each $key, $color in $svgColors
+    &#{$key}
+      fill: #{$color}
+  @each $key, $color in $snsColors
+    &#{$key}
+      fill: #{$color}
+
+.u-svg-
+  @each $key, $size in $svgSizes
+    &#{$key}
+      height: #{$size}
+      width: #{$size}

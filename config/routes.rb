@@ -44,6 +44,9 @@ Rails.application.routes.draw do
     # 記事
     resources :articles, only: [:index, :show]
 
+    # アルバム
+    resources :albums, only: [:index, :show]
+
     # チャット
     resources :rooms, only: [:show]
 

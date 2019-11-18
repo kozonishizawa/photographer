@@ -249,6 +249,11 @@ ja:
         wedding_party: 結婚式二次会
         other_events: イベント(要望欄に概要をご記載ください)
         profile: プロフィール写真
+    album:
+      status:
+        closed: 非公開
+        personal: 本人のみ
+        open: 公開
   date:
     formats:
       default: ! '%Y/%m/%d'
