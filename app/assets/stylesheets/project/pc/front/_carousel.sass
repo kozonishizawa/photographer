@@ -1,9 +1,14 @@
 .c-carousel
-  margin: 0 auto
-  position: relative
   overflow: hidden
   padding: 0
-  z-index: 1
+  max-width: 1000px
+  z-index: 99999
+  margin: 0 auto
+  position: absolute
+  top: 100px
+  left: 0
+  right: 0
+
   &__list
     position: relative
     width: 100%
@@ -14,7 +19,7 @@
     list-style: none
   &__item
     flex-shrink: 0
-
+    text-align: center
     height: 100%
     position: relative
     transition-property: transform
@@ -26,7 +31,8 @@
     position: absolute
     bottom: 30%
     transform: translateY(-50%)
-    z-index: 3
+    background-color: rgba( 0, 0, 0, 0.6)
+    border-radius: 50%
     &:before
       content: ""
       position: absolute
@@ -36,13 +42,13 @@
       height: 40%
       top: 30%
   &__prev
-    left: 1%
+    left: 0%
     &:before
       left: 10px
       top: 12px
       transform: rotate(135deg)
   &__next
-    right: 1%
+    right: 0%
     &:before
       left: 10px
       transform: rotate(315deg)
@@ -65,49 +71,3 @@
         // background: map-get($layoutColors, 'lightGray')
         cursor: default
         pointer-events: none
-  &__list.thumbnail
-    position: relative
-    height: 100%
-    z-index: 1
-    display: flex
-    box-sizing: content-box
-    list-style: none
-  &__item.thumbnail
-    flex-shrink: 0
-    height: 100%
-    position: relative
-    transition-property: transform
-
-.thumbnail .c-carousel
-  display: -webkit-box
-  display: -webkit-flex
-  display: -ms-flexbox
-  display: flex
-  -webkit-box-align: center
-  -webkit-align-items: center
-  -ms-flex-align: center
-  align-items: center
-  -webkit-box-pack: center
-  -webkit-justify-content: center
-  -ms-flex-pack: center
-  justify-content: center
-  padding: 15px
-  font-size: 18px
-  font-weight: 900
-  border: 1px solid #ccc
-
-
-.thumbnail .c-carousel::before
-  pointer-events: none
-  opacity: 0
-  content: ""
-  position: absolute
-  top: 0
-  left: 0
-  z-index: 10
-  display: block
-  width: 100%
-  height: 100%
-  border: 6px solid #007aff
-  transition: .3s ease
-

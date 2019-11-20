@@ -2,8 +2,13 @@
 
 // .pc
 .Uploader
+  position: fixed
   display: flex
-  // background-color: rgba(map-get($layoutColors, 'black'), .3)
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: rgba(map-get($layoutColors, 'black'), .3)
   z-index: $layerLevel-overlay
   justify-content: center
   align-items: center
@@ -13,10 +18,12 @@
     cursor: pointer
   &__body
     width: 500px
-    // background-color: map-get($layoutColors, 'white')
+    background-color: map-get($layoutColors, 'white')
+    border-radius: 4px
     position: relative
     display: flex
     padding-top: 50px
+    box-shadow: 0px 2px 23px -2px map-get($layoutColors, 'darkGray')
   &__title
     font-size: map-get($fontSizes, 'l')
     font-weight: bold

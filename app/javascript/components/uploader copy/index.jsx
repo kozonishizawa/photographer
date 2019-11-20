@@ -20,8 +20,26 @@ export default class Uploader extends React.Component {
 
     this.state = {
       image: null,
-      show: true,
+      show: false,
     }
+  }
+
+  // 検索モーダルを表示する
+  _open = () => {
+
+    this.setState({ show: true });
+  }
+
+  // 検索モーダルを閉じる
+  _close = () => {
+
+    this.setState({ show: false });
+  }
+
+  // エンター押下時
+  _onEnter(e) {
+
+    if(e.keyCode == 13) this.upload();
   }
 
   // アップロード
@@ -30,6 +48,10 @@ export default class Uploader extends React.Component {
     if (!this.state.image) {
       window.alert('画像を登録してください')
       console.log('登録失敗')
+      // window.alertable({
+      //   type: 'warning',
+      //   message: '画像を登録してください',
+      // });
       return false;
     }
     
@@ -50,6 +72,7 @@ export default class Uploader extends React.Component {
       Xhr.request.post('/admin/photos', data).then(response => {
 
         this.loadingRef.finish();
+        window.alert('画像を登録しました');
         console.log('登録完了');
         
         location.reload()
@@ -78,24 +101,38 @@ export default class Uploader extends React.Component {
           <div className={Style[this.props.device]}>
             <div className={Style.Uploader} onMouseDown={this._close}>
               <div className={Style.Uploader__body} onMouseDown={e => { e.stopPropagation() }}>
+
                 <div className={Style.Uploader__main}>
                   <div className='u-mt-15'>
-                    <Dropzone onDrop={this._onDrop} onDropAccepted={this.upload}>
+                    <Dropzone onDrop={this._onDrop}>
                       {({getRootProps, getInputProps}) => (
                         <div {...getRootProps()} className={Style.Uploader__dropzone}>
                           <input {...getInputProps()} />
-                          <p>この部分に画像をドラッグ＆ドロップするとアップロードを開始します</p>
+                          <p>この部分に画像をドラッグ＆ドロップしてください</p>
                           <img src={this.state.image} />
                         </div>
                       )}
                     </Dropzone>
                   </div>
+
+                  <div className='u-mt-10'>
+                    <label htmlFor="input_file" className='u-td-underline u-fc-blue'>ファイルを指定する</label>
+                  </div>
+                  <input id='input_file' type='file' accept='image/*' onChange={this._onChangeImage} />
+                  <div className='u-ta-right'>
+                    <div onClick={this.upload} className='c-btn-main u-mt-30'>登録する</div>
+                  </div>
+
+                </div>
+                <div className={Style.Uploader__close} onClick={this._close}>
+                  閉じる
                 </div>
               </div>
             </div>
           </div>
           : null
         }
+        <div className='c-btn-main' onClick={this._open}>画像をアップロードする</div>
         <Loading ref={node => this.loadingRef = node}/>
       </React.Fragment>
     )

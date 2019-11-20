@@ -17,11 +17,31 @@ var slideOption = {
 // スライド初期化
 var slide = new Swiper('#slide', slideOption);
 
-// サムネイルをクリックするとスライドがその画像に切り替わる
-var thumbs = document.querySelectorAll('.c-carousel__item.thumbnail');
-thumbs.forEach(function(item) {
-  item.onclick = () => {
-    var index = Array.from(thumbs).indexOf(item);
-    slide.slideToLoop(index);
-  }
-});
+var pop = document.getElementById('slide');
+var overRay = document.getElementById('overRay');
+var thumbs = document.querySelectorAll('.p-photos__listItem');
+
+// ポップアップの初期状態
+if (pop) {
+  pop.style.display = 'none';
+}
+
+// サムネイルをクリックするとポップアップ
+if (thumbs) {
+  thumbs.forEach(function(item) {
+    item.onclick = () => {
+      var index = Array.from(thumbs).indexOf(item);
+      slide.slideToLoop(index);
+      pop.style.display = 'block';
+      overRay.style.display = 'block';
+    }
+  });
+}
+
+// 背景をクリックするとポップアップが閉じる
+if (overRay) {
+  overRay.onclick = () => {
+    pop.style.display = 'none'
+    overRay.style.display = 'none'
+  };
+}

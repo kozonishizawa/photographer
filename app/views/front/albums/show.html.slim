@@ -1,29 +1,25 @@
 .p-photos
   .p-photos__inner
-    .c-carousel.slide#slide
-      ul.c-carousel__list
-        - @photos.each do |photo|
-          - if photo.image.attached?
-            li.c-carousel__item = image_tag photo.square_image(400)
-      .c-carousel__prev 前へ
-      .c-carousel__next 次へ
-      .c-carousel__nav 
-    .c-carousel.thumbnail#thumbnail
-      ul.c-carousel__list.thumbnail
-        - @photos.each do |photo|
-          - if photo.image.attached?
-            li.c-carousel__item.thumbnail = image_tag photo.square_image(150)
     .p-photos__heading
       h2 = @album.title
+
     - if @photos.present?
-      .p-photos__slide
-        .p-photos__image
-          = image_tag @photos.first.square_image(640), id: 'bigImage'
-      ul.p-photos__list
-        - @photos.each do |photo|
-          - if photo.image.attached?
-            li.p-photos__listItem
-              = image_tag photo.square_image(200), data: { image: url_for(photo&.square_image(640))}, class: [ 'p-photos__thumbs', 'thumbs']
+
+      .p-photos__overRay#overRay
+      .c-carousel.slide#slide
+        ul.c-carousel__list
+          - @photos.each do |photo|
+            - if photo.image.attached?
+              li.c-carousel__item = image_tag photo.rectangle_image(900, 600)
+        .c-carousel__prev
+        .c-carousel__next
+        .c-carousel__nav
+
+      .p-photos__thumbnail
+        ul.p-photos__list
+          - @photos.each do |photo|
+            - if photo.image.attached?
+              li.p-photos__listItem = image_tag photo.square_image(150)
     - else
       = react_component 'kawaii'
       p まだ写真がアップロードされていません

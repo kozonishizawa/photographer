@@ -7,12 +7,12 @@ nav.l-nav
   ul.l-nav__list
     li.l-nav__item = link_to "HOME", root_path, class: "l-nav__link"
     li.l-nav__item = link_to "NEWS", front_articles_path, class: "l-nav__link"
-    li.l-nav__item = link_to "GALLERY", front_root_path, class: "l-nav__link"
-    li.l-nav__item = link_to "CALENDAR", front_root_path, class: "l-nav__link"
-    li.l-nav__item = link_to "PRICE", front_root_path, class: "l-nav__link"
-    li.l-nav__item = link_to "PRODUCT", front_root_path, class: "l-nav__link"
-    li.l-nav__item = link_to "INFORMATION", front_root_path, class: "l-nav__link"
-    li.l-nav__item = link_to "PROFILE", front_root_path, class: "l-nav__link"
+    li.l-nav__item = link_to "GALLERY", root_path, class: "l-nav__link"
+    li.l-nav__item = link_to "CALENDAR", root_path, class: "l-nav__link"
+    li.l-nav__item = link_to "PRICE", root_path, class: "l-nav__link"
+    li.l-nav__item = link_to "PRODUCT", root_path, class: "l-nav__link"
+    li.l-nav__item = link_to "INFORMATION", root_path, class: "l-nav__link"
+    li.l-nav__item = link_to "PROFILE", root_path, class: "l-nav__link"
     - unless logged_in?
       li.l-nav__item = link_to "初めてのご依頼", new_front_contact_path, class: "l-nav__link"
       li.l-nav__item = link_to "ログイン", login_path, class: "l-nav__link"

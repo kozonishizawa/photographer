@@ -30,6 +30,7 @@ class Photo < ApplicationRecord
   #----------------------------------------
   belongs_to :album
   has_one_attached :image, dependent: :detouch
+  # has_many_attached :images, dependent: :detouch
   
   #----------------------------------------
   #  ** Delegates **
@@ -45,6 +46,10 @@ class Photo < ApplicationRecord
   # トリミング（正方形）
   def square_image(length)
     self.image.variant(combine_options: {resize: "#{length}x#{length}^", crop:"#{length}x#{length}+0+0",gravity: :center}).processed
+  end
+
+  def rectangle_image(height,width)
+    self.image.variant(combine_options: {resize: "#{height}x#{width}^", crop:"#{height}x#{width}+0+0",gravity: :center}).processed
   end
 
 end
