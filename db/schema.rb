@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_144412) do
+ActiveRecord::Schema.define(version: 2019_11_21_070736) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -72,6 +72,25 @@ ActiveRecord::Schema.define(version: 2019_11_07_144412) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "download_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "photo_id", null: false
+    t.bigint "download_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["download_id"], name: "index_download_items_on_download_id"
+    t.index ["photo_id"], name: "index_download_items_on_photo_id"
+  end
+
+  create_table "downloads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "payment_status"
+    t.integer "downloadable_limit"
+    t.integer "download_status"
+    t.bigint "album_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["album_id"], name: "index_downloads_on_album_id"
+  end
+
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id"
@@ -114,4 +133,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_144412) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "download_items", "downloads"
+  add_foreign_key "download_items", "photos"
+  add_foreign_key "downloads", "albums"
 end

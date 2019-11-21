@@ -1,6 +1,6 @@
 import Swiper from 'swiper'
 
-var slideOption = {
+var carouselOption = {
   wrapperClass : 'c-carousel__list',
   slideClass   : 'c-carousel__item',
   currentClass : 'asdasd',
@@ -15,15 +15,15 @@ var slideOption = {
 }
 
 // スライド初期化
-var slide = new Swiper('#slide', slideOption);
+var carousel = new Swiper('#slide', carouselOption);
 
-var pop = document.getElementById('slide');
+var slide = document.getElementById('slide');
 var overRay = document.getElementById('overRay');
 var thumbs = document.querySelectorAll('.p-photos__listItem');
 
-// ポップアップの初期状態
-if (pop) {
-  pop.style.display = 'none';
+// スライドの初期状態は非表示
+if (slide) {
+  slide.style.display = 'none';
 }
 
 // サムネイルをクリックするとポップアップ
@@ -31,17 +31,17 @@ if (thumbs) {
   thumbs.forEach(function(item) {
     item.onclick = () => {
       var index = Array.from(thumbs).indexOf(item);
-      slide.slideToLoop(index);
-      pop.style.display = 'block';
+      carousel.slideToLoop(index);
+      slide.style.display = 'block';
       overRay.style.display = 'block';
     }
   });
 }
 
-// 背景をクリックするとポップアップが閉じる
+// 背景をクリックすると閉じる
 if (overRay) {
   overRay.onclick = () => {
-    pop.style.display = 'none'
+    slide.style.display = 'none'
     overRay.style.display = 'none'
   };
 }

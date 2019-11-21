@@ -31,6 +31,7 @@ class Photo < ApplicationRecord
   belongs_to :album
   has_one_attached :image, dependent: :detouch
   # has_many_attached :images, dependent: :detouch
+  has_one :download_item
   
   #----------------------------------------
   #  ** Delegates **
