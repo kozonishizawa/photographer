@@ -44,5 +44,13 @@ module SessionsHelper
     session.delete(:user_id)
     @current_user = nil
   end
+  # フレンドリーフォワーディング
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session.delete(:return_to)
+  end
 
+  def store_location
+    session[:return_to] = request.url
+  end
 end

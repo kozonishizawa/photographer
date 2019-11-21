@@ -12,12 +12,14 @@ class Admin::AlbumsController < ApplicationController
 
   def new
     @album = Album.new
+    @album.build_download
     @users = User.all
+
   end
 
   def create
     @album = Album.create!(album_params)
-    redirect_to admin_albums_path, flash: {success: 'アルバムを作成しました'}
+    redirect_to admin_albums_path, flash: { success: 'アルバムを作成しました' }
   end
 
   def edit
@@ -26,17 +28,19 @@ class Admin::AlbumsController < ApplicationController
 
   def update
     @album = Album.find(params[:id])
+    @album.update album_params
+    redirect_to admin_albums_path, flash: { success: 'アルバム情報を更新しました' }
   end
 
   def destroy
     @album = Album.find(params[:id])
     @album.destroy
-    redirect_to admin_albums_url, flash: {success: 'アルバムを削除しました'}
+    redirect_to admin_albums_path, flash: { success: 'アルバムを削除しました' }
   end
 
   private
   def album_params
-    params.require(:album).permit(:title, :description, :photographed_at, :status, :user_id, :image)
+    params.require(:album).permit :title, :description, :photographed_at, :status, :user_id, :image, download_attributes: [:id, :downloadable_limit] 
   end
 
 end

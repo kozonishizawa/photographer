@@ -9,6 +9,7 @@
           th.p-albums__header 撮影日
           th.p-albums__header アルバム名
           th.p-albums__header クライアント名
+          th.p-albums__header ダウンロード上限
           th.p-albums__header 公開設定
           th.p-albums__header
           th.p-albums__header
@@ -19,6 +20,7 @@
             td.p-albums__data = album.photographed_at
             td.p-albums__data = link_to album.title, admin_album_path(album), class: 'p-albums__title'
             td.p-albums__data = album.user.name
+            td.p-albums__data = album.download.downloadable_limit
             td.p-albums__data = album.status_i18n
             td.p-albums__data = link_to '編集', edit_admin_album_path(album), class: 'p-albums__edit'
             td.p-albums__data = link_to '削除', admin_album_path(album.id), method: :delete, data: { confirm: '削除してよろしいですか？' }, class: 'p-albums__delete'

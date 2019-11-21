@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     root 'home#index'
 
     #ユーザー
-    resources :users, except: [:index]
+    resources :users, except: [:index, :destroy]
 
     # 記事
     resources :articles, only: [:index, :show]
