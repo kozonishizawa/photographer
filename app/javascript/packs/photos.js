@@ -6,10 +6,3 @@ document.addEventListener('turbolinks:load', function() {
     });
   });
 });
-
-const thumbs = document.querySelectorAll('.thumbs');
-thumbs.forEach(function(item, index) {
-  item.onclick = function() {
-    document.getElementById('bigImage').src = this.dataset.image;
-  }
-});

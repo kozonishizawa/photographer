@@ -33,7 +33,7 @@ class Download < ApplicationRecord
   #  ** Associations **
   #----------------------------------------
   belongs_to :album
-  has_many :download_items
+
   #----------------------------------------
   #  ** Delegates **
   #----------------------------------------

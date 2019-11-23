@@ -20,6 +20,7 @@
           - @photos.each do |photo|
             - if photo.image.attached?
               li.p-photos__listItem = image_tag photo.square_image(150)
+              
     - else
       = react_component 'kawaii'
       p まだ写真がアップロードされていません

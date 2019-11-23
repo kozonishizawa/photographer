@@ -37,7 +37,7 @@ class Album < ApplicationRecord
   #----------------------------------------
   belongs_to :user
   has_many :photos, dependent: :destroy
-  has_one :download
+  has_one :download, dependent: :destroy
   accepts_nested_attributes_for :download
   #----------------------------------------
   #  ** Delegates **

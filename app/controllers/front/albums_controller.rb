@@ -5,6 +5,6 @@ class Front::AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
-    @photos = @album.photos.order('created_at DESC')
+    @photos = @album.photos.reverse_order
   end
 end
