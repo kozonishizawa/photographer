@@ -6,5 +6,6 @@ class Front::AlbumsController < ApplicationController
   def show
     @album = Album.find(params[:id])
     @photos = @album.photos.reverse_order
+    @download = @album.download
   end
 end

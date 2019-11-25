@@ -21,6 +21,8 @@ gem 'webpacker', '~> 4.0'
 gem 'slim'
 gem 'html2slim'
 
+gem 'rubyzip'
+
 gem 'font-awesome-rails'
 
 

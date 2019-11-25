@@ -15,11 +15,18 @@
         .c-carousel__next
         .c-carousel__nav
 
-      .p-photos__thumbnail
+      .p-photos__thumbnails
         ul.p-photos__list
           - @photos.each do |photo|
             - if photo.image.attached?
               li.p-photos__listItem = image_tag photo.square_image(150)
+              = form_with model: photo, url: front_photo_path(photo), class: 'p-photos__form', remote: true do |f|
+                = f.hidden_field :download_id, value: photo.download_id.nil? ? @download.id : nil
+                = f.submit photo.download_id.nil? ? 'リストに追加' : 'リストから除く', class: 'download_list_button'
+      .p-photos__prev
+        = link_to 'アルバム一覧に戻る', front_albums_path
+      .p-photos__next
+        = link_to 'ダウンロード画面へ進む', front_download_path(@download.id)
               
     - else
       = react_component 'kawaii'

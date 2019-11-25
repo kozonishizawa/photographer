@@ -29,6 +29,7 @@ class Photo < ApplicationRecord
   #  ** Associations **
   #----------------------------------------
   belongs_to :album
+  belongs_to :download, optional: true
   has_one_attached :image, dependent: :detouch
   
   #----------------------------------------
@@ -50,5 +51,5 @@ class Photo < ApplicationRecord
   def rectangle_image(height,width)
     self.image.variant(combine_options: {resize: "#{height}x#{width}^", crop:"#{height}x#{width}+0+0",gravity: :center}).processed
   end
-
+  
 end

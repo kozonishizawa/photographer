@@ -25,36 +25,30 @@ export default class Uploader extends React.Component {
   }
 
   // アップロード
-  upload = () => {
+  upload = (files) => {
     // ドロップゾーンに画像が入っていない場合メッセージとともにfalseを返す
     if (!this.state.image) {
       window.alert('画像を登録してください')
       console.log('登録失敗')
       return false;
     }
-    
+    // ローディング画面の表示
     this.loadingRef.start();
 
-    // 画像をリサイズ
-    ImageConverter.imageUriToResizeBlob({
-      uri: this.state.image,
-      max_width: IMAGE_MAX_WIDTH,
-      max_height: IMAGE_MAX_HEIGHT,
-    }, blob => {
+    files.forEach(file => {
 
       const data = new FormData();
-      data.append('photo[image]', blob);
+      data.append('photo[image]', file);
       data.append('photo[album_id]', this.props.album_id);
-
+      
       // 登録処理
       Xhr.request.post('/admin/photos', data).then(response => {
-
-        this.loadingRef.finish();
-        console.log('登録完了');
         
-        location.reload()
       });
     });
+
+    location.reload();
+    this.loadingRef.finish();
   }
 
   // 画像変更時

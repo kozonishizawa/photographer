@@ -33,6 +33,7 @@ class Download < ApplicationRecord
   #  ** Associations **
   #----------------------------------------
   belongs_to :album
+  has_many :photos
 
   #----------------------------------------
   #  ** Delegates **
@@ -45,10 +46,6 @@ class Download < ApplicationRecord
   #----------------------------------------
   #  ** Methods **
   #----------------------------------------
-  # ダウンロード上限の検証
-  def verify_download_limit
-    errors.add(:download_items, 'ダウンロード上限を超えています。' )if this.downloadable_status < this.download_items.count
-  end
   # 支払い状況の検証
   def verify_payment_status
   end

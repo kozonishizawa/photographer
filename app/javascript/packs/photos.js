@@ -5,4 +5,10 @@ document.addEventListener('turbolinks:load', function() {
       div.style.display = 'none';
     });
   });
+
+  // document.querySelectorAll('.download_list_button').forEach(function(a) {
+  //   a.addEventListener('ajax:success', function() {
+  //     a.value = 'none';
+  //   });
+  // });
 });

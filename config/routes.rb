@@ -48,7 +48,12 @@ Rails.application.routes.draw do
     resources :albums, only: [:index, :show]
 
     # ダウンロード
-    resources :downloads, only: [:show, :update]
+    resources :downloads, only: [:show] do
+      post :download_photos
+    end
+
+    # 写真
+    resources :photos, only: [:update]
 
     # チャット
     resources :rooms, only: [:show]
