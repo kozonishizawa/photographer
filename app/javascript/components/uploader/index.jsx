@@ -32,6 +32,8 @@ export default class Uploader extends React.Component {
       console.log('登録失敗')
       return false;
     }
+
+    console.log(files)
     // ローディング画面の表示
     this.loadingRef.start();
 
@@ -47,8 +49,8 @@ export default class Uploader extends React.Component {
       });
     });
 
-    location.reload();
     this.loadingRef.finish();
+    // location.reload();
   }
 
   // 画像変更時

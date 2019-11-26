@@ -1,10 +1,5 @@
 .p-form
   .p-form__inner
-    .message
-      - if @user&.errors.present?
-        ul#error_explanation
-          - @user.errors.full_messages.each do |message|
-            li = message
     .p-form__form
       .p-form__formInner
         .p-form__heading
@@ -12,6 +7,8 @@
           .p-form__link
             = link_to 'ご依頼内容を見直す', edit_front_contact_path(session[:contact_id]), class: 'p-form__back'
         = form_with model: [:front, @user], local: true do |f|
+          .p-form__formItem
+            = render 'shared/error_messages', object: f.object
           .p-form__formItem
             = f.label :name, "お名前", class: 'p-form__label'
             = f.text_field :name, class: 'p-form__field'

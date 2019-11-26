@@ -12,6 +12,8 @@
           p = yield(:login)
         = form_with model: [:front, @contact], local: true do |f|
           .p-form__formItem
+            = render 'shared/error_messages', object: f.object
+          .p-form__formItem
             = f.label :subject, '撮影内容（必須）', class: 'p-form__label'
             = f.select :subject, Contact.subjects.keys.map {|k| [I18n.t("enums.contact.subject.#{k}"), k]}, {}
           .p-form__formItem
