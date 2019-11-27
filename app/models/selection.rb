@@ -1,17 +1,18 @@
 # == Schema Information
 #
-# Table name: downloads
+# Table name: selections
 #
 #  id                 :integer          not null, primary key
-#  paid               :boolean          default("0"), not null
+#  paid               :boolean
 #  downloadable_limit :integer
-#  download_status    :integer          default("0"), not null
+#  download_status    :integer
+#  user_id            :integer          not null
 #  album_id           :integer          not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
 
-class Download < ApplicationRecord
+class Selection < ApplicationRecord
   #----------------------------------------
   #  ** Includes **
   #----------------------------------------

@@ -12,7 +12,7 @@ class Admin::AlbumsController < ApplicationController
 
   def new
     @album = Album.new
-    @album.build_download
+    @album.build_selection
     @users = User.all
 
   end
@@ -40,7 +40,7 @@ class Admin::AlbumsController < ApplicationController
 
   private
   def album_params
-    params.require(:album).permit :title, :description, :photographed_at, :status, :user_id, :image, download_attributes: [:id, :downloadable_limit] 
+    params.require(:album).permit :title, :description, :photographed_at, :status, :user_id, :image, selection_attributes: [:id, :downloadable_limit] 
   end
 
 end

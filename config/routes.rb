@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     resources :albums, only: [:index, :show]
 
     # ダウンロード
-    resources :downloads, only: [:show] do
+    resources :selections, only: [:show] do
       get :download_photos
     end
 

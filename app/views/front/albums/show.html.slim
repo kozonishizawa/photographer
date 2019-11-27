@@ -24,12 +24,12 @@
                   = image_tag photo.square_image(150), class: 'p-photos__thumbnail'
                 .p-photos__formWrapper
                   = form_with model: photo, url: front_photo_path(photo), class: 'p-photos__form' do |f|
-                    = f.hidden_field :download_id, value: photo.download_id.nil? ? @download.id : nil
-                    = f.submit photo.download_id.nil? ? '' : '選択中', class: 'p-photos__button', id: 'button'
+                    = f.hidden_field :selection_id, value: photo.selection_id.nil? ? @selection.id : nil
+                    = f.submit photo.selection_id.nil? ? '' : '選択中', class: 'p-photos__button', id: 'button'
       .p-photos__prev
         = link_to 'アルバム一覧に戻る', front_albums_path
       .p-photos__next
-        = link_to 'ダウンロード画面へ進む', front_download_path(@download.id)
+        = link_to 'ダウンロード画面へ進む', front_selection_path(@selection.id)
               
     - else
       = react_component 'kawaii'

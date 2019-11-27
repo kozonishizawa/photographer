@@ -2,10 +2,11 @@
 #
 # Table name: photos
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  album_id   :integer          not null
+#  id           :integer          not null, primary key
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  album_id     :integer          not null
+#  selection_id :integer
 #
 
 class Photo < ApplicationRecord
@@ -29,7 +30,7 @@ class Photo < ApplicationRecord
   #  ** Associations **
   #----------------------------------------
   belongs_to :album
-  belongs_to :download, optional: true
+  belongs_to :selection, optional: true
   has_one_attached :image, dependent: :detouch
   
   #----------------------------------------

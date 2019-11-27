@@ -1,18 +1,18 @@
-class Front::DownloadsController < ApplicationController
-require 'zip'
+class Front::SelectionsController < ApplicationController
+  require 'zip'
 
-before_action :login_required
+  before_action :login_required
 
   def show
-    @download = Download.find(params[:id])
-    @photos = @download.photos.reverse_order
-    @album = @download.album
+    @selection = Selection.find(params[:id])
+    @photos = @selection.photos.reverse_order
+    @album = @selection.album
   end
 
-  def download_photos
-    download = Download.find(params[:download_id])
-    photos = download.photos
-    album = download.album
+  def selection_photos
+    selection = Selection.find(params[:selection_id])
+    photos = selection.photos
+    album = selection.album
     # tempでzipファイルを生成
     t = Tempfile.new
     ::Zip::OutputStream.open(t.path) do |z|

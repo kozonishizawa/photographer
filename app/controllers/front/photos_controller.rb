@@ -1,6 +1,6 @@
 class Front::PhotosController < ApplicationController
   before_action :login_required
-  before_action :verify_download_limit, only: [:update]
+  before_action :verify_downloadable_limit, only: [:update]
   
   def update
     photo = Photo.find(params[:id])
@@ -12,17 +12,17 @@ class Front::PhotosController < ApplicationController
   
   private
   
-  def verify_download_limit
+  def verify_downloadable_limit
     photo = Photo.find(params[:id])
     album = Album.find(photo.album.id)
-    if photo_params[:download_id].to_i === album.download.id
-      if album.photos.where(download_id: album.download.id).count + 1 > album.download.downloadable_limit
-        redirect_to front_album_url(album.id), flash: { danger: "選択できる写真は#{album.download.downloadable_limit}枚までです"}
+    if photo_params[:selection_id].to_i === album.selection.id
+      if album.photos.where(selection_id: album.selection.id).count + 1 > album.selection.downloadable_limit
+        redirect_to front_album_url(album.id), flash: { danger: "選択できる写真は#{album.selection.downloadable_limit}枚までです"}
       end
     end
   end
 
   def photo_params
-    params.require(:photo).permit :download_id
+    params.require(:photo).permit :selection_id
   end
 end
