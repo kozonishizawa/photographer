@@ -1,5 +1,6 @@
 class Front::AlbumsController < ApplicationController
   before_action :login_required
+  before_action :validate_user, only: [:show]
 
   def index
     @albums = current_user.albums.all
@@ -10,4 +11,15 @@ class Front::AlbumsController < ApplicationController
     @photos = @album.photos.reverse_order
     @selection = @album.selection
   end
+
+  private
+
+    def validate_user
+      album = Album.find(params[:id])
+      user = album.user
+      unless user.id === current_user.id
+        redirect_to front_root_url, flash: { danger: 'アクセス権限がありません'}
+      end
+    end
+    
 end

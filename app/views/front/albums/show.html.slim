@@ -1,7 +1,8 @@
 .p-photos
   .p-photos__inner
     .p-photos__heading
-      h2 = @album.title
+      h1 = @album.title
+      p = downloadable_counter(@selection)
 
     - if @photos.present?
 
@@ -21,15 +22,15 @@
             - if photo.image.attached?
               li.p-photos__listItem
                 .p-photos__imageWrapper
-                  = image_tag photo.square_image(150), class: 'p-photos__thumbnail'
+                  = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail'
                 .p-photos__formWrapper
                   = form_with model: photo, url: front_photo_path(photo), class: 'p-photos__form' do |f|
                     = f.hidden_field :selection_id, value: photo.selection_id.nil? ? @selection.id : nil
                     = f.submit photo.selection_id.nil? ? '' : '選択中', class: 'p-photos__button', id: 'button'
-      .p-photos__prev
-        = link_to 'アルバム一覧に戻る', front_albums_path
-      .p-photos__next
-        = link_to 'ダウンロード画面へ進む', front_selection_path(@selection.id)
+
+      .p-photos__linkWrapper
+        = link_to 'ダウンロード画面へ進む', front_selection_path(@selection.id), class: 'p-photos__next'
+        = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-photos__prev'
               
     - else
       = react_component 'kawaii'

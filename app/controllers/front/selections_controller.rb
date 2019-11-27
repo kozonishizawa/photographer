@@ -2,6 +2,7 @@ class Front::SelectionsController < ApplicationController
   require 'zip'
 
   before_action :login_required
+  before_action :validate_user
 
   def show
     @selection = Selection.find(params[:id])
@@ -9,7 +10,7 @@ class Front::SelectionsController < ApplicationController
     @album = @selection.album
   end
 
-  def selection_photos
+  def download_photos
     selection = Selection.find(params[:selection_id])
     photos = selection.photos
     album = selection.album
@@ -26,5 +27,14 @@ class Front::SelectionsController < ApplicationController
     # 閉じる
     t.close
   end
+
+  private
+
+    def validate_user
+      user = User.joins(albums: :selection).merge(Selection.where(id: params[:id] || params[:selection_id])).first
+      unless user === current_user
+        redirect_to front_root_url, flash: { danger: 'アクセス権限がありません' }
+      end
+    end
 
 end

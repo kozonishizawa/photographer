@@ -1,28 +1,59 @@
 .p-photos
   &__inner
+  &__heading
+    text-align: center
+    font-size: 2em
+    margin: 50px 0
   &__thumbnails
   &__list
     margin: 0 auto
+    text-align: center
   &__listItem
     display: inline-flex
     flex-direction: column
     flex-wrap: rap
     justify-content: flex-start
     margin: 15px
-    position: relative
-    box-shadow: 1px 1px 2px #ccc
-    padding: 5px
   &__imageWrapper
+  &__thumbnail
+    border-radius: 5px
+    cursor: pointer
   &__formWrapper
   &__form
     display: block
   &__button
+    margin-top: 10px
     width: 100%
-    height: 50px
-    border: none
-    font-size: 1.5em
-    letter-spacing: 5px
-    background-color: rgba(1, 1, 1, 0)
+    height: 45px
+    position: relative
+    display: inline-block
+    font-weight: bold
+    padding: 0.25em 0.5em
+    text-decoration: none
+    color: #00bcd4
+    border: 1px solid #00bcd4
+    border-radius: 5px
+  &__linkWrapper
+    padding: 50px
+  &__next
+    text-align: center
+    display: block
+    position: relative
+    font-weight: bold
+    width: 30%
+    padding: 0.5em 0.5em
+    margin: 0 auto
+    text-decoration: none
+    color: #FFF
+    background: #00bcd4
+    transition: .4s
+    border-radius: 5px
+    &:visited
+      color: #FFF
+  &__prev
+    text-align: center
+    display: block
+    margin-top: 10px
   &__overRay
     display: none
     z-index: 9999

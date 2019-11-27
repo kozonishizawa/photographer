@@ -2,15 +2,14 @@
   .p-selections__inner
 
     .p-selections__heading
-      h2 確認してください
+      h2 以下の写真が選択されています。ご確認のうえ、ダウンロードボタンを押してください。
 
     ul.p-selections__list
       - @photos.each do |photo|
         -if photo.image.attached?
           li.p-selections__listItem
-            = image_tag photo.square_image(150)
+            = image_tag photo.rectangle_image(300,200), class: 'p-selections__thumbnail'
 
-    .p-selections__prev
-      = link_to '選び直す', front_album_path(@album)
-    .p-selections__download
-      = link_to 'ダウンロード', front_selection_download_photos_path(@selection)
+    .p-selections__linkWrapper
+      = link_to 'ダウンロード', front_selection_download_photos_path(@selection), class: 'p-selections__download'
+      = link_to '選び直す', front_album_path(@album), class: 'p-selections__prev'
