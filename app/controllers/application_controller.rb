@@ -10,22 +10,22 @@ class ApplicationController < ActionController::Base
   # ログイン検証
   def login_required
     store_location
-    redirect_to login_path, flash: { danger: 'ログインが必要です' } unless current_user
+    redirect_to login_url, flash: { danger: 'ログインが必要です' } unless current_user
   end
 
   def forbid_login_user
-    redirect_back_or root_path, flash: { danger: 'すでにログインしています' } if current_user
+    redirect_back_or root_url, flash: { danger: 'すでにログインしています' } if current_user
   end
 
   # 管理者検証
   def required_admin
-    redirect_to root_path, flash: { danger: 'アクセス権限がありません' } unless current_user&.admin?
+    redirect_to root_url, flash: { danger: 'アクセス権限がありません' } unless current_user&.admin?
   end
 
   # ユーザー検証
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_path) unless current_user?(@user)
+    redirect_to(root_url) unless current_user?(@user)
   end
 
 end

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       if user.activated?
         log_in(user)
         session_params[:remember_me] == '1' ? remember(user) : forget(user)
-        redirect_to user.admin? ? admin_root_path : front_root_path, flash: {success: 'ログインしました'}
+        redirect_to user.admin? ? admin_root_url : front_root_url, flash: {success: 'ログインしました'}
       else
         message = 'アカウントが有効ではありません'
         message += 'Eメールの有効化リンクにアクセスしてください'
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out if logged_in?
-    redirect_to root_path, flash: {success: 'ログアウトしました'}
+    redirect_to root_url, flash: {success: 'ログアウトしました'}
   end
 
   private

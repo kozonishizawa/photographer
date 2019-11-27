@@ -19,7 +19,7 @@ class Admin::AlbumsController < ApplicationController
 
   def create
     @album = Album.create!(album_params)
-    redirect_to admin_albums_path, flash: { success: 'アルバムを作成しました' }
+    redirect_to admin_albums_url, flash: { success: 'アルバムを作成しました' }
   end
 
   def edit
@@ -29,13 +29,13 @@ class Admin::AlbumsController < ApplicationController
   def update
     @album = Album.find(params[:id])
     @album.update album_params
-    redirect_to admin_albums_path, flash: { success: 'アルバム情報を更新しました' }
+    redirect_to admin_albums_url, flash: { success: 'アルバム情報を更新しました' }
   end
 
   def destroy
     @album = Album.find(params[:id])
     @album.destroy
-    redirect_to admin_albums_path, flash: { success: 'アルバムを削除しました' }
+    redirect_to admin_albums_url, flash: { success: 'アルバムを削除しました' }
   end
 
   private

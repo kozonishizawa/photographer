@@ -1,4 +1,6 @@
 class Admin::ArticlesController < ApplicationController
+  before_action :required_admin
+  
   def index
     @articles = Article.all
   end
@@ -14,7 +16,7 @@ class Admin::ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to admin_articles_path, flash: { success: "記事#{@article.title}を投稿しました"}
+      redirect_to admin_articles_url, flash: { success: "記事#{@article.title}を投稿しました"}
     else
       render :new
     end
@@ -26,13 +28,13 @@ class Admin::ArticlesController < ApplicationController
 
   def update
     @article = Article.update!(params[:id])
-    redirect_to admin_articles_path, flash: { success: "記事#{@article.title}を更新しました"}
+    redirect_to admin_articles_url, flash: { success: "記事#{@article.title}を更新しました"}
   end
 
   def destroy
     @article = Article.find(params[:id])
     @article.delete
-    redirect_to admin_articles_path, flash: { success: "記事を削除しました"}
+    redirect_to admin_articles_url, flash: { success: "記事を削除しました"}
   end
 
   private

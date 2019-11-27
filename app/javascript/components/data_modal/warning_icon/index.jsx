@@ -1,7 +1,7 @@
 import React from 'react'
 import Style from './style.sass'
 
-export default class SuccessIcon extends React.Component {
+export default class WarningIcon extends React.Component {
 
   // 表示処理
   render () {

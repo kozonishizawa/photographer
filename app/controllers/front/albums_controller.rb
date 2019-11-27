@@ -1,4 +1,6 @@
 class Front::AlbumsController < ApplicationController
+  before_action :login_required
+
   def index
     @albums = current_user.albums.all
   end

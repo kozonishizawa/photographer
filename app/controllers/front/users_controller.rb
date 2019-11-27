@@ -1,7 +1,7 @@
 class Front::UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user, only: [:edit, :update]
   before_action :required_contact, only: [:new, :create]
+  before_action :login_required, only: [:edit, :update]
 
   def new
     @user = User.new

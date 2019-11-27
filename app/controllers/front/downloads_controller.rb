@@ -1,6 +1,8 @@
 class Front::DownloadsController < ApplicationController
 require 'zip'
 
+before_action :login_required
+
   def show
     @download = Download.find(params[:id])
     @photos = @download.photos.reverse_order
@@ -9,7 +11,7 @@ require 'zip'
 
   def download_photos
     download = Download.find(params[:download_id])
-    photos = download.photos.reverse_order
+    photos = download.photos
     album = download.album
     # tempでzipファイルを生成
     t = Tempfile.new
@@ -20,9 +22,9 @@ require 'zip'
       end
     end
     # ファイルダウンロード
-    send_file(t.path, :type => 'application/zip', :dispositon => 'attachment', :filename => "photo_album.zip")
+    send_file(t.path, type: 'application/zip', dispositon: 'attachment', filename: 'photo_album.zip')
     # 閉じる
     t.close
   end
-  
+
 end

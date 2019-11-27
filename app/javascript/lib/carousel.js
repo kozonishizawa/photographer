@@ -16,14 +16,14 @@ var carouselOption = {
 
 
 // スライド初期化
-var carousel = new Swiper('#slide', carouselOption);
 
 var slide = document.getElementById('slide');
 var overRay = document.getElementById('overRay');
-var thumbs = document.querySelectorAll('.p-photos__listItem');
+var thumbs = document.querySelectorAll('.p-photos__thumbnail');
 
 // スライドの初期状態は非表示
 if (slide) {
+  var carousel = new Swiper('#slide', carouselOption);
   slide.style.display = 'none';
 }
 

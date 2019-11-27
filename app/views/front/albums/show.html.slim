@@ -19,10 +19,13 @@
         ul.p-photos__list
           - @photos.each do |photo|
             - if photo.image.attached?
-              li.p-photos__listItem = image_tag photo.square_image(150)
-              = form_with model: photo, url: front_photo_path(photo), class: 'p-photos__form', remote: true do |f|
-                = f.hidden_field :download_id, value: photo.download_id.nil? ? @download.id : nil
-                = f.submit photo.download_id.nil? ? 'リストに追加' : 'リストから除く', class: 'download_list_button'
+              li.p-photos__listItem
+                .p-photos__imageWrapper
+                  = image_tag photo.square_image(150), class: 'p-photos__thumbnail'
+                .p-photos__formWrapper
+                  = form_with model: photo, url: front_photo_path(photo), class: 'p-photos__form' do |f|
+                    = f.hidden_field :download_id, value: photo.download_id.nil? ? @download.id : nil
+                    = f.submit photo.download_id.nil? ? '' : '選択中', class: 'p-photos__button', id: 'button'
       .p-photos__prev
         = link_to 'アルバム一覧に戻る', front_albums_path
       .p-photos__next

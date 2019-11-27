@@ -26,7 +26,7 @@ class Admin::PhotosController < ApplicationController
   def update
     @photo = Photo.find(params[:id])
     if @photo.update(photo_params)
-      redirect_to admin_photo_path(@photo), flash: {success: "「#{@photo.title}」を更新しました"}
+      redirect_to admin_photo_url(@photo), flash: {success: "「#{@photo.title}」を更新しました"}
     else
       render :new
     end
