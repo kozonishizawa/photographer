@@ -28,8 +28,12 @@ class Front::SelectionsController < ApplicationController
     t.close
   end
 
+  def complete
+  end
+
   private
 
+    # ログイン中のユーザーを検証
     def validate_user
       user = User.joins(albums: :selection).merge(Selection.where(id: params[:id] || params[:selection_id])).first
       unless user === current_user

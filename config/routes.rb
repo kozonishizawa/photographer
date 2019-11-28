@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     # ダウンロード
     resources :selections, only: [:show] do
       get :download_photos
+      get :complete
     end
 
     # 写真

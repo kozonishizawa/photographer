@@ -14,6 +14,7 @@ class Front::AlbumsController < ApplicationController
 
   private
 
+    # ログイン中のユーザーを検証
     def validate_user
       album = Album.find(params[:id])
       user = album.user
