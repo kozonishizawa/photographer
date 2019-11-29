@@ -1,3 +1,5 @@
+import { end } from "worker-farm";
+
 document.addEventListener('turbolinks:load', function() {
   document.querySelectorAll('.delete').forEach(function(a) {
     a.addEventListener('ajax:success', function() {
@@ -6,9 +8,9 @@ document.addEventListener('turbolinks:load', function() {
     });
   });
   
-  document.querySelectorAll('.p-photos__button').forEach(function(a) {
-    a.addEventListener('ajax:success', function() {
-      console.log('おはよう')
-    });
+  window.addEventListener('ajax:success', function(e) {
+    console.log('おはよう', e.target);
+    let input = e.target.lastChild;
+    console.log(input);
   });
 });

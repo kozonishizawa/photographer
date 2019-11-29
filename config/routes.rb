@@ -49,7 +49,7 @@ Rails.application.routes.draw do
 
     # ダウンロード
     resources :selections, only: [:show] do
-      get :download_photos
+      post :download_photos
       get :complete
     end
 

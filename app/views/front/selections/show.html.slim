@@ -11,5 +11,5 @@
             = image_tag photo.rectangle_image(300,200), class: 'p-selections__thumbnail'
 
     .p-selections__linkWrapper
-      = link_to 'ダウンロード', front_selection_download_photos_path(@selection), class: 'p-selections__download'
+      = link_to 'ダウンロード', front_selection_download_photos_path(@selection), class: 'p-selections__download', method: :post
       = link_to '選び直す', front_album_path(@album), class: 'p-selections__prev'

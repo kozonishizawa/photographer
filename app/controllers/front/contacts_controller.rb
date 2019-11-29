@@ -2,6 +2,8 @@ class Front::ContactsController < ApplicationController
   before_action :valid_contact, only: [:new, :create]
   def new
     @contact = Contact.find_or_initialize_by(id: session[:contact_id])
+    @contact = Contact.new
+    # @contact.build_user
   end
 
   def create
@@ -29,7 +31,7 @@ class Front::ContactsController < ApplicationController
 
   private
     def contact_params
-      params.require(:contact).permit(:subject, :date, :location, :request)
+      params.require(:contact).permit :subject, :date, :location, :request, :user_id, user_attributes: [:id, :name, :tel, :email, :password, :password_confirmation]
     end
 
     # session[:contact_id]がすでに存在する場合は編集画面へリダイレクトする

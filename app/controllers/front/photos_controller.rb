@@ -7,8 +7,7 @@ class Front::PhotosController < ApplicationController
     photo = Photo.find(params[:id])
     album = Album.find(photo.album.id)
     photo.update!(photo_params)
-    redirect_to front_album_url(album.id)
-    # head :no_content
+    head :ok
   end
   
   private

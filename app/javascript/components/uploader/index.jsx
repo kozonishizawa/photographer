@@ -5,12 +5,7 @@ import Style from './style.sass';
 // fileアップロード
 import Dropzone from 'react-dropzone'
 
-// 画像変換
-import ImageConverter from '../../lib/image_converter'
 import Xhr from '../../lib/xhr'
-
-// 最大縦横幅
-import { IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT } from './properties.es6'
 
 export default class Uploader extends React.Component {
   // コンストラクタ
@@ -32,25 +27,37 @@ export default class Uploader extends React.Component {
       console.log('登録失敗')
       return false;
     }
-
-    console.log(files)
+    
     // ローディング画面の表示
     this.loadingRef.start();
-
+    
+    let promises = [];
+    
     files.forEach(file => {
-
-      const data = new FormData();
-      data.append('photo[image]', file);
-      data.append('photo[album_id]', this.props.album_id);
+      promises.push(
       
-      // 登録処理
-      Xhr.request.post('/admin/photos', data).then(response => {
-        
-      });
+        new Promise((resolve, reject) => {
+          
+          const data = new FormData();
+          data.append('photo[image]', file);
+          data.append('photo[album_id]', this.props.album_id);
+          console.log(`${files.indexOf(file) + 1}個目のファイルを処理しています`)
+
+          resolve(
+            // 登録処理
+            Xhr.request.post('/admin/photos', data)
+          );
+        })
+      );
     });
 
-    this.loadingRef.finish();
-    // location.reload();
+    // 全てのファイルを登録後に実行
+    Promise.all(promises).then(results => {
+      console.log(`計${results.length}個のファイルを保存しました`);
+      location.reload();
+      this.loadingRef.finish();
+    })
+
   }
 
   // 画像変更時

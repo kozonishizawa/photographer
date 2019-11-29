@@ -37,6 +37,7 @@ class Contact < ApplicationRecord
   #----------------------------------------
   #  ** Associations **
   #----------------------------------------
+  # accept_nested_attributes_for :user
 
   #----------------------------------------
   #  ** Delegates **

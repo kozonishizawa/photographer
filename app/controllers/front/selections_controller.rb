@@ -26,6 +26,7 @@ class Front::SelectionsController < ApplicationController
     send_file(t.path, type: 'application/zip', dispositon: 'attachment', filename: 'photo_album.zip')
     # 閉じる
     t.close
+    # redirect_to front_selection_complete_url
   end
 
   def complete

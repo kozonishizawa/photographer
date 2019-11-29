@@ -3,7 +3,6 @@ import Swiper from 'swiper'
 var carouselOption = {
   wrapperClass : 'c-carousel__list',
   slideClass   : 'c-carousel__item',
-  currentClass : 'asdasd',
   loop         : true,
   pagination   : {
     el : '.c-carousel__nav',
@@ -30,9 +29,8 @@ if (slide) {
 // サムネイルをクリックするとポップアップ
 if (thumbs) {
   thumbs.forEach(function(item) {
-    item.onclick = () => {
-      var index = Array.from(thumbs).indexOf(item);
-      carousel.slideToLoop(index);
+    item.onclick = (e) => {
+      carousel.slideTo(e.target.dataset.index);
       slide.style.display = 'block';
       overRay.style.display = 'block';
     }

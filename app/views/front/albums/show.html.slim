@@ -18,15 +18,15 @@
 
       .p-photos__thumbnails
         ul.p-photos__list
-          - @photos.each do |photo|
+          - @photos.each.with_index(1) do |photo, index|
             - if photo.image.attached?
               li.p-photos__listItem
                 .p-photos__imageWrapper
-                  = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail'
+                  = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail', 'data-index': index
                 .p-photos__formWrapper
-                  = form_with model: photo, url: front_photo_path(photo), class: 'p-photos__form' do |f|
+                  = form_with model: photo, url: front_photo_path(photo), class: 'p-photos__form', id: photo.id do |f|
                     = f.hidden_field :selection_id, value: photo.selection_id.nil? ? @selection.id : nil
-                    = f.submit photo.selection_id.nil? ? '' : '選択中', class: 'p-photos__button', id: 'button'
+                    = f.submit photo.selection_id.nil? ? '' : '選択中', class: 'p-photos__button'
 
       .p-photos__linkWrapper
         = link_to 'ダウンロード画面へ進む', front_selection_path(@selection.id), class: 'p-photos__next'
