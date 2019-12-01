@@ -2,11 +2,12 @@
 #
 # Table name: photos
 #
-#  id           :integer          not null, primary key
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  album_id     :integer          not null
-#  selection_id :integer
+#  id              :integer          not null, primary key
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  album_id        :integer          not null
+#  selection_id    :integer
+#  download_status :integer          default("0")
 #
 
 class Photo < ApplicationRecord
@@ -21,6 +22,7 @@ class Photo < ApplicationRecord
   #----------------------------------------
   #  ** Enums **
   #----------------------------------------
+  enum download_status: { unselected: 0, selected: 1, complete: 2 }
   
   #----------------------------------------
   #  ** Validations **

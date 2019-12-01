@@ -2,20 +2,21 @@
 #
 # Table name: users
 #
-#  id                :integer          not null, primary key
-#  name              :string(255)      not null
-#  email             :string(255)      not null
-#  tel               :string(255)      not null
-#  password_digest   :string(255)      not null
-#  admin             :boolean          default("0"), not null
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  remember_digest   :string(255)
-#  activation_digest :string(255)
-#  activated         :boolean          default("0")
-#  activated_at      :datetime
-#  reset_digest      :string(255)
-#  reset_sent_at     :datetime
+#  id                 :integer          not null, primary key
+#  name               :string(255)      not null
+#  email              :string(255)      not null
+#  tel                :string(255)      not null
+#  password_digest    :string(255)      not null
+#  admin              :boolean          default("0"), not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  remember_digest    :string(255)
+#  activation_digest  :string(255)
+#  activated          :boolean          default("0")
+#  activated_at       :datetime
+#  reset_digest       :string(255)
+#  reset_sent_at      :datetime
+#  downloadable_limit :integer
 #
 
 class User < ApplicationRecord
@@ -40,7 +41,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :tel, presence: true
-  validates :password, presence: true, length: { minimum: 6, maximum: 10}
+  validates :password, presence: true, length: { minimum: 6, maximum: 10}, allow_nil: true
   
   #----------------------------------------
   #  ** Associations **

@@ -6,7 +6,6 @@
 #  paid               :boolean
 #  downloadable_limit :integer
 #  download_status    :integer
-#  user_id            :integer          not null
 #  album_id           :integer          not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null

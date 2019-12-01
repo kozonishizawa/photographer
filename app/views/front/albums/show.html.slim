@@ -26,7 +26,11 @@
                 .p-photos__formWrapper
                   = form_with model: photo, url: front_photo_path(photo), class: 'p-photos__form', id: photo.id do |f|
                     = f.hidden_field :selection_id, value: photo.selection_id.nil? ? @selection.id : nil
-                    = f.submit photo.selection_id.nil? ? '' : '選択中', class: 'p-photos__button'
+                    - if photo.download_status == 'unselected'
+                      = f.hidden_field :download_status, value: 'selected'
+                    - elsif photo.download_status == 'selected'
+                      = f.hidden_field :download_status, value: 'unselected'
+                    = f.submit photo.selection_id.nil? ? 'ダウンロードリストに追加' : 'ダウンロードリストから外す', class: 'p-photos__button'
 
       .p-photos__linkWrapper
         = link_to 'ダウンロード画面へ進む', front_selection_path(@selection.id), class: 'p-photos__next'

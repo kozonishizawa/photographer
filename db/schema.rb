@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_27_074718) do
+ActiveRecord::Schema.define(version: 2019_11_29_211641) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2019_11_27_074718) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "album_id", null: false
     t.bigint "selection_id"
+    t.integer "download_status", default: 0
     t.index ["album_id"], name: "index_photos_on_album_id"
     t.index ["selection_id"], name: "index_photos_on_selection_id"
   end
@@ -122,6 +123,7 @@ ActiveRecord::Schema.define(version: 2019_11_27_074718) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.integer "downloadable_limit"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

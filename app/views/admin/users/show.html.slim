@@ -1,0 +1,21 @@
+.p-user
+  .p-user__inner
+    = link_to '一覧へ戻る', admin_users_path
+    .p-user__profileWrapper
+      .p-users__profileItem
+        = @user.name
+
+      .p-users__profileItem
+        = @user.email
+
+      .p-users__profileItem
+        = @user.tel
+
+      .p-users__profileItem
+        = @user.downloadable_limit
+
+      .p-users__profileItem
+        = @user.admin? ? '有効' : '無効'
+
+      .p-users__profileItem
+        = @user.activated? ? '有効' : '無効'

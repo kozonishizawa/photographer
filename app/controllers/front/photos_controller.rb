@@ -32,7 +32,7 @@ class Front::PhotosController < ApplicationController
     end
 
     def photo_params
-      params.require(:photo).permit :selection_id
+      params.require(:photo).permit :download_status, :selection_id
     end
 
 end

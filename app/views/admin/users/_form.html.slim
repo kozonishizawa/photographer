@@ -1,0 +1,52 @@
+.p-users
+  .p-users__inner
+    = link_to '一覧へ戻る', admin_users_path, class: 'p-users__prev'
+    .p-users__heading
+      .p-users__form
+        .p-users__formInner
+          = form_with model: [:admin, @user], local: true do |f|
+            = render 'shared/error_messages', object: f.object
+
+            .c-form-field
+              = f.label :name, 'ユーザー名', class: 'c-form-label'
+              span.c-form-reqired.u-ml-10 必須
+              = f.text_field :name, placeholder: 'ユーザー名', class: 'c-form-text', required: :true
+
+            .c-form-field
+              = f.label :email, 'メールアドレス', class: 'c-form-label'
+              span.c-form-reqired.u-ml-10 必須
+              = f.text_field :email, placeholder: 'メールアドレス', class: 'c-form-text', required: :true
+
+            .c-form-field
+              = f.label :tel, '電話番号', class: 'c-form-label'
+              span.c-form-reqired.u-ml-10 必須
+              = f.text_field :tel, placeholder: '電話番号', class: 'c-form-text', required: :true
+
+            .c-form-field
+              = f.label :password, 'パスワード（６字以上10字以内）', class: 'c-form-label'
+              span.c-form-reqired.u-ml-10 必須
+              = f.password_field :password, placeholder: 'パスワード（６字以上10字以内）', class: 'c-form-text', reqired: :true
+
+            .c-form-field
+              = f.label :password_confirmation, 'パスワード(確認)', class: 'c-form-label'
+              span.c-form-reqired.u-ml-10 必須
+              = f.password_field :password_confirmation, placeholder: 'パスワード(確認)', class: 'c-form-text', reqired: :true
+
+            .c-form-field
+              = f.label :downloadable_limit, 'ダウンロード上限'
+              span.c-form-reqired.u-ml-10 必須
+              = f.number_field :downloadable_limit, reqired: :true
+
+            .c-form-field
+              = f.label :admin, class: 'form-check-label' do
+                = f.check_box :admin, class: 'form-check-input'
+                | 管理者権限
+
+            .c-form-field
+              = f.label :activated, class: 'form-check-label' do
+                = f.check_box :activated, class: 'form-check-input'
+                | 有効にする
+            
+            .u-mt-30= f.submit '登録する', class: 'c-btn-main'
+
+

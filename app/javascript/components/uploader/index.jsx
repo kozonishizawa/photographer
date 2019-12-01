@@ -54,8 +54,8 @@ export default class Uploader extends React.Component {
     // 全てのファイルを登録後に実行
     Promise.all(promises).then(results => {
       console.log(`計${results.length}個のファイルを保存しました`);
-      location.reload();
       this.loadingRef.finish();
+      location.reload();
     })
 
   }
