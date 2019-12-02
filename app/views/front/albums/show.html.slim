@@ -2,7 +2,7 @@
   .p-photos__inner
     .p-photos__heading
       h1 = @album.title
-      p = downloadable_counter(@selection)
+      p = downloadable_counter
 
     - if @photos.present?
 
@@ -25,15 +25,15 @@
                   = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail', 'data-index': index
                 .p-photos__formWrapper
                   = form_with model: photo, url: front_photo_path(photo), class: 'p-photos__form', id: photo.id do |f|
-                    = f.hidden_field :selection_id, value: photo.selection_id.nil? ? @selection.id : nil
                     - if photo.download_status == 'unselected'
                       = f.hidden_field :download_status, value: 'selected'
+                      = f.submit 'ダウンロードリストに追加', class: 'p-photos__button'
                     - elsif photo.download_status == 'selected'
                       = f.hidden_field :download_status, value: 'unselected'
-                    = f.submit photo.selection_id.nil? ? 'ダウンロードリストに追加' : 'ダウンロードリストから外す', class: 'p-photos__button'
+                      = f.submit 'ダウンロードリストから外す', class: 'p-photos__button'
 
       .p-photos__linkWrapper
-        = link_to 'ダウンロード画面へ進む', front_selection_path(@selection.id), class: 'p-photos__next'
+        = link_to '選択中の写真を一括ダウンロード', front_user_download_path(current_user.id), method: :post, class: 'p-photos__next'
         = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-photos__prev'
               
     - else

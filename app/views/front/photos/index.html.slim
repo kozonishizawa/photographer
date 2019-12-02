@@ -1,0 +1,6 @@
+ul.p-photos__list
+  - @photos.each.with_index(1) do |photo, index|
+    - if photo.image.attached?
+      li.p-photos__listItem
+        .p-photos__imageWrapper
+          = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail', 'data-index': index

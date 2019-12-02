@@ -1,5 +1,7 @@
 class Front::UsersController < ApplicationController
-  before_action :correct_user, only: [:edit, :update]
+  require 'zip'
+
+  before_action :correct_user, only: [:edit, :update, :download]
   before_action :required_contact, only: [:new, :create]
   before_action :login_required, only: [:edit, :update]
 
@@ -29,6 +31,23 @@ class Front::UsersController < ApplicationController
     user = User.find(params[:id])
     user.update!(user_params)
     redirect_to admin_users_url, flash: { success: 'ユーザー情報を更新しました'}
+  end
+
+  def download
+    photos = Photo.where(download_status: 'selected').joins(album: :user).merge(User.where(id: params[:user_id]))
+    # tempでzipファイルを生成
+    t = Tempfile.new
+    ::Zip::OutputStream.open(t.path) do |z|
+      photos.each do |photo|
+        z.put_next_entry("photo_album/#{photo.id}.jpg")
+        z.print(photo.image.download)
+      end
+    end
+    # ファイルダウンロード
+    send_file(t.path, type: 'application/zip', dispositon: 'attachment', filename: 'photo_album.zip')
+    current_user.complete_download(photos)
+    # 閉じる
+    t.close
   end
 
   private

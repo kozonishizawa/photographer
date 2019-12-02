@@ -86,10 +86,8 @@ ActiveRecord::Schema.define(version: 2019_11_29_211641) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "album_id", null: false
-    t.bigint "selection_id"
     t.integer "download_status", default: 0
     t.index ["album_id"], name: "index_photos_on_album_id"
-    t.index ["selection_id"], name: "index_photos_on_selection_id"
   end
 
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -97,16 +95,6 @@ ActiveRecord::Schema.define(version: 2019_11_29_211641) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_rooms_on_user_id"
-  end
-
-  create_table "selections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.boolean "paid"
-    t.integer "downloadable_limit"
-    t.integer "download_status"
-    t.bigint "album_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["album_id"], name: "index_selections_on_album_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -128,5 +116,4 @@ ActiveRecord::Schema.define(version: 2019_11_29_211641) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "selections", "albums"
 end

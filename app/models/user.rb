@@ -119,6 +119,15 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+  def complete_download(photos)
+    ActiveRecord::Base.transaction do
+      self.downloadable_limit -= photos.count
+      raise 'ダウンロード可能上限を超えています' if self.downloadable_limit < 0
+      self.save!
+      photos.update(download_status: 'complete')
+    end
+  end
+
   private
   
   # メールアドレスを全て小文字にする

@@ -1,15 +1,18 @@
 class Front::PhotosController < ApplicationController
   before_action :login_required
   before_action :validate_user, only: [:update]
-  before_action :verify_downloadable_limit, only: [:update]
   
+  def index
+    @photos = Photo.where(download_status: 'selected').joins(album: :user).merge(User.where(id: current_user.id))
+  end
+
   def update
     photo = Photo.find(params[:id])
     album = Album.find(photo.album.id)
     photo.update!(photo_params)
     head :ok
   end
-  
+
   private
   
     # ダウンロード上限を検証
@@ -32,7 +35,7 @@ class Front::PhotosController < ApplicationController
     end
 
     def photo_params
-      params.require(:photo).permit :download_status, :selection_id
+      params.require(:photo).permit :download_status
     end
 
 end

@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   # ユーザー検証
   def correct_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:id] || params[:user_id])
     redirect_to(root_url) unless current_user?(@user)
   end
 

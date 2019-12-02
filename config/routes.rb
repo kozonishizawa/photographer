@@ -39,7 +39,9 @@ Rails.application.routes.draw do
     root 'home#index'
 
     #ユーザー
-    resources :users, except: [:index, :destroy]
+    resources :users, except: [:index, :destroy] do
+      post :download
+    end
 
     # 記事
     resources :articles, only: [:index, :show]
@@ -54,7 +56,7 @@ Rails.application.routes.draw do
     end
 
     # 写真
-    resources :photos, only: [:update]
+    resources :photos, only: [:index, :update]
 
     # チャット
     resources :rooms, only: [:show]

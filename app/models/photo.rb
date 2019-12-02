@@ -32,7 +32,6 @@ class Photo < ApplicationRecord
   #  ** Associations **
   #----------------------------------------
   belongs_to :album
-  belongs_to :selection, optional: true
   has_one_attached :image, dependent: :detouch
   
   #----------------------------------------
