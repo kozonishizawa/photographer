@@ -49,14 +49,8 @@ Rails.application.routes.draw do
     # アルバム
     resources :albums, only: [:index, :show]
 
-    # ダウンロード
-    resources :selections, only: [:show] do
-      post :download_photos
-      get :complete
-    end
-
     # 写真
-    resources :photos, only: [:index, :update]
+    resources :photos, only: [:update]
 
     # チャット
     resources :rooms, only: [:show]

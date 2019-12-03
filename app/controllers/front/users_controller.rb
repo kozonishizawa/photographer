@@ -4,6 +4,7 @@ class Front::UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :download]
   before_action :required_contact, only: [:new, :create]
   before_action :login_required, only: [:edit, :update]
+  before_action :required_selection, only: [:download]
 
   def new
     @user = User.new
@@ -34,7 +35,7 @@ class Front::UsersController < ApplicationController
   end
 
   def download
-    photos = Photo.where(download_status: 'selected').joins(album: :user).merge(User.where(id: params[:user_id]))
+    photos = Photo.selected.joins(album: :user).merge(User.where(id: params[:user_id]))
     # tempでzipファイルを生成
     t = Tempfile.new
     ::Zip::OutputStream.open(t.path) do |z|
@@ -51,8 +52,16 @@ class Front::UsersController < ApplicationController
   end
 
   private
+
     def user_params
       params.require(:user).permit(:name, :email, :tel, :password, :password_confirmation)
+    end
+
+    # 写真が選択されているか検証
+    def required_selection
+      photos = Photo.selected.joins(album: :user).merge(User.where(id: params[:user_id]))
+      redirect_back(fallback_location: front_album_url(params[:album_id])) if photos.blank?
+      flash[:danger] = '写真が選択されていません。'
     end
 
     def required_contact

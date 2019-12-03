@@ -27,7 +27,7 @@ class Photo < ApplicationRecord
   #----------------------------------------
   #  ** Validations **
   #----------------------------------------
-  
+  # validate :exceed_downloadable_limit
   #----------------------------------------
   #  ** Associations **
   #----------------------------------------
@@ -41,10 +41,18 @@ class Photo < ApplicationRecord
   #----------------------------------------
   #  ** Scopes **
   #----------------------------------------
-
+  # 未選択の写真
+  scope :unselected, -> { where(download_status: 'unselected') }
+  # 選択された写真
+  scope :selected, -> { where(download_status: 'selected') }
   #----------------------------------------
   #  ** Methods **
   #----------------------------------------
+  # def exceed_downloadable_limit
+  #   if Photo.where(download_status: 'selected').count > User.find_by(id: session[:user_id]).downloadable_limit
+  #     errors.add(:download_status, "#{current_user.exceed_downloadable_limit}を超えています")
+  #   end
+  # end
   # トリミング（正方形）
   def square_image(length)
     self.image.variant(combine_options: {resize: "#{length}x#{length}^", crop:"#{length}x#{length}+0+0",gravity: :center}).processed

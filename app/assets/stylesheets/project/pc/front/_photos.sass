@@ -6,24 +6,25 @@
     margin: 50px 0
   &__thumbnails
   &__list
-    margin: 0 auto
-    text-align: center
   &__listItem
+    text-align: center
     display: inline-flex
     flex-direction: column
-    flex-wrap: rap
+    flex-wrap: wrap
     justify-content: flex-start
     margin: 15px
-  &__imageWrapper
+  &__imageContainer
+    display: flex
+    flex-direction: column
   &__thumbnail
     border-radius: 5px
     cursor: pointer
   &__formWrapper
   &__form
     display: block
-  &__button
+  &__unselected
     margin-top: 10px
-    width: 100%
+    width: 45px
     height: 45px
     position: relative
     display: inline-block
@@ -33,6 +34,32 @@
     color: #00bcd4
     border: 1px solid #00bcd4
     border-radius: 5px
+  &__selected
+    margin-top: 10px
+    width: 45px
+    height: 45px
+    position: relative
+    display: inline-block
+    font-weight: bold
+    padding: 0.25em 0.5em
+    text-decoration: none
+    color: #fff
+    background-color: #00bcd4
+    border: none
+    border-radius: 5px
+  &__complete
+    margin-top: 10px
+    width: 100%
+    height: 45px
+    position: relative
+    display: inline-block
+    font-weight: bold
+    padding: 0.25em 0.5em
+    text-decoration: none
+    color: #fff
+    background-color: rgba( 1, 1, 1, 0.5)
+    border-radius: 5px
+    line-height: 45px
   &__linkWrapper
     padding: 50px
   &__next

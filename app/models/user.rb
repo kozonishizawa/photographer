@@ -119,6 +119,7 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+  # ユーザーのダウンロード可能数量を消費し、写真をダウンロード完了状態にする
   def complete_download(photos)
     ActiveRecord::Base.transaction do
       self.downloadable_limit -= photos.count
