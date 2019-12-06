@@ -5,16 +5,26 @@ document.addEventListener('turbolinks:load', function() {
       div.style.display = 'none';
     });
   });
-  
-  window.addEventListener('ajax:success', function(e) {
-    console.log('おはよう', e.target);
-    let input = e.target.commit;
-    if (input.className == 'p-photos__selected') {
-      input.className = 'p-photos__unselected'
-    } else if (input.className == 'p-photos__unselected') {
-      input.className = 'p-photos__selected'
-    }
-    
-     
-  });
+
+  if (document.getElementById('counter')) {
+
+    let counter = document.getElementById('counter');
+    let number = Number(counter.dataset.quantity);
+
+    window.addEventListener('ajax:success', function(e) {
+
+      let input = e.target.commit;
+      if (input.className == 'p-photos__selected') {
+        input.className = 'p-photos__unselected'
+        number += 1;
+        counter.innerHTML = `あと${number}枚選択できます`
+      } else if (input.className == 'p-photos__unselected') {
+        input.className = 'p-photos__selected'
+        number -= 1;
+        counter.innerHTML = `あと${number}枚選択できます`
+
+
+      }
+    });
+  }
 });

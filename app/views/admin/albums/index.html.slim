@@ -2,23 +2,23 @@
 
   .p-albums__inner
     = link_to '新規のアルバムを作成する', new_admin_album_path, class: 'p-albums__link'
-    table.p-albums__table
-      thread.p-albums__thread
-        tr.p-albums__row
-          th.p-albums__header ID
-          th.p-albums__header 撮影日
-          th.p-albums__header アルバム名
-          th.p-albums__header クライアント名
-          th.p-albums__header 公開設定
-          th.p-albums__header
-          th.p-albums__header
-      tbody.p-albums__tbody
+    table.l-table
+      thread.l-table__thread
+        tr.l-table__row
+          th.l-table__header ID
+          th.l-table__header 撮影日
+          th.l-table__header アルバム名
+          th.l-table__header クライアント名
+          th.l-table__header 公開設定
+          th.l-table__header
+          th.l-table__header
+      tbody.l-table__tbody
         - @albums.each do |album|
-          tr.p-albums__row
-            td.p-albums__data = album.id
-            td.p-albums__data = album.photographed_at
-            td.p-albums__data = link_to album.title, admin_album_path(album), class: 'p-albums__title'
-            td.p-albums__data = album.user.name
-            td.p-albums__data = album.status_i18n
-            td.p-albums__data = link_to '編集', edit_admin_album_path(album), class: 'p-albums__edit'
-            td.p-albums__data = link_to '削除', admin_album_path(album.id), method: :delete, data: { confirm: '削除してよろしいですか？' }, class: 'p-albums__delete'
+          tr.l-table__row
+            td.l-table__data = album.id
+            td.l-table__data = album.photographed_at
+            td.l-table__data = link_to album.title, admin_album_path(album), class: 'l-table__title'
+            td.l-table__data = album.user.name
+            td.l-table__data = album.status_i18n
+            td.l-table__data = link_to '編集', edit_admin_album_path(album), class: 'l-table__edit'
+            td.l-table__data = link_to '削除', admin_album_path(album.id), method: :delete, data: { confirm: '削除してよろしいですか？' }, class: 'p-albums__delete'

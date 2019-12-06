@@ -6,26 +6,26 @@
     .p-users__heading
       h1 ユーザー一覧
     .p-users__listWrapper
-      table.p-users__table
-        thread.p-users__thread
-          tr.p-users__row
-            th.p-users__header ID
-            th.p-users__header 名前
-            th.p-users__header メールアドレス
-            th.p-users__header 最終更新
-            th.p-users__header 権限
-            th.p-users__header 状態
-            th.p-users__header 
-            th.p-users__header
-        tbody.p-users__body
+      table.l-table
+        thread.l-table__thread
+          tr.l-table__row
+            th.l-table__header ID
+            th.l-table__header 名前
+            th.l-table__header メールアドレス
+            th.l-table__header 最終更新
+            th.l-table__header 権限
+            th.l-table__header 状態
+            th.l-table__header 
+            th.l-table__header
+        tbody.l-table__tbody
           - @users.each do |user|
-            tr.p-users__row
-              td.p-users__data = user.id
-              td.p-users__data = link_to user.name, admin_user_path(user.id)
-              td.p-users__data = user.email
-              td.p-users__data = l(user.created_at, format: :long)
-              td.p-users__data = user.admin? ? '管理者' : '一般'
-              td.p-users__data = user.activated? ? '有効' : '無効'
-              td.p-users__data = link_to '編集', edit_admin_user_path(user.id), class: 'p-albums__edit'
-              td.p-users__data = link_to '削除', admin_user_path(user.id), method: :delete, data: {confirm: "#{user.name}のデータを削除します。よろしいですか?"}, class: 'p-albums__delete'
+            tr.l-table__row
+              td.l-table__data = user.id
+              td.l-table__data = link_to user.name, admin_user_path(user.id)
+              td.l-table__data = user.email
+              td.l-table__data = l(user.created_at, format: :long)
+              td.l-table__data = user.admin? ? '管理者' : '一般'
+              td.l-table__data = user.activated? ? '有効' : '無効'
+              td.l-table__data = link_to '編集', edit_admin_user_path(user.id), class: 'p-albums__edit'
+              td.l-table__data = link_to '削除', admin_user_path(user.id), method: :delete, data: {confirm: "#{user.name}のデータを削除します。よろしいですか?"}, class: 'p-albums__delete'
 

@@ -41,6 +41,6 @@ class Admin::PhotosController < ApplicationController
 
   private
     def photo_params
-      params.require(:photo).permit :album_id, :image
+      params.require(:photo).permit :user_id, :album_id, :image
     end
 end

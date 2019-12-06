@@ -9,6 +9,7 @@
 #  request    :text(65535)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer          not null
 #
 
 class Contact < ApplicationRecord
@@ -37,7 +38,7 @@ class Contact < ApplicationRecord
   #----------------------------------------
   #  ** Associations **
   #----------------------------------------
-  # accept_nested_attributes_for :user
+  belongs_to :user
 
   #----------------------------------------
   #  ** Delegates **

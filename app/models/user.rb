@@ -46,9 +46,14 @@ class User < ApplicationRecord
   #----------------------------------------
   #  ** Associations **
   #----------------------------------------
+  has_many :contacts, dependent: :destroy
   has_many :albums, dependent: :destroy
+  has_many :photos, dependent: :destroy
   has_many :messages, dependent: :destroy
-  has_one :room, dependent: :destroy  
+  has_one :room, dependent: :destroy
+
+  accepts_nested_attributes_for :contacts
+
   #----------------------------------------
   #  ** Delegates **
   #----------------------------------------

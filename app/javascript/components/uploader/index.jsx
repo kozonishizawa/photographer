@@ -40,6 +40,7 @@ export default class Uploader extends React.Component {
           
           const data = new FormData();
           data.append('photo[image]', file);
+          data.append('photo[user_id]', this.props.user_id);
           data.append('photo[album_id]', this.props.album_id);
           console.log(`${files.indexOf(file) + 1}個目のファイルを処理しています`)
 

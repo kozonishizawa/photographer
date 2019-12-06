@@ -68,3 +68,11 @@ gem 'hirb'
 gem 'hirb-unicode'
 gem 'enum_help'
 gem 'kaminari'
+
+# Use Capistrano for deployment
+gem 'capistrano', '~> 3.11',    require: false
+gem 'capistrano-rbenv',         require: false
+gem 'capistrano-rails',         require: false
+gem 'capistrano-bundler',       require: false
+gem 'capistrano3-puma',         require: false
+gem 'capistrano-sidekiq',       require: false

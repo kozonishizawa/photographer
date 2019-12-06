@@ -3,10 +3,11 @@
     .p-photos__heading
       h2 = @album.title
       
-    = react_component 'uploader', album_id: @album.id
+    = react_component 'uploader', user_id: @album.user.id, album_id: @album.id
 
     = form_with model: [:admin, Photo], local: true do |f|
       = f.file_field :image
+      = f.hidden_field :user_id, value: @album.user.id
       = f.hidden_field :album_id, value: @album.id
       = f.submit '登録', class: 'p-photos__submitButton'
 

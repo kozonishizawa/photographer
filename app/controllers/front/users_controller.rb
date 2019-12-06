@@ -2,12 +2,12 @@ class Front::UsersController < ApplicationController
   require 'zip'
 
   before_action :correct_user, only: [:edit, :update, :download]
-  before_action :required_contact, only: [:new, :create]
   before_action :login_required, only: [:edit, :update]
   before_action :required_selection, only: [:download]
 
   def new
     @user = User.new
+    @user.contacts.build
   end
 
   def create
@@ -54,7 +54,7 @@ class Front::UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :tel, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :tel, :password, :password_confirmation, contacts_attributes: [:id, :subject, :date, :location, :request])
     end
 
     # 写真が選択されているか検証
@@ -64,9 +64,4 @@ class Front::UsersController < ApplicationController
       flash[:danger] = '写真が選択されていません。'
     end
 
-    def required_contact
-      unless session[:contact_id]
-        redirect_to new_front_contact_url, flash: { danger: '先にお問い合わせ内容を入力してください'}
-      end
-    end
 end
