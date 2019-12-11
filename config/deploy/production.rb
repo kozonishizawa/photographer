@@ -30,7 +30,7 @@ set :rbenv_ruby, '2.6.3'
 set :default_env, { path: '~/.rbenv/shims:~/.rbenv/bin:$PATH' }
 
 set :repo_url, 'git@github.com:kozonishizawa/photographer.git'
-set :branch, 'master'
+set :branch, 'develop'
 set :deploy_to, '/home/media'
 set :log_level, :debug
 set :default_shell, '/bin/bash -l'
