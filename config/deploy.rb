@@ -2,7 +2,7 @@
 lock "~> 3.11.2"
 
 set :application, "photographer"
-set :repo_url, "git@github.com:kozonishizwa/photographer.git"
+set :repo_url, "git@github.com:kozonishizawa/photographer.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

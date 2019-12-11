@@ -2,9 +2,6 @@
 
 lock '3.11.2'
 
-require 'yaml'
-require 'capistrano/sidekiq'
-
 set :application, 'photographer'
 
 # environment
@@ -32,16 +29,13 @@ set :assets_dependencies, %w[app/assets app/javascript package.json yarn.lock co
 set :rbenv_ruby, '2.6.3'
 set :default_env, { path: '~/.rbenv/shims:~/.rbenv/bin:$PATH' }
 
-# load system config
-configs = YAML.load_file('config/system_config.yml')[fetch(:rails_env)]
-
-set :repo_url, 'git@github.com:kozonishizwa/photographer.git'
+set :repo_url, 'git@github.com:kozonishizawa/photographer.git'
 set :branch, 'master'
 set :deploy_to, '/home/media'
 set :log_level, :debug
 set :default_shell, '/bin/bash -l'
 
-server configs['deploy_server'], user: 'media', roles: %w[app assets batch db]
+server 'kozonish', user: 'media', roles: %w[app assets batch db]
 
 set :assets_roles, [:assets]
 
@@ -55,9 +49,6 @@ set :puma_preload_app, true
 set :puma_threads, [4, 16]
 set :puma_workers, 2
 set :puma_worker_timeout, nil
-
-# sidekiq
-set :sidekiq_role, :batch
 
 after 'deploy:publishing', 'deploy:restart'
 
