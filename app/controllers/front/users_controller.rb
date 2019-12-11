@@ -1,4 +1,4 @@
-class Front::UsersController < ApplicationController
+class Front::UsersController < Front::ApplicationController
   require 'zip'
 
   before_action :correct_user, only: [:edit, :update, :download]
@@ -31,7 +31,7 @@ class Front::UsersController < ApplicationController
   def update
     user = User.find(params[:id])
     user.update!(user_params)
-    redirect_to admin_users_url, flash: { success: 'ユーザー情報を更新しました'}
+    redirect_to front_user_url(user), flash: { success: 'ユーザー情報を更新しました'}
   end
 
   def download
@@ -49,6 +49,7 @@ class Front::UsersController < ApplicationController
     current_user.complete_download(photos)
     # 閉じる
     t.close
+    head :ok
   end
 
   private

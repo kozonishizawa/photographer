@@ -56,7 +56,7 @@ Rails.application.routes.draw do
     resources :rooms, only: [:show]
 
     # お問い合わせ
-    resources :contacts, only: [:new, :create]
+    resources :contacts, only: [:index, :new, :create]
     
   end
   

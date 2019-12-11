@@ -1,4 +1,4 @@
-class Front::ArticlesController < ApplicationController
+class Front::ArticlesController < Front::ApplicationController
   def index
     @articles = Article.all
   end

@@ -1,4 +1,4 @@
-class Admin::AlbumsController < ApplicationController
+class Admin::AlbumsController < Admin::ApplicationController
   before_action :required_admin
 
   def index
@@ -12,7 +12,6 @@ class Admin::AlbumsController < ApplicationController
 
   def new
     @album = Album.new
-    @album.build_selection
     @users = User.all
 
   end

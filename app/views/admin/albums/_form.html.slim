@@ -18,10 +18,6 @@
           .p-albums__user = f.label :user, 'クライアント'
           = f.collection_select :user_id, User.all, :id, :name
         .p-albums__formItem
-          = f.fields_for :selection do |s|
-            = s.label :downloadable_limit, 'ダウンロード可能上限' 
-            = s.number_field :downloadable_limit, min: 0, class: 'p-albums__field'
-        .p-albums__formItem
           .p-albums__disclosure
             = f.radio_button :status, :closed, checked: 'checked', class: 'p-albums__radio', id: 'closed'
             = f.label '非公開', for: 'closed'

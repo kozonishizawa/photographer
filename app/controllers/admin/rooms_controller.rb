@@ -1,4 +1,4 @@
-class Admin::RoomsController < ApplicationController
+class Admin::RoomsController < Admin::ApplicationController
   before_action :required_admin
 
   def index

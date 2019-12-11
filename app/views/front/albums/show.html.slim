@@ -32,7 +32,7 @@
                       = f.submit '', class: photo.download_status == 'unselected' ? 'p-photos__unselected' : 'p-photos__selected'
 
       .p-photos__linkWrapper
-        = link_to '選択中の写真を一括ダウンロード', front_user_download_path({ user_id: current_user.id, album_id: @album.id }), method: :post, class: 'p-photos__next', data: {confirm: '一度ダウンロードされると選び直すことができなくなります。ダウンロードしてよろしいですか？'}
+        = link_to '選択中の写真を一括ダウンロード', front_user_download_path({ user_id: current_user.id, album_id: @album.id }), method: :post, class: 'p-photos__next', data: {confirm: '一度ダウンロードされると選び直すことができなくなります。ダウンロードしてよろしいですか？'}, id: 'download'
         = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-photos__prev'
               
     - else

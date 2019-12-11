@@ -1,4 +1,4 @@
-class Front::PhotosController < ApplicationController
+class Front::PhotosController < Front::ApplicationController
   before_action :login_required
   before_action :validate_user, only: [:update]
   before_action :verify_downloadable_limit, only: [:update]

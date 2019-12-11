@@ -1,4 +1,8 @@
-class Front::ContactsController < ApplicationController
+class Front::ContactsController < Front::ApplicationController
+
+  def index
+    @contacts = current_user.contacts
+  end
 
   def new
     @contact = Contact.new
@@ -7,7 +11,7 @@ class Front::ContactsController < ApplicationController
   def create
     @contact = Contact.new contact_params
     if @contact.save
-      redirect_to new_front_root_url
+      redirect_to front_root_url, flash: { success: '依頼を送信しました'}
     else
       render :new
     end

@@ -4,7 +4,7 @@
       h2 = @album.title
       
     = react_component 'uploader', user_id: @album.user.id, album_id: @album.id
-
+    = react_component 'slide', data: 'うんこ'
     = form_with model: [:admin, Photo], local: true do |f|
       = f.file_field :image
       = f.hidden_field :user_id, value: @album.user.id

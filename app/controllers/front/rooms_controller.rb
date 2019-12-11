@@ -1,4 +1,4 @@
-class Front::RoomsController < ApplicationController
+class Front::RoomsController < Front::ApplicationController
   before_action :login_required
   
   def show

@@ -1,4 +1,4 @@
-class Admin::PhotosController < ApplicationController
+class Admin::PhotosController < Admin::ApplicationController
   before_action :required_admin
 
   def index
@@ -36,7 +36,7 @@ class Admin::PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     @photo.image.purge
     @photo.destroy
-    head :no_content
+    head :ok
   end
 
   private

@@ -1,4 +1,4 @@
-class Admin::ArticlesController < ApplicationController
+class Admin::ArticlesController < Admin::ApplicationController
   before_action :required_admin
   
   def index

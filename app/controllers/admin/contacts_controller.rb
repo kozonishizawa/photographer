@@ -1,4 +1,4 @@
-class Admin::ContactsController < ApplicationController
+class Admin::ContactsController < Admin::ApplicationController
   before_action :required_admin
   
   def index

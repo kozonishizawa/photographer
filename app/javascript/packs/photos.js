@@ -5,7 +5,9 @@ document.addEventListener('turbolinks:load', function() {
       div.style.display = 'none';
     });
   });
+});
 
+document.addEventListener('turbolinks:load', function() {
   if (document.getElementById('counter')) {
 
     let counter = document.getElementById('counter');
@@ -15,15 +17,15 @@ document.addEventListener('turbolinks:load', function() {
 
       let input = e.target.commit;
       if (input.className == 'p-photos__selected') {
-        input.className = 'p-photos__unselected'
+        input.className = 'p-photos__unselected';
+        console.log('選択を解除しました');
         number += 1;
-        counter.innerHTML = `あと${number}枚選択できます`
+        counter.innerHTML = `あと${number}枚選択できます`;
       } else if (input.className == 'p-photos__unselected') {
-        input.className = 'p-photos__selected'
+        input.className = 'p-photos__selected';
+        console.log('選択をしました');
         number -= 1;
-        counter.innerHTML = `あと${number}枚選択できます`
-
-
+        counter.innerHTML = `あと${number}枚選択できます`;
       }
     });
   }

@@ -13,6 +13,7 @@ module ApplicationHelper
 		[
 			{ name: '利用者情報', url: front_user_path(current_user.id)},
 			{ name: 'アルバム', url: front_albums_path},
+			{ name: '撮影依頼', url: new_front_contact_path},
 			{ name: 'チャット', url: front_room_path(current_user.id)},
 		]
 	end

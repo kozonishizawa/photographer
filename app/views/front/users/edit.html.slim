@@ -4,7 +4,7 @@
       .p-form__formInner
 
         .p-form__heading
-          h1 お仕事のご依頼（初めての方）
+          h1 ユーザ情報の編集
 
         = form_with model: [:front, @user], local: true do |f|
 
@@ -21,25 +21,10 @@
             = f.email_field :email, required: :true, class: 'p-form__field'
           .p-form__formItem
             = f.label :password, "パスワード(6字以上10字以内)（必須）", class: 'p-form__label'
-            = f.password_field :password, required: :true, class: 'p-form__field'
+            = f.password_field :password, class: 'p-form__field'
           .p-form__formItem
             = f.label :password_confirmation, "パスワード(確認のため再度入力して下さい。)（必須）", class: 'p-form__label'
-            = f.password_field :password_confirmation, required: :true, class: 'p-form__field'
-
-          = f.fields_for :contacts do |c|
-            .p-form__formItem
-              = c.label :subject, '撮影内容（必須）', class: 'p-form__label'
-              = c.select :subject, Contact.subjects.keys.map {|k| [I18n.t("enums.contact.subject.#{k}"), k]}, {}
-            .p-form__formItem
-              = c.label :date, '撮影希望日（必須）', class: 'p-form__label'
-              = c.date_field :date, required: :true, class: 'p-form__field'
-            .p-form__formItem
-              = c.label :location, '撮影地（必須）', class: 'p-form__label'
-              = c.text_field :location, required: :true, class: 'p-form__field'
-
-            .p-form__formItem
-              = c.label :request, 'ご要望・ご質問', class: 'p-form__label'
-              = c.text_area :request, class: 'p-form__area'
+            = f.password_field :password_confirmation, class: 'p-form__field'
 
           .p-form__submit
-            = f.submit '送信する', class: 'p-form__button'
+            = f.submit '更新する', class: 'p-form__button'

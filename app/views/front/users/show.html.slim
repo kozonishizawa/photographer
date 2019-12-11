@@ -25,13 +25,3 @@
             | ダウンロード可能上限
           .p-users__profileData
             = @user.downloadable_limit
-        .p-users__profileItem
-          .p-users__profileLabel
-            | 管理者権限
-          .p-users__profileData
-            = @user.admin? ? '有' : '無'
-        .p-users__profileItem
-          .p-users__profileLabel
-           | アカウントの状態
-          .p-users__profileData
-            = @user.activated? ? '有効' : '無効'

@@ -1,16 +1,21 @@
 import React from 'react';
 import Swiper from 'swiper';
 
-export default class extends React.component {
-  constructor() {
+export default class Slide extends React.Component {
+  constructor(props) {
+
+    super(props);
+
     this.state = {
+      // dummy slides data
       slides: (function () {
         var slides = [];
         for (var i = 0; i < 600; i += 1) {
-          slides.push('Slide' + (i + 1));
+          slides.push('Slide ' + (i + 1));
         }
         return slides;
       }()),
+      // virtual data
       virtualData: {
         slides: [],
       },
@@ -19,9 +24,11 @@ export default class extends React.component {
   componentDidMount() {
     const self = this;
     const swiper = new Swiper('.swiper-container', {
+      // ...
       virtual: {
         slides: self.state.slides,
         renderExternal(data) {
+          // assign virtual slides data
           self.setState({
             virtualData: data,
           });
@@ -30,15 +37,18 @@ export default class extends React.component {
     });
   }
   render() {
-    <div className='swiper-container'>
-      <div className='swiper-wrapper'>
+
+    <div className="swiper-container">
+      <div className="swiper-wrapper">
+        {/* It is important to set "left" style prop on every slide */}
         {this.state.virtualData.slides.map((slide, index) => (
-          <div className='swiper-slide'
+          <div className="swiper-slide"
             key={index}
             style={{left: `${virtualData.offset}px`}}
-            >{slide}</div>
+          >{slide}</div>
         ))}
       </div>
     </div>
+
   }
 }

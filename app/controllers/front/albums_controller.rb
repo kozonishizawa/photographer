@@ -1,4 +1,4 @@
-class Front::AlbumsController < ApplicationController
+class Front::AlbumsController < Front::ApplicationController
   before_action :login_required
   before_action :validate_user, only: [:show]
 

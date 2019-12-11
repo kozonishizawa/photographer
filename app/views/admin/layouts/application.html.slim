@@ -6,9 +6,6 @@ html
     = csrf_meta_tags
     = csp_meta_tag
 
-    / = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    / = stylesheet_pack_tag 'application'
-    -# stylesheets
     = stylesheet_link_tag 'project/pc/admin/application', media: 'all', 'data-turbolinks-track': :reload
     = stylesheet_link_tag 'project/pc/front/application', media: 'all', 'data-turbolinks-track': :reload
     = stylesheet_link_tag 'fonts/application', 'data-turbolinks-track': :reload
@@ -18,7 +15,8 @@ html
     -# ----------------------------------------------
     -# ヘッダ
     -# ----------------------------------------------
-    = render 'layouts/header'
+
+    = render 'admin/layouts/_partials/header'
 
     .message
       - flash.each do |message_type, message|
@@ -29,7 +27,6 @@ html
     -# ----------------------------------------------
     -# フッター
     -# ----------------------------------------------
-    = render 'layouts/footer'
 
     -# ----------------------------------------------
     -# flash messages

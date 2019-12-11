@@ -33,6 +33,7 @@ if (thumbs) {
       carousel.slideTo(e.target.dataset.index);
       slide.style.display = 'block';
       overRay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
     }
   });
 }
@@ -42,5 +43,6 @@ if (overRay) {
   overRay.onclick = () => {
     slide.style.display = 'none'
     overRay.style.display = 'none'
+    document.body.style.overflow = '';
   };
 }
