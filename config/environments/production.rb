@@ -1,5 +1,5 @@
 # ルーティング時のデフォルトURLを指定
-Rails.application.routes.default_url_options[:host] = 'https://you-46.com'
+Rails.application.routes.default_url_options[:host] = 'https://mabudachi.com'
 Rails.application.routes.default_url_options[:protocol] = 'https'
 
 Rails.application.configure do
@@ -76,8 +76,8 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.asset_host = #'https://you-46.com'
-  config.action_mailer.default_url_options = #{ host: 'you-46.com' }
+  config.action_mailer.asset_host = 'https://mabudachi.com'
+  config.action_mailer.default_url_options = { host: 'mabudachi.com' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
