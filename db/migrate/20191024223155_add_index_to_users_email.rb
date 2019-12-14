@@ -1,5 +1,5 @@
 class AddIndexToUsersEmail < ActiveRecord::Migration[6.0]
-  def change, options: 'DEFAULT CHARSET=utf8' do |t|
-    add_index :users, :email, unique: true
+  def change
+    add_index :users, :email, unique: true, options: 'DEFAULT CHARSET=utf8' do |t|
   end
 end
