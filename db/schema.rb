@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_224015) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "albums", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "albums", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.integer "status", default: 0
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_224015) do
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
-  create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.integer "status", default: 0, null: false
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_224015) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "contacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "contacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "subject", null: false
     t.date "date", null: false
     t.string "location", null: false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_224015) do
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
-  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_224015) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "album_id", null: false
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_224015) do
     t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
-  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
@@ -102,10 +102,10 @@ ActiveRecord::Schema.define(version: 2019_12_05_224015) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email", null: false
-    t.string "tel", null: false
-    t.string "password_digest", null: false
+    t.string "name", limit: 191, null: false
+    t.string "email", limit: 191, null: false
+    t.string "tel", limit: 191, null: false
+    t.string "password_digest", limit: 191, null: false
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_224015) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.integer "downloadable_limit"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_user_email", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
