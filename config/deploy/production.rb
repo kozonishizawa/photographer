@@ -23,7 +23,7 @@ append :linked_dirs,
   'public/packs'
 
 # 指定ファイルに変化が生じた場合にprecompileを行う
-set :assets_dependencies, %w[app/assets app/javascript package.json yarn.lock]
+# set :assets_dependencies, %w[app/assets app/javascript package.json yarn.lock]
 
 # ruby
 set :rbenv_ruby, '2.6.3'
