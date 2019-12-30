@@ -29,7 +29,7 @@
     width: 100%
     height: 100%
     padding: 50px
-  &__overRay
+  &__overLay
     z-index: 9999
     position: fixed
     left: 0px
@@ -74,7 +74,6 @@
   &__area
     font-size: 14px
     padding: 10px
-    background: #fbfbfb
     width: 100%
     border-radius: 4px
     box-sizing: border-box
@@ -83,12 +82,12 @@
     border-color: initial
     border-image: initial
   &__button
-    margin-top: 20px
-    background-color: #30c8d6
-    color: #fff
-    font-size: 1.2em
-    border: none
+    margin-top: 35px
+    background: #30c8d6
+    color: white
+    font-size: 1.5em
     box-shadow: 1px 1px 2px #ccc
+    border: solid 2px #30c8d6
     border-radius: 4px
     padding: 7px 60px 8px!important
     max-width: 100%!important
@@ -98,6 +97,11 @@
     float: none!important
     display: block
     width: 100%
+    transition: .4s
+    &:hover
+      background: #fbfbfb
+      border: solid 2px #30c8d6
+      color: #30c8d6
   &__select
     outline: none
     -moz-appearance: none
@@ -152,5 +156,26 @@
 .closeBtn
   float: right
   cursor: pointer
-  font-size: 1.8em
+  font-size: 2.0em
+  font-weight: bold
+  color: rgba(0,0,0,0.5)
+  border: none
+  border-radius: 50%
+  
+
+.generalBtn
+  display: inline-block
+  padding: 0.3em 1em
+  font-size: 1.0em
+  text-decoration: none
+  color: white
+  background: #30c8d6
+  border: solid 2px #30c8d6
+  border-radius: 3px
+  transition: .4s
+  &:hover
+    background: white
+    color: #30c8d6
+    border: solid 2px #30c8d6
+
 

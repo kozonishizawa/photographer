@@ -7,10 +7,10 @@ export default class NewAlbumForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      date: '',
-      category: '',
-      description:'',
+      title: this.props.album === undefined ? '' : this.props.album.title,
+      date: this.props.album === undefined ? '' : this.props.album.photographed_at,
+      category: this.props.album === undefined ? '' : this.props.album.category,
+      description: this.props.album === undefined ? '' : this.props.album.description,
       selectedOption: 'closed',
       showPopup: false,
     };
@@ -45,32 +45,43 @@ export default class NewAlbumForm extends React.Component {
   sendData = () => {
     const data = new FormData();
     data.append('album[title]', this.state.title);
-    data.append('album[photographed_at]', this.state.date);
-    data.append('album[category]', this.state.category);
     data.append('album[description]', this.state.description);
+    data.append('album[status]', this.state.selectedOption);
+    data.append('album[category]', this.state.category);
+    data.append('album[photographed_at]', this.state.date);
     data.append('album[user_id]', this.props.user.id);
-    
-    Xhr.request.post('/admin/albums', data)
-      .then((response) => {
-        window.location.href = '/admin/albums';
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
+    if (this.props.album === undefined) {
+      Xhr.request.post('/admin/albums', data)
+        .then((response) => {
+          window.location.href = '/admin/albums';
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      Xhr.request.put(`/admin/albums/${this.props.album.id}`, data)
+        .then((response) => {
+          window.location.href = '/admin/albums';
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.togglePopup}>アルバム作成</button>
+        <button className={Style.generalBtn} onClick={this.togglePopup}>{this.props.album === undefined ? 'アルバム作成' : '編集'}</button>
         {this.state.showPopup ? 
           <div className={Style.Form__wrapper} >
-            <div className={Style.Form__overRay} onClick={this.togglePopup}> </div>
+            <div className={Style.Form__overLay} onClick={this.togglePopup}> </div>
             <div className={Style.Form__form}>
               <button className={Style.closeBtn} onClick={this.togglePopup}>×</button>
               <div className={Style.Form__container}>
                 <form onSubmit={this.handleSubmit} className={Style.Form}>
-                  <h1 className={Style.Form__heading}>新規アルバム作成</h1>
+                  <h1 className={Style.Form__heading}>{this.props.album === undefined ? '新規アルバム作成' : 'アルバム情報編集'}</h1>
                   <p>ユーザー名：{this.props.user.name}</p>
                   <input type="hidden" value={this.props.user.id} />
                   <div className={Style.Form__formItem}>
@@ -125,7 +136,7 @@ export default class NewAlbumForm extends React.Component {
                     </div>
                   </label>
                   </div>
-                  <input className={Style.Form__button} type="submit" value="作成"/>
+                  <input className={Style.Form__button} type="submit" value={this.props.album === undefined ? '新規作成' : '更新'}/>
                 </form>
               </div>
             </div>

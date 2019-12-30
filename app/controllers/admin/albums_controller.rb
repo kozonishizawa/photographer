@@ -39,7 +39,7 @@ class Admin::AlbumsController < Admin::ApplicationController
 
   private
   def album_params
-    params.require(:album).permit :title, :description, :photographed_at, :category, :user_id
+    params.require(:album).permit :title, :description, :status, :photographed_at, :category, :user_id
   end
 
 end

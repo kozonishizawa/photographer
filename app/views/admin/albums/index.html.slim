@@ -22,5 +22,5 @@
             td.l-table__data = album.user.name
             td.l-table__data = album.photos.count
             td.l-table__data = album.status_i18n
-            td.l-table__data = link_to '編集', edit_admin_album_path(album), class: 'l-table__edit'
+            td.l-table__data = react_component 'newAlbumForm', user: album.user.as_json, categories: Album.categories.keys.map {|k| [I18n.t("enums.album.category.#{k}"),k]}.as_json, album: album.as_json
             td.l-table__data = link_to '削除', admin_album_path(album.id), method: :delete, data: { confirm: '削除してよろしいですか？' }, class: 'p-albums__delete'
