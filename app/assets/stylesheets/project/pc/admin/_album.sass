@@ -1,25 +1,30 @@
 .p-albums
   min-height: 80vh
   &__form
-    width: 30%
+    width: 40%
     margin: 0 auto
   &__formInner
     padding: 50px
     margin: 0 auto
   &__heading
     text-align: center
+    font-size: 1.8em
   &__formItem
     width: 100%
-    padding: 15px 0
+    padding-top: 15px
+    p
+      font-size: 1em
   &__label
     font-size: 1.2em
   &__field
-    font-size: 14px
-    padding: 10px
+    font-size: 1em
+    padding: 5px
     background: #fbfbfb
     width: 100%
     border-radius: 4px
     box-sizing: border-box
+  &__select
+    font-size: 2em
   &__area
     font-size: 14px
     padding: 10px
@@ -34,8 +39,9 @@
     border-color: initial
     border-image: initial
   &__submit
+    text-align: center
   &__button
-    margin: 20px 0
+    margin: 30px 0
     background-color: #30c8d6
     color: #fff
     font-size: 1.2em
@@ -98,21 +104,22 @@
     border-image: initial
   &__disclosure
     display: flex
-    flex-direction: column
+    flex-direction: row
+    justify-content: space-between
     text-align: center
   &__radio 
     display: none
   // チェックが入っていないとき
   &__radio + label 
-    display: inline-block
+    display: block
+    width: 30%
     box-sizing: border-box
     font-size: 14px
     font-weight: normal
     color: #888
     border: solid 1px #EDBC6C
     border-radius: 5px
-    margin-top: 10px
-    padding: 3px 10px
+    padding: 10px
     background-color: #fff
     cursor: pointer
   // チェックが入ったとき
