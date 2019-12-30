@@ -254,6 +254,22 @@ ja:
         closed: 非公開
         personal: 本人のみ
         open: 公開
+      category:
+        unknown: 未分類
+        seven_five_three: 七五三
+        birthday: バースデー
+        shrine_visit: お宮参り
+        half_birth: ハーフバースデー
+        maternity: マタニティー
+        entrance_or_graduation_ceremony: 入園入学・卒業式
+        before_adult_ceremony: 成人式前撮り
+        family_photo: 家族写真
+        wedding_ceremony_and_reception: 挙式・披露宴
+        wedding_ceremony: 挙式のみ
+        wedding_reception: 披露宴(1.5次会)のみ
+        wedding_party: 結婚式二次会
+        other_events: イベント
+        profile: プロフィール写真
   date:
     formats:
       default: ! '%Y/%m/%d'

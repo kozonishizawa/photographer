@@ -32,7 +32,7 @@ export default class LoginControl extends React.Component {
       // クリックするとログイン状態にするボタンを変数に格納
       button = <LoginButton onClick={this.handleLoginClick} />;
     }
-
+    
     return (
       <div>
         {/* ログインの状態をプロパティに持つ挨拶文 */}

@@ -27,6 +27,8 @@ class Album < ApplicationRecord
   #  ** Enums **
   #----------------------------------------
   enum status: { closed: 0, personal: 1, open: 2 }
+  enum category: { unknown: 0,seven_five_three: 1, birthday: 2, shrine_visit: 3, half_birth: 4, maternity: 5, entrance_or_graduation_ceremony: 6, before_adult_ceremony: 7, family_photo: 8, wedding_ceremony_and_reception: 9, wedding_ceremony: 10, wedding_reception: 11, wedding_party: 12, other_events: 13, profile: 14}
+
   #----------------------------------------
   #  ** Validations **
   #----------------------------------------
