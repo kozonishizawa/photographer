@@ -17,7 +17,7 @@ var carouselOption = {
 // スライド初期化
 
 var slide = document.getElementById('slide');
-var overLay = document.getElementById('overLay');
+var overlay = document.getElementById('overlay');
 var thumbs = document.querySelectorAll('.p-photos__thumbnail');
 
 // スライドの初期状態は非表示
@@ -32,17 +32,17 @@ if (thumbs) {
     item.onclick = (e) => {
       carousel.slideTo(e.target.dataset.index);
       slide.style.display = 'block';
-      overLay.style.display = 'block';
+      overlay.style.display = 'block';
       document.body.style.overflow = 'hidden';
     }
   });
 }
 
 // 背景をクリックすると閉じる
-if (overLay) {
-  overLay.onclick = () => {
+if (overlay) {
+  overlay.onclick = () => {
     slide.style.display = 'none'
-    overLay.style.display = 'none'
+    overlay.style.display = 'none'
     document.body.style.overflow = '';
   };
 }

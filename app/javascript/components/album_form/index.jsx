@@ -2,7 +2,7 @@ import React from 'react'
 import Style from './style.sass'
 import Xhr from '../../lib/xhr';
 
-export default class NewAlbumForm extends React.Component {
+export default class AlbumForm extends React.Component {
   // コンストラクタ
   constructor(props) {
     super(props);
@@ -13,14 +13,28 @@ export default class NewAlbumForm extends React.Component {
       description: this.props.album === undefined ? '' : this.props.album.description,
       selectedOption: 'closed',
       showPopup: false,
+      fixedBackground: false,
     };
   }
   // ポップアップの状態を切り替える
   togglePopup = () => {
     this.setState({
       showPopup: !this.state.showPopup,
+      fixedBackground: !this.state.showPopup,
     });
+    if (this.state.fixedBackground) {
+      document.body.style.overflow = '';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
   }
+
+  toggleFixedBackground = () => {
+    this.setState({
+      fixedBackground: !this.state.fixedBackground,
+    })
+  }
+
   // 値の入力
   handleChange = (event) => {
     const target = event.target;
@@ -76,7 +90,7 @@ export default class NewAlbumForm extends React.Component {
         <button className={Style.generalBtn} onClick={this.togglePopup}>{this.props.album === undefined ? 'アルバム作成' : '編集'}</button>
         {this.state.showPopup ? 
           <div className={Style.Form__wrapper} >
-            <div className={Style.Form__overLay} onClick={this.togglePopup}> </div>
+            <div className={Style.Form__overlay} onClick={this.togglePopup}> </div>
             <div className={Style.Form__form}>
               <button className={Style.closeBtn} onClick={this.togglePopup}>×</button>
               <div className={Style.Form__container}>
