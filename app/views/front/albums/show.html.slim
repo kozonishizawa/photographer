@@ -6,7 +6,6 @@
         | あと#{downloadable_counter}枚選択できます
 
     - if @photos.present?
-
       .p-photos__overlay#overlay
       .c-carousel.slide#slide
         ul.c-carousel__list
@@ -16,6 +15,7 @@
         .c-carousel__prev
         .c-carousel__next
         .c-carousel__nav
+      / = react_component 'slide', photos: @photos.map {|photo| url_for(photo.rectangle_image(300,200))}
 
       .p-photos__thumbnails
         ul.p-photos__list

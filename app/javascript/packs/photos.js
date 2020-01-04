@@ -26,6 +26,8 @@ document.addEventListener('turbolinks:load', function() {
         console.log('選択をしました');
         number -= 1;
         counter.innerHTML = `あと${number}枚選択できます`;
+      } else if (input.className == 'p-photos__unselected' && number <= 0) {
+        console.log('これ以上選択できません');
       }
     });
   }

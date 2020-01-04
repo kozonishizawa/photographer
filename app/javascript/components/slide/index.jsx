@@ -1,54 +1,44 @@
 import React from 'react';
-import Swiper from 'swiper';
+import Swiper from 'react-id-swiper';
+import Style from './style.sass';
+
 
 export default class Slide extends React.Component {
   constructor(props) {
-
     super(props);
-
     this.state = {
-      // dummy slides data
-      slides: (function () {
-        var slides = [];
-        for (var i = 0; i < 600; i += 1) {
-          slides.push('Slide ' + (i + 1));
+      params: {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        containerClass: Style.swiper__container,
+        wrapperClass: Style.swiper__wrapper,
+        slideClass: Style.swiper__slide,
+        pagination: {
+          el: 'Style.swiper__pagination',
+          type: 'bullets',
+          clickable: true
+        },
+        navigation: {
+          nextEl: Style.swiper__next,
+          prevEl: Style.swiper__prev, 
+        },
+        getSwiper: (swiper) => {
+          swiper.on('slideChange', () => {
+            console.log(`slide changed : ${swiper.activeIndex}`);
+          })
         }
-        return slides;
-      }()),
-      // virtual data
-      virtualData: {
-        slides: [],
-      },
+      }
     }
   }
-  componentDidMount() {
-    const self = this;
-    const swiper = new Swiper('.swiper-container', {
-      // ...
-      virtual: {
-        slides: self.state.slides,
-        renderExternal(data) {
-          // assign virtual slides data
-          self.setState({
-            virtualData: data,
-          });
-        }
-      },
-    });
-  }
+
   render() {
-
-    <div className="swiper-container">
-      <div className="swiper-wrapper">
-        {/* It is important to set "left" style prop on every slide */}
-        {this.state.virtualData.slides.map((slide, index) => (
-          <div className="swiper-slide"
-            key={index}
-            style={{left: `${virtualData.offset}px`}}
-          >{slide}</div>
-        ))}
-      </div>
-    </div>
-
+    return (
+      <Swiper {...this.state.params}>
+        { this.props.photos.map((photo, index) => 
+          <img key={index} src={photo} />
+        )}
+      </Swiper>
+    );
   }
 }

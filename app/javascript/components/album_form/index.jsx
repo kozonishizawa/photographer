@@ -100,13 +100,13 @@ export default class AlbumForm extends React.Component {
                   <input type="hidden" value={this.props.user.id} />
                   <div className={Style.Form__formItem}>
                     <label className={Style.Form__label}>
-                      タイトル
+                      タイトル（必須）
                     </label>
                     <input className={Style.Form__field} type="text" name='title' value={this.state.title} onChange={this.handleChange} required />
                   </div>
                   <div className={Style.Form__formItem}>
                     <label className={Style.Form__label}>
-                      撮影日
+                      撮影日（必須）
                     </label>
                     <input className={Style.Form__field} type="date" name='date' value={this.state.date} onChange={this.handleChange} required />
                   </div>
@@ -116,8 +116,8 @@ export default class AlbumForm extends React.Component {
                       <select  className={Style.Form__select} name="category" value={this.state.category} onChange={this.handleChange}>
                         <option value="">選択して下さい</option>
                         {
-                          this.props.categories.map(item =>(
-                            <option key={this.props.categories.indexOf(item)} value={item[1]}>{item[0]}</option>
+                          this.props.categories.map((item, index) =>(
+                            <option key={index} value={item[1]}>{item[0]}</option>
                           ))
                         }
                       </select>
@@ -125,7 +125,7 @@ export default class AlbumForm extends React.Component {
                   </div>
                   <div className={Style.Form__formItem}>
                     <label className={Style.Form__label}>
-                      概要
+                      概要（任意）
                     </label>
                     <textarea className={Style.Form__area} name='description' value={this.state.description} onChange={this.handleChange}></textarea>
                   </div>
