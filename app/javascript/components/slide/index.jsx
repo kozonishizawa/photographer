@@ -1,3 +1,4 @@
+// これをviewに書く=>  = react_component 'slide', photos: @photos.map {|photo| url_for(photo.rectangle_image(300,200))}
 import React from 'react';
 import Swiper from 'react-id-swiper';
 import Style from './style.sass';
