@@ -196,6 +196,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    rb-readline (0.5.5)
     react-rails (2.6.0)
       babel-transpiler (>= 0.7.0)
       connection_pool
@@ -288,6 +289,7 @@ DEPENDENCIES
   pry-byebug
   puma (~> 3.11)
   rails (~> 6.0.0)
+  rb-readline
   react-rails
   rubyzip
   sass-rails (~> 5)
