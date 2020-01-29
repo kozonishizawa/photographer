@@ -52,7 +52,8 @@ class Photo < ApplicationRecord
   #----------------------------------------
   # トリミング（正方形）
   def square_image(length)
-    self.image.variant(resize: "#{length}x#{length}^").processed
+    self.image
+    # self.image.variant(resize: "#{length}x#{length}^").processed
   end
   # トリミング（縦横長さ指定）
   def rectangle_image(height,width)
