@@ -20,7 +20,8 @@ append :linked_dirs,
   'node_modules',
   'vendor/bundle',
   'public/sitemaps',
-  'public/packs'
+  'public/packs',
+  'storage'
 
 # 指定ファイルに変化が生じた場合にprecompileを行う
 # set :assets_dependencies, %w[app/assets app/javascript package.json yarn.lock]
