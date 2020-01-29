@@ -52,11 +52,11 @@ class Photo < ApplicationRecord
   #----------------------------------------
   # トリミング（正方形）
   def square_image(length)
-    self.image.variant(resize: "#{length}x#{length}^", crop:"#{length}x#{length}+0+0").service_url
+    self.image.variant(resize: "#{length}x#{length}^").processed
   end
   # トリミング（縦横長さ指定）
   def rectangle_image(height,width)
-    self.image.variant(resize: "#{height}x#{width}^", crop:"#{height}x#{width}+0+0").service_url
+    self.image.variant(resize: "#{height}x#{width}^").processed
   end
   
 end
