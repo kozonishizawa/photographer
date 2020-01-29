@@ -1,0 +1,9 @@
+.p-articles
+  .p-articles__inner
+    .p-articles__article
+      h1.p-articles__header
+        = @article.title
+      p
+        = l(@article.updated_at, format: :long)
+      .p-articles__body
+        = @article.body
