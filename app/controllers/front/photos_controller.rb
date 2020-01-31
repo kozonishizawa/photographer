@@ -24,17 +24,18 @@ class Front::PhotosController < Front::ApplicationController
       end
     end
 
-    def exceed_downloadable_limit
-      if Photo.where(user_id: current_user).where(download_status: 'selected').count > current_user.downloadable_limit
-        redirect_to front_album_path(photo.album.id), flash: { danger: '選択できる上限を超えています'}
-      end
-    end
-
     # ダウンロード上限を検証
     def verify_downloadable_limit
       photo = Photo.find(params[:id])
       selected_quantity = Photo.selected.where(user_id: current_user.id).count
       if selected_quantity >= current_user.downloadable_limit && photo.download_status == 'unselected'
+        redirect_to front_album_path(photo.album.id), flash: { danger: '選択できる上限を超えています'}
+      end
+    end
+
+    
+    def exceed_downloadable_limit
+      if Photo.where(user_id: current_user).where(download_status: 'selected').count > current_user.downloadable_limit
         redirect_to front_album_path(photo.album.id), flash: { danger: '選択できる上限を超えています'}
       end
     end

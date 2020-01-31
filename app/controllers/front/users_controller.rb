@@ -38,7 +38,7 @@ class Front::UsersController < Front::ApplicationController
     photos = Photo.selected.joins(album: :user).merge(User.where(id: params[:user_id]))
     # tempでzipファイルを生成
     t = Tempfile.new
-    ::Zip::OutputStream.open(t.path) do |z|
+    Zip::OutputStream.open(t.path) do |z|
       photos.each do |photo|
         z.put_next_entry("photo_album/#{photo.id}.jpg")
         z.print(photo.image.download)

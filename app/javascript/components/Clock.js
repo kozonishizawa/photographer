@@ -1,6 +1,5 @@
 // 時計　========================================
 import React from 'react';
-import './HelloWorld.sass';
 
 export default class Clock extends React.Component {
   constructor(props) {
