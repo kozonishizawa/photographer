@@ -33,7 +33,7 @@ document.addEventListener('turbolinks:load', function() {
   }
 
   let download = document.getElementById('download')
-  download.onclick = () => {
+  download.onClick = () => {
     this.addEventListener('ajax:success', () => {
       location.reload();
       console.log('うんこ')

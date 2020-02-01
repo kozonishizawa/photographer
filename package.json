@@ -15,10 +15,9 @@
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-dropzone": "^10.1.10",
-    "react-id-swiper": "^2.4.0",
     "react-kawaii": "^0.14.4",
     "react_ujs": "^2.6.0",
-    "swiper": "^5.2.1",
+    "swiper": "^5.3.0",
     "trix": "^1.0.0",
     "turbolinks": "^5.2.0",
     "webpack-merge": "^4.2.2"
