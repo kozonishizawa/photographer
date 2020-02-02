@@ -30,14 +30,22 @@ document.addEventListener('turbolinks:load', function() {
   
   // サムネイルをクリックするとポップアップ
   if (thumbs) {
-    thumbs.forEach(function(item) {
-      item.onclick = (e) => {
-        carousel.slideTo(e.target.dataset.index);
+    thumbs.forEach((e) => {
+      e.addEventListener('click', () => {
+        carousel.slideTo(e.dataset.index);
         slide.style.display = 'block';
         overlay.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-      }
-    });
+        document.body.style.overflow = 'hidden';        
+      })
+    })
+    // thumbs.forEach(function(item) {
+    //   item.onclick = (e) => {
+    //     carousel.slideTo(e.target.dataset.index);
+    //     slide.style.display = 'block';
+    //     overlay.style.display = 'block';
+    //     document.body.style.overflow = 'hidden';
+    //   }
+    // });
   }
   
   // 背景をクリックすると閉じる

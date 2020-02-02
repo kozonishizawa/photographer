@@ -1,5 +1,6 @@
+@import '../../../foundation/variables'
 #slide
-  // display: none
+  display: none
 
 .c-carousel
   overflow: hidden
@@ -11,7 +12,6 @@
   top: 100px
   left: 0
   right: 0
-
   &__list
     position: relative
     width: 100%
@@ -26,6 +26,7 @@
     height: 100%
     position: relative
     transition-property: transform
+    width: 100%
     img
       width: 900px
       height: 600px
@@ -40,14 +41,16 @@
     transform: translateY(-50%)
     background-color: rgba( 0, 0, 0, 0.6)
     border-radius: 50%
+    z-index: 99999
     &:before
       content: ""
       position: absolute
-      // border-bottom: solid 2px map-get($layoutColors, 'lightGray')
-      // border-right: solid 2px map-get($layoutColors, 'lightGray')
+      border-bottom: solid 2px map-get($layoutColors, 'lightGray')
+      border-right: solid 2px map-get($layoutColors, 'lightGray')
       width: 40%
       height: 40%
       top: 30%
+
   &__prev
     left: 0%
     &:before
@@ -67,7 +70,7 @@
     width: 100%
     z-index: 1
     & > span
-      // background: map-get($layoutColors, 'darkGray')
+      background: map-get($layoutColors, 'darkGray')
       display: inline-block
       border-radius: 50%
       cursor: pointer
@@ -75,6 +78,6 @@
       width: 8px
       height: 8px
       &.swiper-pagination-bullet-active
-        // background: map-get($layoutColors, 'lightGray')
+        background: map-get($layoutColors, 'lightGray')
         cursor: default
         pointer-events: none

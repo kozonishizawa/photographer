@@ -1,5 +1,6 @@
 import Swiper from 'swiper'
 
+// 写真削除
 document.addEventListener('turbolinks:load', function() {
   document.querySelectorAll('.delete').forEach(function(a) {
     a.addEventListener('ajax:success', function() {
@@ -9,6 +10,7 @@ document.addEventListener('turbolinks:load', function() {
   });
 });
 
+// アルバム
 document.addEventListener('turbolinks:load', function() {
   if (document.getElementById('counter')) {
 
@@ -34,65 +36,41 @@ document.addEventListener('turbolinks:load', function() {
     });
   }
 
-  var carouselOption = {
-    wrapperClass : 'c-carousel__list',
-    slideClass   : 'c-carousel__item',
-    loop         : true,
-    pagination   : {
-      el : '.c-carousel__nav',
-    },
-    navigation   : {
-      nextEl : '.c-carousel__next',
-      prevEl : '.c-carousel__prev',
-    },
-  }
-  
-  
-  // スライド初期化
-  
   var slide = document.getElementById('slide');
   var overlay = document.getElementById('overlay');
   var thumbs = document.querySelectorAll('.p-photos__thumbnail');
   
-  // スライドの初期状態は非表示
-  if (slide) {
-    var carousel = new Swiper('#slide', carouselOption);
-    slide.style.display = 'none';
-  }
-  
-  // サムネイルをクリックするとポップアップ
-  if (thumbs) {
-    thumbs.forEach(function(item) {
-      item.onclick = (e) => {
-        carousel.slideTo(e.target.dataset.index);
-        slide.style.display = 'block';
-        overlay.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+  thumbs.forEach((item) => {
+    item.addEventListener('click', (e) => {
+      slide.style.display = 'block';
+      overlay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      var initialIndex = Number(e.target.dataset.index) - 1;
+
+      var carouselOption = {
+        wrapperClass : 'c-carousel__list',
+        slideClass   : 'c-carousel__item',
+        loop         : true,
+        pagination   : {
+          el : '.c-carousel__nav',
+          type: 'fraction',
+        },
+        navigation   : {
+          nextEl : '.c-carousel__next',
+          prevEl : '.c-carousel__prev',
+        },
+        initialSlide : initialIndex,
       }
-    });
-  }
-  
+
+      var carousel = new Swiper('#slide', carouselOption);
+
+    })
+  })
   // 背景をクリックすると閉じる
-  if (overlay) {
-    overlay.onclick = () => {
-      slide.style.display = 'none'
-      overlay.style.display = 'none'
-      document.body.style.overflow = '';
-    };
-  }
-
-
-
-
-
-
-
-  let download = document.getElementById('download')
-  download.onClick = () => {
-    this.addEventListener('ajax:success', () => {
-      location.reload();
-      console.log('うんこ')
-    }
-    )
-  }
+  overlay.addEventListener('click', () => {
+    slide.style.display = 'none';
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  })
+ 
 });
