@@ -73,5 +73,11 @@ document.addEventListener('turbolinks:load', function() {
     overlay.style.display = 'none';
     document.body.style.overflow = '';
   })
+
+  var download = document.getElementById('download');
+  download.addEventListener('ajax:success', () => {
+    console.log("成功");
+    // location.reload();
+  })
  
 });
