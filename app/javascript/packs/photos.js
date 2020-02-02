@@ -40,6 +40,7 @@ document.addEventListener('turbolinks:load', function() {
   var overlay = document.getElementById('overlay');
   var thumbs = document.querySelectorAll('.p-photos__thumbnail');
   
+  // サムネイルをクリックするとスライドがポップアップ
   thumbs.forEach((item) => {
     item.addEventListener('click', (e) => {
       slide.style.display = 'block';
