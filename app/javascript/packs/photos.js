@@ -12,29 +12,23 @@ document.addEventListener('turbolinks:load', function() {
 
 // アルバム
 document.addEventListener('turbolinks:load', function() {
-  if (document.getElementById('counter')) {
-
-    let counter = document.getElementById('counter');
-    let number = Number(counter.dataset.quantity);
-
-    window.addEventListener('ajax:success', function(e) {
-
-      let input = e.target.commit;
-      if (input.className == 'p-photos__selected') {
-        input.className = 'p-photos__unselected';
-        console.log('選択を解除しました');
-        number += 1;
-        counter.innerHTML = `あと${number}枚選択できます`;
-      } else if (input.className == 'p-photos__unselected') {
-        input.className = 'p-photos__selected';
-        console.log('選択をしました');
+  // 写真選択ボタン
+  let counter = document.getElementById('counter');
+  let number = Number(counter.dataset.quantity);
+  document.querySelectorAll('.p-photos__btn').forEach((btn) => {
+    btn.addEventListener('ajax:success', () => {
+      btn.classList.toggle('on');
+      if (btn.classList.contains('on')) {
+        console.log('選択しました。');
         number -= 1;
         counter.innerHTML = `あと${number}枚選択できます`;
-      } else if (input.className == 'p-photos__unselected' && number <= 0) {
-        console.log('これ以上選択できません');
+      } else {
+        console.log('選択を解除しました。');
+        number += 1;
+        counter.innerHTML = `あと${number}枚選択できます`;
       }
-    });
-  }
+    })
+  })
 
   var slide = document.getElementById('slide');
   var overlay = document.getElementById('overlay');
@@ -72,12 +66,6 @@ document.addEventListener('turbolinks:load', function() {
     slide.style.display = 'none';
     overlay.style.display = 'none';
     document.body.style.overflow = '';
-  })
-
-  var download = document.getElementById('download');
-  download.addEventListener('ajax:success', () => {
-    console.log("成功");
-    // location.reload();
   })
  
 });

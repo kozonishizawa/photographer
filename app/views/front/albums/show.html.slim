@@ -27,8 +27,7 @@
                   - if photo.download_status == 'complete'
                       .p-photos__complete ダウンロード済
                   - else
-                    = form_with model: photo, url: front_photo_path(photo), class: 'p-photos__form', id: photo.id, remote: :true do |f|
-                      = f.submit '', class: photo.download_status == 'unselected' ? 'p-photos__unselected' : 'p-photos__selected'
+                    = link_to '', front_photo_path(photo), method: :patch, remote: true, class: photo.download_status == 'unselected' ? 'p-photos__btn' : 'p-photos__btn on'
 
       .p-photos__linkWrapper
         = link_to '選択中の写真を一括ダウンロード', front_user_download_path({ user_id: current_user.id, album_id: @album.id }), method: :post, class: 'p-photos__next', data: {confirm: '一度ダウンロードされると選び直すことができなくなります。ダウンロードしてよろしいですか？'}, id: 'download'
