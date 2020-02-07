@@ -1,4 +1,5 @@
-import Swiper from 'swiper'
+import Swiper from 'swiper';
+import Xhr from '../lib/xhr';
 
 // 写真削除
 document.addEventListener('turbolinks:load', function() {
@@ -14,19 +15,26 @@ document.addEventListener('turbolinks:load', function() {
 document.addEventListener('turbolinks:load', function() {
   // 写真選択ボタン
   let counter = document.getElementById('counter');
-  let number = Number(counter.dataset.quantity);
   document.querySelectorAll('.p-photos__btn').forEach((btn) => {
-    btn.addEventListener('ajax:success', () => {
-      btn.classList.toggle('on');
-      if (btn.classList.contains('on')) {
-        console.log('選択しました。');
-        number -= 1;
-        counter.innerHTML = `あと${number}枚選択できます`;
-      } else {
-        console.log('選択を解除しました。');
-        number += 1;
-        counter.innerHTML = `あと${number}枚選択できます`;
-      }
+    var color = counter.style.color
+    btn.addEventListener('click', () => {
+      Xhr.request.patch(`/front/photos/${btn.dataset.id}`)
+      .then((response) => {
+        var selectable = response.data.selectable
+        if (selectable >= 0) {
+          console.log('通信成功！');
+          counter.style.color = color
+          counter.innerHTML = `あと${selectable}枚選択できます`;
+          btn.classList.toggle('on');
+        } else if (selectable == 'over') {
+          console.log(selectable);
+          counter.style.color = 'red'
+          counter.innerHTML = 'ダウンロードの上限を超えました';
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     })
   })
 
@@ -62,10 +70,12 @@ document.addEventListener('turbolinks:load', function() {
     })
   })
   // 背景をクリックすると閉じる
-  overlay.addEventListener('click', () => {
-    slide.style.display = 'none';
-    overlay.style.display = 'none';
-    document.body.style.overflow = '';
-  })
+  if (overlay) {
+    overlay.addEventListener('click', () => {
+      slide.style.display = 'none';
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    })
+  }
  
 });

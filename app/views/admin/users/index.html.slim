@@ -11,23 +11,23 @@
           tr.l-table__row
             th.l-table__header ID
             th.l-table__header 名前
-            th.l-table__header メールアドレス
-            th.l-table__header 最終更新
+            th.l-table__header ダウンロード上限
             th.l-table__header 権限
             th.l-table__header 状態
             th.l-table__header
             th.l-table__header
             th.l-table__header
+            th.l-table__header 最終更新
         tbody.l-table__tbody
           - @users.each do |user|
             tr.l-table__row
               td.l-table__data = user.id
               td.l-table__data = link_to user.name, admin_user_path(user.id)
-              td.l-table__data = user.email
-              td.l-table__data = l(user.created_at, format: :long)
+              td.l-table__data = user.downloadable_limit
               td.l-table__data = user.admin? ? '管理者' : '一般'
               td.l-table__data = user.activated? ? '有効' : '無効'
               td.l-table__data = react_component 'album_form', user: user.as_json, categories: Album.categories.keys.map {|k| [I18n.t("enums.album.category.#{k}"),k]}.as_json
               td.l-table__data = link_to '編集', edit_admin_user_path(user.id), class: 'p-albums__edit'
               td.l-table__data = link_to '削除', admin_user_path(user.id), method: :delete, data: {confirm: "#{user.name}のデータを削除します。よろしいですか?"}, class: 'p-albums__delete'
+              td.l-table__data = l(user.created_at, format: :long)
 
