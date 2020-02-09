@@ -1,4 +1,6 @@
 .p-photos
+  user-select: none
+  min-height: 80vh
   &__inner
   &__heading
     text-align: center
@@ -72,6 +74,7 @@
     line-height: 45px
   &__linkWrapper
     padding: 50px
+    text-align: center
   &__next
     text-align: center
     display: block
@@ -85,6 +88,8 @@
     background: #00bcd4
     transition: .4s
     border-radius: 5px
+    cursor: pointer
+    box-shadow: 1px 1px 2px #ccc
     &:visited
       color: #FFF
   &__prev

@@ -13,8 +13,9 @@ document.addEventListener('turbolinks:load', function() {
 
 // アルバム
 document.addEventListener('turbolinks:load', function() {
-  // 写真選択ボタン
+
   let counter = document.getElementById('counter');
+  
   document.querySelectorAll('.p-photos__btn').forEach((btn) => {
     var color = counter.style.color
     btn.addEventListener('click', () => {
@@ -27,7 +28,6 @@ document.addEventListener('turbolinks:load', function() {
           counter.innerHTML = `あと${selectable}枚選択できます`;
           btn.classList.toggle('on');
         } else if (selectable == 'over') {
-          console.log(selectable);
           counter.style.color = 'red'
           counter.innerHTML = 'ダウンロードの上限を超えました';
         }
@@ -78,4 +78,53 @@ document.addEventListener('turbolinks:load', function() {
     })
   }
  
+  let download = document.getElementById('download');
+  // if (download) {
+  //   download.addEventListener('click', () =>{
+  //     new Promise((resolve, reject) => {
+  //       Xhr.request.post(`/front/users/${download.dataset.user_id}/download`)
+  //       .then((response) => {
+  //         var status = response.data.status;
+  //         if (status == 'failure') {
+  //           reject();
+  //         } else {
+  //           resolve();
+  //         }
+  //       }).catch((error) => {
+  //         reject(console.log(error));
+  //       });
+  //     }).then(
+  //       response => {
+  //         console.log('成功や');
+  //       },
+  //       error => {
+  //         console.log('画像が選択されてへん');
+  //         location.reload();
+  //       }
+  //     )
+  //   })
+  // }
+  if (download) {
+    download.addEventListener('click', () =>{
+      download.addEventListener('ajax:success', (event) => {
+        console.log(event);
+        new Promise((resolve, reject) => {
+          if (event.detail[0].status == 'failure') {
+            reject();
+          } else {
+            resolve();
+          }
+        }).then(
+          response => {
+            console.log('成功や');
+          },
+          error => {
+            console.log('画像が選択されてへん');
+            location.reload();
+          }
+        )
+      })
+    })
+  }
+  
 });

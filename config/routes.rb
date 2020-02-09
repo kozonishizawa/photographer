@@ -50,7 +50,7 @@ Rails.application.routes.draw do
     resources :albums, only: [:index, :show]
 
     # 写真
-    resources :photos, only: [:update]
+    resources :photos, only: [:index, :update]
 
     # チャット
     resources :rooms, only: [:show]

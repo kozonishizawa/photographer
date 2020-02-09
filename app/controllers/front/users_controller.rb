@@ -49,7 +49,6 @@ class Front::UsersController < Front::ApplicationController
     current_user.complete_download(photos)
     # 閉じる
     t.close
-    head :ok
   end
 
   private
@@ -61,8 +60,10 @@ class Front::UsersController < Front::ApplicationController
     # 写真が選択されているか検証
     def required_selection
       photos = Photo.selected.joins(album: :user).merge(User.where(id: params[:user_id]))
-      redirect_back(fallback_location: front_album_url(params[:album_id])) if photos.blank?
-      flash[:danger] = '写真が選択されていません。'
+      if photos.blank?
+        redirect_to front_photos_url
+        flash[:danger] = '写真が選択されていません。'
+      end
     end
 
 end

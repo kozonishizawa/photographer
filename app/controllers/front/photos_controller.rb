@@ -1,16 +1,25 @@
 class Front::PhotosController < Front::ApplicationController
-  # include AjaxHelper
+
   before_action :login_required
   before_action :validate_user, only: [:update]
   before_action :verify_downloadable_limit, only: [:update]
+
+  def index
+    @photos = Photo.selected.joins(album: :user).merge(User.where(id: current_user.id))
+  end
   
   def update
     photo = Photo.find(params[:id])
     album = Album.find(photo.album.id)
-    if photo.download_status == 'unselected'
+    case photo.download_status
+    when 'unselected'
       photo.update!(download_status: 'selected')
-    elsif photo.download_status == 'selected'
+    when 'selected'
       photo.update!(download_status: 'unselected')
+    when 'complete'
+      photo.update!(download_status: 're_selected')
+    when 're_selected'
+      photo.update!(download_status: 'complete')
     end
     selected = Photo.selected.joins(album: :user).merge(User.where(id: current_user.id)).count
     selectable = current_user.downloadable_limit - selected

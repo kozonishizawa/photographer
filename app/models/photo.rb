@@ -22,7 +22,7 @@ class Photo < ApplicationRecord
   #----------------------------------------
   #  ** Enums **
   #----------------------------------------
-  enum download_status: { unselected: 0, selected: 1, complete: 2 }
+  enum download_status: { unselected: 0, selected: 1, complete: 2, re_selected: 3 }
   
   #----------------------------------------
   #  ** Validations **
