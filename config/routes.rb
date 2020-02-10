@@ -52,6 +52,9 @@ Rails.application.routes.draw do
     # 写真
     resources :photos, only: [:index, :update]
 
+    # 履歴
+    resources :histories, only: [:index, :show, :update]
+
     # チャット
     resources :rooms, only: [:show]
 

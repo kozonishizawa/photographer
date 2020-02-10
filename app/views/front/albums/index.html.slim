@@ -1,16 +1,20 @@
 .p-albums
-
   .p-albums__inner
     .p-albums__prev
       = link_to 'マイページトップへ戻る', front_root_path
+      span |
+      = link_to 'ダウンロード履歴', front_histories_path
     table.l-table
       thread.l-table__thread
         tr.l-table__row
           th.l-table__header 撮影日
           th.l-table__header アルバム名
+          th.l-table__header
       tbody.l-table__tbody
         - @albums.each do |album|
           tr.l-table__row
             td.l-table__data = album.photographed_at
             td.l-table__data data-turbolinks='false'
               = link_to album.title, front_album_path(album), class: 'l-table__title'
+            td.l-table__data data-turbolinks='false'
+              = link_to 'ダウンロード履歴', front_history_path(album)

@@ -1,0 +1,38 @@
+.p-photos
+  .p-photos__inner
+    .p-photos__heading
+      h1.p-photos__title ダウンロード履歴
+      - if @photos.blank?
+        p.p-photos__lead 過去にダウンロードされた写真はありません
+      - else
+        p.p-photos__lead 期間内であれば再ダウンロードが可能です
+      - if @photos.present?
+    .p-photos__overlay.overlay#overlay
+    .c-carousel.slide#slide
+      ul.c-carousel__list
+        - @photos.each do |photo|
+          - if photo.image.attached?
+            li.c-carousel__item = image_tag photo.rectangle_image(900, 600)
+      .c-carousel__prev
+      .c-carousel__next
+      .c-carousel__nav
+
+    .p-photos__thumbnails
+      ul.p-photos__list
+      - @photos.each.with_index(1) do |photo, index|
+        - if photo.image.attached?
+          li.p-photos__listItem
+            .p-photos__imageWrapper
+              = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail', 'data-index': index
+            .p-photos__formWrapper
+              - if photo.download_status == 'complete'
+                .p-histories__btn data-id="#{photo.id}"
+              - elsif photo.download_status == 're_selected'
+                .p-histories__btn.on data-id="#{photo.id}"
+
+    .p-photos__linkWrapper
+      - if @photos.present?
+        = link_to '再ダウンロードリストに進む', front_histories_path, class: 'p-photos__next'
+      - else
+        = react_component 'kawaii'
+      = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-photos__prev'

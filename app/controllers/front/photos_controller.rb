@@ -16,10 +16,8 @@ class Front::PhotosController < Front::ApplicationController
       photo.update!(download_status: 'selected')
     when 'selected'
       photo.update!(download_status: 'unselected')
-    when 'complete'
-      photo.update!(download_status: 're_selected')
-    when 're_selected'
-      photo.update!(download_status: 'complete')
+    else
+      return false
     end
     selected = Photo.selected.joins(album: :user).merge(User.where(id: current_user.id)).count
     selectable = current_user.downloadable_limit - selected
