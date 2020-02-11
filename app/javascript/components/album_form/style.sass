@@ -1,3 +1,6 @@
+$input-text: 14px
+$input-background: #fbfbfb
+
 .Table
   border-collapse: collapse
   border-spacing: 0
@@ -61,18 +64,20 @@
   &__formItem
     width: 100%
     padding-top: 15px
+    text-align: left
   &__label
     font-size: 1.2em
     text-align: left
   &__field
-    font-size: 14px
+    font-size: $input-text
     padding: 10px
-    background: #fbfbfb
+    background: $input-background
     width: 100%
     border-radius: 4px
     box-sizing: border-box
   &__area
-    font-size: 14px
+    font-size: $input-text
+    background: $input-background
     padding: 10px
     width: 100%
     border-radius: 4px
@@ -81,6 +86,12 @@
     border-style: inset
     border-color: initial
     border-image: initial
+  &__number
+    font-size: $input-text
+    background: $input-background
+    padding: 10px
+    border-radius: 4px
+    box-sizing: border-box
   &__button
     margin-top: 35px
     background: #30c8d6
@@ -99,7 +110,7 @@
     width: 100%
     transition: .4s
     &:hover
-      background: #fbfbfb
+      background: $input-background
       border: solid 2px #30c8d6
       color: #30c8d6
   &__select
@@ -107,9 +118,8 @@
     -moz-appearance: none
     text-indent: 0.01px
     text-overflow: ''
-    background: none transparent
     vertical-align: middle
-    font-size: inherit
+    font-size: $input-text
     color: inherit
     -webkit-appearance: button
     -moz-appearance: button
@@ -121,7 +131,7 @@
     padding: 10px
     border: none
     width: 100%
-    background: #fbfbfb
+    background: $input-background
     border-radius: 4px
     border-width: 2px
     border-style: inset
@@ -139,7 +149,7 @@
     display: block
     width: 30%
     box-sizing: border-box
-    font-size: 14px
+    font-size: $input-text
     font-weight: normal
     color: #888
     border: solid 1px #EDBC6C

@@ -1,26 +1,25 @@
 .p-albums
 
   .p-albums__inner
-    / = link_to '新規のアルバムを作成する', new_admin_album_path, class: 'p-albums__link'
     table.l-table
       thread.l-table__thread
         tr.l-table__row
-          th.l-table__header ID
-          th.l-table__header 撮影日
           th.l-table__header アルバム名
+          th.l-table__header 撮影日
           th.l-table__header クライアント名
           th.l-table__header 登録枚数
           th.l-table__header 公開設定
+          th.l-table__header 公開期限
           th.l-table__header
           th.l-table__header
       tbody.l-table__tbody
         - @albums.each do |album|
           tr.l-table__row
-            td.l-table__data = album.id
-            td.l-table__data = album.photographed_at
             td.l-table__data = link_to album.title, admin_album_path(album), class: 'l-table__title'
+            td.l-table__data = album.photographed_at
             td.l-table__data = album.user.name
             td.l-table__data = album.photos.count
             td.l-table__data = album.status_i18n
+            td.l-table__data = album.created_at.to_date + album.open_period
             td.l-table__data = react_component 'album_form', user: album.user.as_json, categories: Album.categories.keys.map {|k| [I18n.t("enums.album.category.#{k}"),k]}.as_json, album: album.as_json
             td.l-table__data = link_to '削除', admin_album_path(album.id), method: :delete, data: { confirm: '削除してよろしいですか？' }, class: 'p-albums__delete'

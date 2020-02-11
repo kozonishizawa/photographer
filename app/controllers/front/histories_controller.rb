@@ -1,4 +1,4 @@
-class Front::HistoriesController < Front::ApplicationController
+class Front::HistoriesController < Front::PhotosController
   def index
     @photos = Photo.re_selected.joins(album: :user).merge(User.where(id: current_user.id)).reverse_order
   end

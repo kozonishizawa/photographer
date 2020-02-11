@@ -11,6 +11,7 @@ export default class AlbumForm extends React.Component {
       date: this.props.album === undefined ? '' : this.props.album.photographed_at,
       category: this.props.album === undefined ? '' : this.props.album.category,
       description: this.props.album === undefined ? '' : this.props.album.description,
+      openPeriod: this.props.album === undefined ? '' : this.props.album.open_period,
       selectedOption: 'closed',
       showPopup: false,
       fixedBackground: false,
@@ -64,6 +65,7 @@ export default class AlbumForm extends React.Component {
     data.append('album[category]', this.state.category);
     data.append('album[photographed_at]', this.state.date);
     data.append('album[user_id]', this.props.user.id);
+    data.append('album[open_period]', this.state.openPeriod);
 
     if (this.props.album === undefined) {
       Xhr.request.post('/admin/albums', data)
@@ -109,6 +111,13 @@ export default class AlbumForm extends React.Component {
                       撮影日（必須）
                     </label>
                     <input className={Style.Form__field} type="date" name='date' value={this.state.date} onChange={this.handleChange} required />
+                  </div>
+                  <div className={Style.Form__formItem}>
+                    <label className={Style.Form__label}>
+                      公開日数（必須）
+                    </label>
+                    <input className={Style.Form__number} type="number" min='0' step='1' name='openPeriod' value={this.state.openPeriod} onChange={this.handleChange} required />
+                    <span>　日</span>
                   </div>
                   <div className={Style.Form__formItem}>
                     <label className={Style.Form__label}>

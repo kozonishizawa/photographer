@@ -11,6 +11,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  user_id         :integer
+#  open_period     :integer          default("0"), not null
 #
 
 class Album < ApplicationRecord

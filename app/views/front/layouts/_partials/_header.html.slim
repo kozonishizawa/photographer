@@ -5,4 +5,5 @@ header.l-dashboard__header
 
   .l-dashboard__headerMenus
     = link_to 'プロフィール編集', edit_front_user_path(current_user), class: 'l-dashboard__headerMenu'
+    = link_to 'ダウンロードリスト', front_photos_path, class: 'l-dashboard__headerMenu'
     = link_to 'ログアウト', logout_path, class: 'l-dashboard__headerMenu'

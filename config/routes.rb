@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     #ユーザー
     resources :users, except: [:index, :destroy] do
       post :download
+      post :re_download
     end
 
     # 記事

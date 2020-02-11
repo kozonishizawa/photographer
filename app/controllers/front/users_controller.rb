@@ -36,19 +36,15 @@ class Front::UsersController < Front::ApplicationController
 
   def download
     photos = Photo.selected.joins(album: :user).merge(User.where(id: params[:user_id]))
-    # tempでzipファイルを生成
-    t = Tempfile.new
-    Zip::OutputStream.open(t.path) do |z|
-      photos.each do |photo|
-        z.put_next_entry("photo_album/#{photo.id}.jpg")
-        z.print(photo.image.download)
-      end
-    end
-    # ファイルダウンロード
-    send_file(t.path, type: 'application/zip', dispositon: 'attachment', filename: 'photo_album.zip')
+    # zipファイルを生成
+    to_zip(photos)
     current_user.complete_download(photos)
-    # 閉じる
-    t.close
+  end
+
+  def re_download
+    photos = Photo.re_selected.joins(album: :user).merge(User.where(id: params[:user_id]))
+    to_zip(photos)
+    photos.update(download_status: 'complete')
   end
 
   private
@@ -56,6 +52,21 @@ class Front::UsersController < Front::ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :tel, :password, :password_confirmation, contacts_attributes: [:id, :subject, :date, :location, :request])
     end
+
+    # tempにzipを生成
+    def to_zip(photos)
+      t = Tempfile.new
+      Zip::OutputStream.open(t.path) do |z|
+        photos.each do |photo|
+          z.put_next_entry("photo_album/#{photo.id}.jpg")
+          z.print(photo.image.download)
+        end
+      end
+      # ファイルダウンロード
+      send_file(t.path, type: 'application/zip', dispositon: 'attachment', filename: 'photo_album.zip')
+      # 閉じる
+      t.close
+    end 
 
     # 写真が選択されているか検証
     def required_selection

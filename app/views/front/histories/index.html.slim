@@ -14,7 +14,7 @@
               = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail', 'data-index': index
     .p-photos__linkWrapper
       - if @photos.present?
-        = link_to '選択中の写真を一括ダウンロード', front_user_download_path(current_user.id), method: :post, class: 'p-photos__next', data: {confirm: '一度ダウンロードされると選び直すことができなくなります。ダウンロードしてよろしいですか？'}
+        = link_to '一括再ダウンロード', front_user_re_download_path(current_user.id), method: :post, class: 'p-photos__next', data: {confirm: 'ダウンロードを開始してよろしいですか？'}
       - else
         = react_component 'kawaii'
-      = link_to '前の画面へ戻る', 'javascript:history.back()', class: 'p-photos__prev'
+      = link_to '前の画面へ戻る', 'javascript:history.back()', data: { turbolinks: false }, class: 'p-photos__prev'

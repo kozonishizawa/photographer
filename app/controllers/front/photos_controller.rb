@@ -5,7 +5,7 @@ class Front::PhotosController < Front::ApplicationController
   before_action :verify_downloadable_limit, only: [:update]
 
   def index
-    @photos = Photo.selected.joins(album: :user).merge(User.where(id: current_user.id))
+    @photos = Photo.selected.joins(album: :user).merge(User.where(id: current_user.id)).merge(Album.where.not(status: 'closed'))
   end
   
   def update

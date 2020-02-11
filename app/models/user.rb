@@ -3,10 +3,10 @@
 # Table name: users
 #
 #  id                 :integer          not null, primary key
-#  name               :string(255)      not null
-#  email              :string(255)      not null
-#  tel                :string(255)      not null
-#  password_digest    :string(255)      not null
+#  name               :string(191)      not null
+#  email              :string(191)      not null
+#  tel                :string(191)      not null
+#  password_digest    :string(191)      not null
 #  admin              :boolean          default("0"), not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -16,7 +16,7 @@
 #  activated_at       :datetime
 #  reset_digest       :string(255)
 #  reset_sent_at      :datetime
-#  downloadable_limit :integer
+#  downloadable_limit :integer          default("0")
 #
 
 class User < ApplicationRecord
