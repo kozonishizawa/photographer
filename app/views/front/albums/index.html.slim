@@ -7,14 +7,18 @@
     table.l-table
       thread.l-table__thread
         tr.l-table__row
-          th.l-table__header 撮影日
           th.l-table__header アルバム名
-          th.l-table__header
+          th.l-table__header 撮影日
+          th.l-table__header 枚数
+          th.l-table__header ダウンロード済
+          th.l-table__header 公開期限
       tbody.l-table__tbody
         - @albums.each do |album|
           tr.l-table__row
-            td.l-table__data = album.photographed_at
             td.l-table__data data-turbolinks='false'
               = link_to album.title, front_album_path(album), class: 'l-table__title'
+            td.l-table__data = album.photographed_at
+            td.l-table__data = album.photos.count
             td.l-table__data data-turbolinks='false'
-              = link_to 'ダウンロード履歴', front_history_path(album)
+              = link_to "#{album.photos.where(download_status: 'complete', download_status: 're_selected').count}", front_history_path(album)
+            td.l-table__data = album.created_at.to_date + album.open_period

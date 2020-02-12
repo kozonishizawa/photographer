@@ -29,11 +29,8 @@
                       .p-photos__btn data-id="#{photo.id}"
                     - elsif photo.download_status == 'selected'
                       .p-photos__btn.on data-id="#{photo.id}"
-                    - elsif photo.download_status == 'complete' || 're_serected'
-                      .p-photos__complete ダウンロード済
                     - else
-                      .p-photos__complete 期限切れ
-
+                      .p-photos__complete ダウンロード済
 
         .p-photos__linkWrapper
           = link_to 'ダウンロード画面に進む', front_photos_path, class: 'p-photos__next'

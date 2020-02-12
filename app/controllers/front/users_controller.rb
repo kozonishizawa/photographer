@@ -34,15 +34,16 @@ class Front::UsersController < Front::ApplicationController
     redirect_to front_user_url(user), flash: { success: 'ユーザー情報を更新しました'}
   end
 
+  # 初回ダウンロード 
   def download
-    photos = Photo.selected.joins(album: :user).merge(User.where(id: params[:user_id]))
-    # zipファイルを生成
+    photos = Photo.selected.joins(album: :user).merge(User.where(id: params[:user_id])).merge(Album.where.not(status: 'closed'))
     to_zip(photos)
     current_user.complete_download(photos)
   end
 
+  # 再ダウンロード
   def re_download
-    photos = Photo.re_selected.joins(album: :user).merge(User.where(id: params[:user_id]))
+    photos = Photo.re_selected.joins(album: :user).merge(User.where(id: params[:user_id])).merge(Album.where.not(status: 'closed'))
     to_zip(photos)
     photos.update(download_status: 'complete')
   end

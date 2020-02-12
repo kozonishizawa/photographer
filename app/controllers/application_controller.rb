@@ -28,4 +28,27 @@ class ApplicationController < ActionController::Base
     redirect_to(root_url) unless current_user?(@user)
   end
 
+  # アルバム公開期限
+  def deadline(album)
+    album.created_at.to_date + album.open_period
+  end
+
+  # 公開期間の徒過を検証
+  def overdue
+    album = Album.find(params[:id])
+    if deadline(album) < Date.today
+      redirect_to front_albums_url, flash: { danger: 'アルバムの公開期間は終了しています' } 
+    end
+  end
+
+  # 公開期間終了したアルバムを非公開にする
+  def close_album
+    albums = current_user.albums.where.not(status: 'close')
+    albums.each do |album|
+      if deadline(album) < Date.today
+        album.update!(status: 'closed')
+      end
+    end
+  end
+
 end
