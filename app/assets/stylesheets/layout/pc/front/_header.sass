@@ -1,0 +1,31 @@
+// ==============================================
+// HEADER (PC)
+// ==============================================
+.l-header
+  background-color: $header-color
+  &__logo
+    color: map-get($fontColors, 'white')
+    font-size: 2em
+    &:visited
+      color: map-get($fontColors, 'white')
+    &:hover
+      color: map-get($fontColors, 'white')
+  &__inner
+    @include inner
+  &__nav
+    text-align: right
+  &__nav-list
+    display: inline-flex
+    flex-direction: row
+    justify-content: flex-end
+  &__nav-item
+    display: inline-block
+    padding: 1em
+  &__link
+    text-decoration: none
+    color: map-get($fontColors, 'white')
+    &:visited
+      color: map-get($fontColors, 'white')
+    &:hover
+      color: map-get($fontColors, 'white')      
+

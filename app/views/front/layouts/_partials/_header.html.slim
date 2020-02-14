@@ -1,7 +1,18 @@
 header.l-header
-  .header__inner
-    .l-header__nav
-      = link_to 'メインメニュー', front_root_path
-      = link_to 'プロフィール編集', edit_front_user_path(current_user), class: 'l-dashboard__headerMenu'
-      = link_to 'ダウンロードリスト', front_photos_path, class: 'l-dashboard__headerMenu'
-      = link_to 'ログアウト', logout_path, class: 'l-dashboard__headerMenu'
+  .l-header__inner
+    .flex-row
+      .col-6
+        = link_to 'DropStudio', front_root_path, class: 'l-header__logo'
+      .col-6
+        nav.l-header__nav
+          ul.l-header__nav-list
+            - if logged_in?
+              li.l-header__nav-item
+                = link_to 'ダウンロードリスト', front_photos_path, class: 'l-header__link'
+              li.l-header__nav-item
+                = link_to 'ログアウト', logout_path, class: 'l-header__link'
+            - else
+              li.l-header__nav-item
+                = link_to "初めてのご依頼", new_front_user_path, class: "l-header__link"
+              li.l-header__nav-item
+                = link_to "ログイン", login_path, class: "l-header__link"
