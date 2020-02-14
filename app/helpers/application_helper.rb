@@ -3,7 +3,6 @@ module ApplicationHelper
 		[
 			{ name: 'ユーザー管理', url: admin_users_path},
 			{ name: 'アルバム管理', url: admin_albums_path},
-			{ name: '記事管理', url: admin_articles_path},
 			{ name: 'お問い合わせ', url: admin_contacts_path}
 		]
 	end
