@@ -2,11 +2,9 @@ header.l-header
   .l-header__inner
     .flex-row
       .col-6
-        = link_to 'DropStudio', front_root_path, class: 'l-header__logo'
+        = link_to 'DropStudio', admin_root_path, class: 'l-header__logo'
       .col-6
         nav.l-header__nav
           ul.l-header__nav-list
-            li.l-header__nav-item
-              = link_to 'ダウンロードリスト', front_photos_path, class: 'l-header__link'
             li.l-header__nav-item
               = link_to 'ログアウト', logout_path, class: 'l-header__link'
