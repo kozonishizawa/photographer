@@ -1,7 +1,9 @@
 .p-photos
+  background-color: #f4f4f4
   user-select: none
   min-height: 80vh
   &__inner
+    padding: 30px 30px 40px
   &__heading
     text-align: center
     font-size: 2em
@@ -16,20 +18,31 @@
     justify-content: flex-start
     margin: 15px
     img
-      width: 150px
-      height: 150px
+      width: 400px
+      height: 300px
       object-fit: cover
+  &__card
+    position: relative
+    overflow: hidden
+    padding: 10px
+    background-color: #fff
   &__imageContainer
     display: flex
     flex-direction: column
-    img
-      width: 150px
-      height: 150px
-      object-fit: cover
   &__thumbnail
-    border-radius: 5px
     cursor: pointer
-  &__formWrapper
+  &__caption
+    position: absolute
+    bottom: -60px
+    left: 0
+    z-index: 2
+    width: 100%
+    height: 60px
+    background-color: #fff
+    -webkit-transition: .3s
+    transition: .3s
+  &__card:hover &__caption
+    bottom: 0 
   &__form
     display: block
   &__unselected
@@ -75,6 +88,17 @@
   &__linkWrapper
     padding: 50px
     text-align: center
+    position: relative
+  &__mark
+    position: absolute
+    top: 0
+    right: 0
+    color: rgba(255, 255, 255, 0)
+    font-size: 25px
+    transition: .3s
+  .marked
+    color: #ea4c89
+    transition: .3s
   &__next
     text-align: center
     display: block
@@ -108,19 +132,21 @@
     opacity: 0.5
   &__btn
     margin-top: 10px
-    width: 45px
+    // width: 45px
     height: 45px
-    position: relative
     display: inline-block
-    font-weight: bold
-    padding: 0.25em 0.5em
+    font-size: 40px
+    line-height: 30px
     text-decoration: none
-    color: #00bcd4
-    border-radius: 45px
-    border: none
-    background-color: rgba(1,1,1,0.1)
     cursor: pointer
+    color: rgba(1,1,1,0.1)
+    transition: .3s
+    &::before
+      content: '選択する'
+      font-size: 16px
+      color: rgba(1,1,1,0.5)
   .on
-    color: #fff
-    background-color: #00bcd4
-    border: 7px solid rgba(1,1,1,0.1)
+    color: #ea4c89
+    transition: .3s
+    &::before
+      content: '解除する'

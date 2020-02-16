@@ -25,14 +25,16 @@ document.addEventListener('turbolinks:load', () => {
       .then((response) => {
         var selectable = response.data.selectable
         if (selectable >= 0) {
-          console.log('通信成功！');
           counter.style.color = color
           counter.innerHTML = `あと${selectable}枚選択できます`;
           btn.classList.toggle('on');
+          var caption = btn.parentNode;
+          var image = caption.previousElementSibling;
+          var heart = image.children[0]
+          heart.classList.toggle('marked');
         } else if (selectable == 'over') {
           counter.style.color = 'red'
           counter.innerHTML = 'ダウンロードの上限を超えました';
-          console.log('もうあかんで！')
         }
       })
       .catch((error) => {
