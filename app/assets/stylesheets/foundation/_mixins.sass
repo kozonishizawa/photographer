@@ -27,3 +27,8 @@
 
 @mixin inner
   padding: 0 100px
+
+@mixin mq($breakpoint: sp)
+  @media #{map-get($breakpoints, $breakpoint)}
+    @content
+

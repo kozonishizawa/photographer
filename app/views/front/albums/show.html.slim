@@ -3,8 +3,11 @@
     .p-photos__inner
       .p-photos__heading
         h1 = @album.title
-        span#counter
-          | あと#{downloadable_counter}枚選択できます
+      .p-photos__lead
+        p ダウンロードする写真を選択して下さい。
+      .p-photos__counter
+        p#counter.p-photos__limit
+          | あと#{downloadable_counter}枚選択可能
 
       - if @photos.present?
         .p-photos__overlay.overlay#overlay
@@ -30,7 +33,10 @@
                       - elsif photo.download_status == 'selected'
                         .p-photos__mark.marked data-id="#{photo.id}"
                           i.fa.fa-heart
-                      = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail', 'data-index': index
+                      - else
+                        .p-photos__mark.complete data-id="#{photo.id}"
+                          i.fa.fa-ban
+                      = image_tag photo.rectangle_image(300,200), class: 'image', 'data-index': index
                     .p-photos__caption
                       - if photo.download_status == 'unselected'
                         .p-photos__btn data-id="#{photo.id}"

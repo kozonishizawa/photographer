@@ -1,20 +1,3 @@
-.p-photos
-  .p-photos__inner
-    .p-photos__heading
-      h1.p-photos__title 再ダウンロードリスト
-      - if @photos.blank?
-        p.p-photos__lead 選択中の写真はありません
-      - else
-        p.p-photos__lead 以下の写真が選択されています。
-    ul.p-photos__list
-      - @photos.each.with_index(1) do |photo, index|
-        - if photo.image.attached?
-          li.p-photos__listItem
-            .p-photos__imageWrapper
-              = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail', 'data-index': index
-    .p-photos__linkWrapper
-      - if @photos.present?
-        = link_to '一括再ダウンロード', front_user_re_download_path(current_user.id), method: :post, class: 'p-photos__next', data: {confirm: 'ダウンロードを開始してよろしいですか？'}
-      - else
-        = react_component 'kawaii'
-      = link_to '前の画面へ戻る', 'javascript:history.back()', data: { turbolinks: false }, class: 'p-photos__prev'
+- provide(:title, '再ダウンロードリスト') 
+- provide(:btn_text, '再ダウンロード')
+= render 'front/photos/download_list'

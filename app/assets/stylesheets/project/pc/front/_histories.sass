@@ -1,19 +1,144 @@
 .p-histories
-  &__btn
-    margin-top: 10px
-    width: 45px
-    height: 45px
-    position: relative
+  user-select: none
+  &__inner
+    padding: 30px 30px 40px
+  &__heading
+    text-align: center
+    font-size: 2em
+    margin: 0 40px 40px 40px
+    color: #999
+  &__lead
+    text-align: center
+  &__counter
+    position: sticky
+    top: 0
+    z-index: 1000
+    text-align: right
+  &__limit
     display: inline-block
-    font-weight: bold
-    padding: 0.25em 0.5em
-    text-decoration: none
-    color: #00bcd4
+    font-size: 24px
     border-radius: 45px
-    border: none
-    background-color: rgba(1,1,1,0.1)
+    background-color: #fff
+    padding: 5px 15px
+    margin: 20px
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07)
+  &__thumbnails
+  &__list
+  &__listItem
+    text-align: center
+    display: inline-flex
+    flex-direction: column
+    flex-wrap: wrap
+    justify-content: flex-start
+    margin: 15px
+  &__card
+    position: relative
+    overflow: hidden
+    padding: 10px
+    background-color: #fff
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07)
+  &__imageContainer
+    display: flex
+    flex-direction: column
+  .image
     cursor: pointer
+    width: 400px
+    height: 300px
+    object-fit: cover
+  &__thumbnail
+    width: 200px
+    height: 150px
+    object-fit: cover
+  &__caption
+    position: absolute
+    bottom: -50px
+    left: 0
+    z-index: 2
+    width: 100%
+    background-color: #fff
+    -webkit-transition: .25s
+    transition: .25s
+  &__card:hover &__caption
+    bottom: 0 
+  &__btn
+    margin: 10px 0
+    padding: 5px 15px
+    display: inline-block
+    font-size: 16px
+    text-decoration: none
+    cursor: pointer
+    color: rgba(1,1,1,0.5)
+    border: 1px solid rgba(1,1,1,0.2)
+    border-radius: 4px
+    transition: .3s
+    &:hover
+      border: 1px solid rgba(1,1,1,0.5)
+    &::after
+      content: '選択'
+      padding-left: 5px
+      font-size: 16px
+      color: rgba(1,1,1,0.7)
   .on
+    color: #ea4c89
+    transition: .3s
+    &:hover
+      border: 1px solid rgba(1,1,1,0.5)
+    &::after
+      content: '解除'
+  &__complete
+    margin: 10px 0
+    padding: 5px 15px
+    display: inline-block
+    font-size: 16px
+    padding: 0.25em 0.5em
     color: #fff
-    background-color: #00bcd4
-    border: 7px solid rgba(1,1,1,0.1)
+    background-color: rgba( 1, 1, 1, 0.5)
+    border-radius: 4px
+  &__mark
+    position: absolute
+    top: 0px
+    right: 0px
+    color: rgba(255, 255, 255, 0)
+    font-size: 30px
+    transition: .3s
+  .marked
+    color: #ea4c89
+    transition: .3s
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4)
+  .complete
+    color: rgba(1,1,1,0.5)
+  &__linkWrapper
+    padding: 50px
+    text-align: center
+    position: relative
+  &__next
+    text-align: center
+    display: block
+    position: relative
+    font-weight: bold
+    width: 30%
+    padding: 0.5em 0.5em
+    margin: 0 auto
+    text-decoration: none
+    color: #FFF
+    background: #00bcd4
+    transition: .4s
+    border-radius: 5px
+    cursor: pointer
+    box-shadow: 1px 1px 2px #ccc
+    &:visited
+      color: #FFF
+  &__prev
+    text-align: center
+    display: block
+    margin-top: 10px
+  &__overlay
+    display: none
+    z-index: 9999
+    position: fixed
+    left: 0px
+    top: 0px
+    width: 100%
+    height: 100%
+    background-color: black
+    opacity: 0.5

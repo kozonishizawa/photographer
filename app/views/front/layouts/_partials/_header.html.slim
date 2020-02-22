@@ -2,7 +2,7 @@ header.l-header
   .l-header__inner
     .flex-row
       .col-6
-        = link_to 'DropStudio', front_root_path, class: 'l-header__logo'
+        = link_to 'DropStudio', logged_in? ? front_root_path : root_path, class: 'l-header__logo'
       .col-6
         nav.l-header__nav
           ul.l-header__nav-list

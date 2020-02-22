@@ -26,7 +26,7 @@ document.addEventListener('turbolinks:load', () => {
         var selectable = response.data.selectable
         if (selectable >= 0) {
           counter.style.color = color
-          counter.innerHTML = `あと${selectable}枚選択できます`;
+          counter.innerHTML = `あと${selectable}枚選択可能`;
           btn.classList.toggle('on');
           var caption = btn.parentNode;
           var image = caption.previousElementSibling;
@@ -44,9 +44,9 @@ document.addEventListener('turbolinks:load', () => {
   })
   
   
-  var slide = document.querySelector('.slide');
-  var overlay = document.querySelector('.overlay');
-  var thumbs = document.querySelectorAll('.p-photos__thumbnail');
+  var slide = document.getElementById('slide');
+  var overlay = document.getElementById('overlay');
+  var thumbs = document.querySelectorAll('.image');
   
   // サムネイルをクリックするとスライドがポップアップ
   thumbs.forEach((item) => {
@@ -92,6 +92,10 @@ document.querySelectorAll('.p-histories__btn').forEach((btn) => {
     Xhr.request.patch(`/front/histories/${btn.dataset.id}`)
     .then((response) => {
       btn.classList.toggle('on');
+      var caption = btn.parentNode;
+      var image = caption.previousElementSibling;
+      var heart = image.children[0]
+      heart.classList.toggle('marked');
     })
     .catch((error) => {
       console.log(error);

@@ -1,13 +1,15 @@
-.p-photos
-  .p-photos__inner
-    .p-photos__heading
-      h1.p-photos__title ダウンロード履歴
-      - if @photos.blank?
-        p.p-photos__lead 過去にダウンロードされた写真はありません
-      - else
-        p.p-photos__lead 期間内であれば再ダウンロードが可能です
-      - if @photos.present?
-    .p-photos__overlay.overlay#overlay
+.p-histories
+  .p-histories__inner
+    .p-histories__heading
+      h1.p-histories__title ダウンロード履歴
+    - if @photos.blank?
+      .p-histories__lead
+        p 過去にダウンロードされた写真はありません
+    - else
+      .p-histories__lead
+        p 期間内であれば再ダウンロードが可能です
+    - if @photos.present?
+    .p-histories__overlay.overlay#overlay
     .c-carousel.slide#slide
       ul.c-carousel__list
         - @photos.each do |photo|
@@ -17,22 +19,30 @@
       .c-carousel__next
       .c-carousel__nav
 
-    .p-photos__thumbnails
-      ul.p-photos__list
+    .p-histories__thumbnails
+      ul.p-histories__list
       - @photos.each.with_index(1) do |photo, index|
         - if photo.image.attached?
-          li.p-photos__listItem
-            .p-photos__imageWrapper
-              = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail', 'data-index': index
-            .p-photos__formWrapper
-              - if photo.download_status == 'complete'
-                .p-histories__btn data-id="#{photo.id}"
-              - elsif photo.download_status == 're_selected'
-                .p-histories__btn.on data-id="#{photo.id}"
-
-    .p-photos__linkWrapper
+          li.p-histories__listItem
+            .p-histories__card
+              .p-histories__imageWrapper
+                - if photo.download_status == 'complete'
+                  .p-histories__mark data-id="#{photo.id}"
+                    i.fa.fa-heart
+                - elsif photo.download_status == 're_selected'
+                  .p-histories__mark.marked data-id="#{photo.id}"
+                    i.fa.fa-heart
+                = image_tag photo.rectangle_image(300,200), class: 'image', 'data-index': index
+              .p-histories__caption
+                - if photo.download_status == 'complete'
+                  .p-histories__btn data-id="#{photo.id}"
+                    i.fa.fa-heart
+                - elsif photo.download_status == 're_selected'
+                  .p-histories__btn.on data-id="#{photo.id}"
+                    i.fa.fa-heart
+    .p-histories__linkWrapper
       - if @photos.present?
-        = link_to '再ダウンロードリストに進む', front_histories_path, class: 'p-photos__next'
+        = link_to '再ダウンロードリストに進む', front_histories_path, class: 'p-histories__next'
       - else
         = react_component 'kawaii'
-      = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-photos__prev'
+      = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-histories__prev'

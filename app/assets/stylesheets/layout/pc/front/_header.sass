@@ -1,8 +1,16 @@
+@import '../../../utility/*'
+@import '../../../foundation/_mixins'
 // ==============================================
 // HEADER (PC)
 // ==============================================
 .l-header
   background-color: $header-color
+  // @include mq('pc')
+  //   height: $headerHeight-pc
+  // @include mq('tab')
+  //   height: $headerHeight-tab
+  // @include mq('sp')
+  //   height: $headerHeight-sp
   &__logo
     color: map-get($fontColors, 'white')
     font-size: 2em
