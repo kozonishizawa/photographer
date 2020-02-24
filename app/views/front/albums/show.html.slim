@@ -47,10 +47,14 @@
                       - else
                         .p-photos__complete ダウンロード済
 
+        .l-pagination
+          = paginate @photos
+          = page_entries_info @photos
+
         .p-photos__linkWrapper
           = link_to 'ダウンロード画面に進む', front_photos_path, class: 'p-photos__next'
           = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-photos__prev'
-                
+
       - else
         = react_component 'kawaii'
         p まだ写真がアップロードされていません

@@ -10,7 +10,7 @@ class Front::AlbumsController < Front::ApplicationController
 
   def show
     @album = Album.find(params[:id])
-    @photos = @album.photos.reverse_order
+    @photos = @album.photos.reverse_order.page(params[:page]).per(20)
     @user = @album.user
   end
 

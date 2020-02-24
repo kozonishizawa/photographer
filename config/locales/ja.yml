@@ -10,7 +10,7 @@ ja:
     models:
       user: ユーザー
       photo: 写真
-      contact: コンタクト
+      contact: お問い合わせ
       article: 記事
       album: アルバム
     attributes:

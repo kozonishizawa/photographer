@@ -22,3 +22,8 @@
             td.l-table__data = contact.date
             td.l-table__data = contact.location
             td.l-table__data = contact.request
+
+    .l-pagination
+      = paginate @contacts
+      = page_entries_info @contacts
+
