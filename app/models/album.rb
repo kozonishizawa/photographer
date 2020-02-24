@@ -51,5 +51,11 @@ class Album < ApplicationRecord
   #----------------------------------------
   #  ** Methods **
   #----------------------------------------
-  
+  def self.ransackable_attributes(auth_object = nil)
+    %w[title photographed_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[user]
+  end
 end

@@ -20,6 +20,11 @@
                   .p-photos__imageContainer
                     = image_tag photo.square_image(150)
                     = link_to '削除', admin_photo_path(photo.id), method: :delete, remote: true, class: 'delete'
+
       - else
         = react_component 'kawaii'
         p まだ写真がアップロードされていません
+
+    .l-pagination
+      = paginate @photos
+      = page_entries_info @photos

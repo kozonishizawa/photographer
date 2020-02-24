@@ -71,6 +71,7 @@ gem 'hirb'
 gem 'hirb-unicode'
 gem 'enum_help'
 gem 'kaminari'
+gem 'ransack'
 
 # Use Capistrano for deployment
 gem 'capistrano', '~> 3.11',    require: false

@@ -9,7 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 
 import 'channels/room_channel'
-
+import './common'
 import './photos'
 
 // Uncomment to copy all static images under ../images to the output folder and reference

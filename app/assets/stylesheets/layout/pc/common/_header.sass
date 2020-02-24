@@ -1,11 +1,24 @@
+@import '../../../utility/*'
+@import '../../../foundation/_mixins'
+@import './variables'
 // ==============================================
 // HEADER (PC)
 // ==============================================
 .l-header
-  background-color: $header-color
+  background-color: $headerColor
+  width: 100%
+  @include mq('tab')
+    height: $headerHeight-sp
+    background-color: $headerColor
+    position: fixed
+    top: 0
+    z-index: 1000
+    text-align: center
   &__logo
     color: map-get($fontColors, 'white')
     font-size: 2em
+    @include mq('tab')
+      font-size: 1.5em
     &:visited
       color: map-get($fontColors, 'white')
     &:hover
@@ -28,3 +41,4 @@
       color: map-get($fontColors, 'white')
     &:hover
       color: map-get($fontColors, 'white')      
+
