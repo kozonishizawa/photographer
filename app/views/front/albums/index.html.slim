@@ -4,6 +4,7 @@
       = link_to 'マイページトップへ戻る', front_root_path
       span |
       = link_to 'ダウンロード履歴', front_histories_path
+      
     table.l-table
       thread.l-table__thread
         tr.l-table__row
@@ -22,3 +23,8 @@
             td.l-table__data data-turbolinks='false'
               = link_to "#{album.photos.where(download_status: 'complete').count + album.photos.where(download_status: 're_selected').count}", front_history_path(album)
             td.l-table__data = album.created_at.to_date + album.open_period
+            
+    .l-pagination
+      = paginate @albums
+      = page_entries_info @albums
+

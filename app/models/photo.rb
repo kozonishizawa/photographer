@@ -43,14 +43,7 @@ class Photo < ApplicationRecord
   #----------------------------------------
   #  ** Scopes **
   #----------------------------------------
-  # 未選択の写真
-  scope :unselected, -> { where(download_status: 'unselected') }
-  # 選択された写真
-  scope :selected, -> { where(download_status: 'selected') }
-  # ダウンロード済の写真
-  scope :complete, -> { where(download_status: 'complete') }
-  # 再選択された写真
-  scope :re_selected, -> { where(download_status: 're_selected') }
+  
   #----------------------------------------
   #  ** Methods **
   #----------------------------------------

@@ -89,7 +89,8 @@ export default class Uploader extends React.Component {
                       {({getRootProps, getInputProps}) => (
                         <div {...getRootProps()} className={Style.Uploader__dropzone}>
                           <input {...getInputProps()} />
-                          <p>この部分に画像をドラッグ＆ドロップするとアップロードを開始します</p>
+                          <p className={Style.Uploader__text_pc}>この部分に画像をドラッグ＆ドロップするとアップロードを開始します</p>
+                          <p className={Style.Uploader__text_sp}>この部分をタップして画像をアップロード</p>
                           <img src={this.state.image} />
                         </div>
                       )}

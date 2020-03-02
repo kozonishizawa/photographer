@@ -5,7 +5,7 @@ class Front::AlbumsController < Front::ApplicationController
   before_action :overdue, only: [:show]
 
   def index
-    @albums = current_user.albums.where.not(status: 'close')
+    @albums = current_user.albums.where.not(status: 'close').page(params[:page])
   end
 
   def show

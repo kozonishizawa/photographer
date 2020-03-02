@@ -10,13 +10,16 @@
       ul.p-photos__list
         - @photos.each.with_index(1) do |photo, index|
           - if photo.image.attached?
-            li.p-photos__listItem
+            li.p-photos__listItem-s
               .p-photos__card
                 .p-photos__imageWrapper
                   = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail', 'data-index': index
-      .p-photos__linkWrapper
-        - if @photos.present?
-          = link_to yield(:btn_text), front_user_download_path(current_user.id), method: :post, class: 'p-photos__next', data: {confirm: '一度ダウンロードされると選び直すことができなくなります。ダウンロードしてよろしいですか？'}
-        - else
-          = react_component 'kawaii'
-        = link_to '前の画面へ戻る', 'javascript:history.back()', data: { turbolinks: false }, class: 'p-photos__prev'
+    .l-pagination
+      = paginate @photos
+      = page_entries_info @photos
+    .p-photos__linkWrapper
+      - if @photos.present?
+        = link_to yield(:btn_text), front_user_download_path(current_user.id), method: :post, class: 'p-photos__next', data: {confirm: '一度ダウンロードされると選び直すことができなくなります。ダウンロードしてよろしいですか？'}
+      - else
+        = react_component 'kawaii'
+      = link_to '前の画面へ戻る', 'javascript:history.back()', data: { turbolinks: false }, class: 'p-photos__prev'

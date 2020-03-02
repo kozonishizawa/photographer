@@ -4,10 +4,10 @@
       .l-search__item
         = f.search_field :title_or_user_name_cont, placeholder: 'タイトルまたはユーザー名', class: 'l-search__field'
         = f.search_field :photographed_at_gteq, placeholder: '撮影日 "yyyy-mm-dd"', class: 'l-search__field'
-        = f.submit class: 'l-search__btn'
+        = f.submit class: 'l-btn__submit'
 
     table.l-table
-      thread.l-table__thread
+      thead.l-table__head
         tr.l-table__row
           th.l-table__header = sort_link(@q, :title)
           th.l-table__header = sort_link(@q, :photographed_at)
@@ -18,18 +18,18 @@
           th.l-table__header 公開期限
           th.l-table__header
           th.l-table__header
-      tbody.l-table__tbody
+      tbody.l-table__body
         - @albums.each do |album|
           tr.l-table__row
-            td.l-table__data = link_to album.title, admin_album_path(album), class: 'l-table__title'
-            td.l-table__data = album.photographed_at
-            td.l-table__data = album.user.name
-            td.l-table__data = album.photos.count
-            td.l-table__data = album.status_i18n
-            td.l-table__data = album.created_at.to_date
-            td.l-table__data = album.created_at.to_date + album.open_period
+            td.l-table__data data-label='タイトル' = link_to album.title, admin_album_path(album), class: 'l-table__title'
+            td.l-table__data data-label='撮影日' = album.photographed_at
+            td.l-table__data data-label='ユーザー名' = album.user.name
+            td.l-table__data data-label='登録枚数' = album.photos.count
+            td.l-table__data data-label='公開設定' = album.status_i18n
+            td.l-table__data data-label='作成日' = album.created_at.to_date
+            td.l-table__data data-label='公開期限' = album.created_at.to_date + album.open_period
             td.l-table__data = react_component 'album_form', user: album.user.as_json, categories: Album.categories.keys.map {|k| [I18n.t("enums.album.category.#{k}"),k]}.as_json, album: album.as_json
-            td.l-table__data = link_to '削除', admin_album_path(album.id), method: :delete, data: { confirm: '削除してよろしいですか？' }, class: 'p-albums__delete'
+            td.l-table__data = link_to '削除', admin_album_path(album.id), method: :delete, data: { confirm: '削除してよろしいですか？' }, class: 'l-btn__delete'
     .l-pagination
       = paginate @albums
       = page_entries_info @albums

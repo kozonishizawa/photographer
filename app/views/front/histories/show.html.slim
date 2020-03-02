@@ -40,6 +40,10 @@
                 - elsif photo.download_status == 're_selected'
                   .p-histories__btn.on data-id="#{photo.id}"
                     i.fa.fa-heart
+    .l-pagination
+      = paginate @photos
+      = page_entries_info @photos
+
     .p-histories__linkWrapper
       - if @photos.present?
         = link_to '再ダウンロードリストに進む', front_histories_path, class: 'p-histories__next'

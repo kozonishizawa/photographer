@@ -1,9 +1,10 @@
 @import '../../../assets/stylesheets/foundation/variables'
+@import '../../../assets/stylesheets/foundation/mixins'
+@import '../../../assets/stylesheets/utility/_size'
 
 // .pc
 .Uploader
   display: flex
-  // background-color: rgba(map-get($layoutColors, 'black'), .3)
   z-index: $layerLevel-overlay
   justify-content: center
   align-items: center
@@ -13,7 +14,6 @@
     cursor: pointer
   &__body
     width: 500px
-    // background-color: map-get($layoutColors, 'white')
     position: relative
     display: flex
     padding-top: 50px
@@ -40,6 +40,7 @@
     align-items: center
     margin: 0 auto
     cursor: pointer
+    background-color: map-get($layoutColors, 'white')
     &:hover
       background-color: map-get($layoutColors, 'lightGray')
     img
@@ -48,6 +49,15 @@
       left: 0
       max-width: 100%
       max-height: 100%
+  &__text_pc
+    margin: 0 auto
+    @include mq('tab')
+      display: none
+  &__text_sp
+    margin: 0 auto
+    @include mq('pc')
+      display: none
+
 
 // .sp
 //   .Uploader

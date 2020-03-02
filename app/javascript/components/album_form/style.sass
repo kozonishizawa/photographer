@@ -1,29 +1,7 @@
 $input-text: 14px
 $input-background: #fbfbfb
-
-.Table
-  border-collapse: collapse
-  border-spacing: 0
-  font-size: 1em
-  background-color: #ffffff
-  margin: 0 auto
-  min-width: 100vw
-
-  &__row
-    border-bottom: solid 1px #eee
-    cursor: pointer
-    &:hover
-      background-color: #d4f0fd
-  &__header
-    text-align: center
-    padding: 10px 20px
-    word-break: break-all
-  &__data
-    font-size: 0.8em
-    text-align: center
-    padding: 10px 20px
-    word-break: break-all
-
+@import '../../../assets/stylesheets/foundation/mixins'
+@import '../../../assets/stylesheets/utility/size'
 .Form
   &__wrapper
     position: fixed
@@ -32,6 +10,8 @@ $input-background: #fbfbfb
     width: 100%
     height: 100%
     padding: 50px
+    // @include mq('tab')
+    //   padding: 0
   &__overlay
     z-index: 9999
     position: fixed
@@ -41,6 +21,8 @@ $input-background: #fbfbfb
     height: 100%
     background-color: rgba(0,0,0,0.5)
     padding: 50px
+    @include mq('tab')
+      display: none
   &__form
     z-index: 10000
     position: absolute
@@ -51,6 +33,9 @@ $input-background: #fbfbfb
     width: 40%
     background-color: rgba(255,255,255,1)
     box-shadow: 1px 3px 3px rgba(0,0,0,0.7)
+    @include mq('tab')
+      width: 100%
+      height: 100%
     p
       text-align: left
       font-size: 1.2em
@@ -91,7 +76,9 @@ $input-background: #fbfbfb
     background: $input-background
     padding: 10px
     border-radius: 4px
-    box-sizing: border-box
+    // box-sizing: border-box
+    display: block
+    width: 50%
   &__button
     margin-top: 35px
     background: #30c8d6
@@ -178,14 +165,16 @@ $input-background: #fbfbfb
   padding: 0.3em 1em
   font-size: 1.0em
   text-decoration: none
-  color: white
-  background: #30c8d6
-  border: solid 2px #30c8d6
+  border: solid 2px rgba(0, 0, 0, .5)
   border-radius: 3px
   transition: .4s
+  background-color: rgba(255, 255, 255, 1)
+  box-shadow: 1px 1px 2px #ccc
+  @include mq('tab')
+    width: 100%
   &:hover
-    background: white
-    color: #30c8d6
-    border: solid 2px #30c8d6
+    color: rgba(0, 0, 0, .5)
+    border-color: rgba(0, 0, 0, .3)
+
 
 

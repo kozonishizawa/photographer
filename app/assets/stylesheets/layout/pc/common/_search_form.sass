@@ -10,14 +10,16 @@
     border: none
     padding: 8px
     border-radius: 4px
-    margin-right: 8px
     display: inline
+    @include mq('tab')
+      margin-bottom: 8px
+      width: 100%
   &__submit
     width: 320px
     margin: 0 auto
     text-align: right
   &__btn
-    border-radius: 4px
+    border-radius: 3px
     border: none
     padding: 6px 10px
     background-color: #ea4c89

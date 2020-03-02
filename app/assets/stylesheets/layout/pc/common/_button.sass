@@ -1,0 +1,40 @@
+@import '../../../utility/*'
+@import '../../../foundation/_mixins'
+@import './variables'
+
+@mixin btn
+  border: solid 2px rgba(0, 0, 0, .5)
+  transition: .4s
+  display: inline-block
+  font-weight: bold
+  padding: 0.3em 1em
+  border-radius: 3px
+  box-shadow: 2px 2px 2px #ccc
+  @include mq('tab')
+    width: 100%
+
+.l-btn
+  &__delete
+    @include btn
+    background-color: rgba(255,255,255,1)
+    border-color: rgba(0, 0, 0, .5)
+    &:hover
+      color: rgba(0, 0, 0, .5)
+      border-color: rgba(0, 0, 0, .3)
+
+  &__edit
+    @include btn
+    background-color: rgba(255,255,255,1)
+    border-color: rgba(0, 0, 0, .5)
+    &:hover
+      color: rgba(0, 0, 0, .5)
+      border-color: rgba(0, 0, 0, .3)
+
+  &__submit
+    @include btn
+    background-color: rgba(255,255,255,1)
+    border-color: rgba(0, 0, 0, .5)
+    &:hover
+      color: rgba(0, 0, 0, .5)
+      border-color: rgba(0, 0, 0, .3)
+

@@ -26,14 +26,15 @@
     border-radius: 45px
     background-color: #fff
     padding: 5px 15px
-    margin: 20px
+    margin-top: 50px 
     box-shadow: 0 1px 2px rgba(0,0,0,0.07)
   &__thumbnails
   &__list
     display: flex
     flex-direction: row
     flex-wrap: wrap
-    justify-content: center
+    justify-content: flex-start
+    text-align: center
   &__listItem
     margin: 0 30px 30px 0
     @include mq('pc')
@@ -47,6 +48,22 @@
     @include mq('sp')
       width: 100%
       margin: 0 0 30px 0
+    &-s
+      margin: 0 30px 30px 0
+      @include mq('pc')
+        width: calc(20% - 30px)
+        &:nth-child(5n)
+          margin-right: 0
+      @include mq('tab')
+        width: calc(25% - 30px)
+        &:nth-child(4n)
+          margin-right: 0
+      @include mq('sp')
+        width: calc(50% - 30px)
+        &:nth-child(2n)
+          margin-right: 0
+
+  
       
   &__card
     position: relative
@@ -65,10 +82,8 @@
     width: 100%
     height: 300px
     object-fit: cover
-    // @include mq('sp')
-    //   height: auto
   &__thumbnail
-    width: 200px
+    width: 100%
     height: 150px
     object-fit: cover
   &__caption
@@ -156,6 +171,8 @@
     box-shadow: 1px 1px 2px #ccc
     &:visited
       color: #FFF
+    @include mq('tab')
+      width: 100%
   &__prev
     text-align: center
     display: block

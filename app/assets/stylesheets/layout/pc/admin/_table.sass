@@ -3,19 +3,44 @@
   border-spacing: 0
   font-size: 1em
   margin: 0 auto
-  min-width: 100vw
-
+  min-width: 100%
+  box-sizing: border-box
+  &__head
+    @include mq('tab')
+      display: none
   &__row
     border-bottom: solid 1px #eee
     cursor: pointer
-    &:hover
-      background-color: #d4f0fd
+    @include mq('tab')
+      display: flex
+      flex-direction: column
   &__header
     text-align: center
     padding: 20px
-  &__tbody
   &__data
     font-size: 0.8em
     text-align: center
-    padding: 10px 20px
     word-break: break-all
+    padding: 8px 0
+    // position: relative
+    &:first-child
+      @include mq('tab')
+        background: #e9727e
+        color: #fff
+        a
+          color: #ffffff
+          font-weight: bold
+    &:before
+      @include mq('tab')
+        content: attr(data-label)
+        // position: absolute
+        left: 0
+        font-weight: bold
+        margin: 0 8px
+        float: left
+  &__btn
+    font-size: 0.8em
+    text-align: center
+    word-break: break-all
+    padding: 8px 0
+

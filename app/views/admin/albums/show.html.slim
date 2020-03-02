@@ -4,24 +4,19 @@
       h2 = @album.title
       
     = react_component 'uploader', user_id: @album.user.id, album_id: @album.id
-    = form_with model: [:admin, Photo], local: true do |f|
-      = f.file_field :image
-      = f.hidden_field :user_id, value: @album.user.id
-      = f.hidden_field :album_id, value: @album.id
-      = f.submit '登録', class: 'p-photos__submitButton'
 
-    .p-photos__imagesWrapper
-      - if @photos.present?
-        .p-photos__thumbnail
-          ul.p-photos__list
-            - @photos.each do |photo|
-              - if photo.image.attached?
-                li.p-photos__listItem
-                  .p-photos__imageContainer
-                    = image_tag photo.square_image(150)
-                    = link_to '削除', admin_photo_path(photo.id), method: :delete, remote: true, class: 'delete'
+    - if @photos.present?
+      .p-photos__thumbnails
+        ul.p-photos__list
+          - @photos.each do |photo|
+            - if photo.image.attached?
+              li.p-photos__listItem
+                .p-photos__imageContainer
+                  = image_tag photo.square_image(150)
+                  = link_to '削除', admin_photo_path(photo.id), method: :delete, remote: true, class: 'delete'
 
-      - else
+    - else
+      .p-photos__none
         = react_component 'kawaii'
         p まだ写真がアップロードされていません
 

@@ -8,33 +8,31 @@
     = search_form_for @q, url: admin_users_path, class: 'l-search' do |f|
       .l-search__item
         = f.search_field :name_cont, placeholder: 'ユーザー名', class: 'l-search__field'
-        = f.submit class: 'l-search__btn'
+        = f.submit class: 'l-btn__submit'
 
     .p-users__listWrapper
       table.l-table
-        thread.l-table__thread
+        thead.l-table__head
           tr.l-table__row
             th.l-table__header ID
             th.l-table__header = sort_link(@q, :name)
             th.l-table__header ダウンロード上限
             th.l-table__header 権限
             th.l-table__header 状態
-            th.l-table__header
-            th.l-table__header
-            th.l-table__header
             th.l-table__header 最終更新
-        tbody.l-table__tbody
+            th.l-table__header colspan='3'
+        tbody.l-table__body
           - @users.each do |user|
             tr.l-table__row
-              td.l-table__data = user.id
-              td.l-table__data = link_to user.name, admin_user_path(user.id)
-              td.l-table__data = user.downloadable_limit
-              td.l-table__data = user.admin? ? '管理者' : '一般'
-              td.l-table__data = user.activated? ? '有効' : '無効'
-              td.l-table__data = react_component 'album_form', user: user.as_json, categories: Album.categories.keys.map {|k| [I18n.t("enums.album.category.#{k}"),k]}.as_json
-              td.l-table__data = link_to '編集', edit_admin_user_path(user.id), class: 'p-albums__edit'
-              td.l-table__data = link_to '削除', admin_user_path(user.id), method: :delete, data: {confirm: "#{user.name}のデータを削除します。よろしいですか?"}, class: 'p-albums__delete'
-              td.l-table__data = l(user.created_at, format: :long)
+              td.l-table__data data-label='ID' = user.id
+              td.l-table__data data-label='名前' = link_to user.name, admin_user_path(user.id)
+              td.l-table__data data-label='ダウンロード上限' = user.downloadable_limit
+              td.l-table__data data-label='権限' = user.admin? ? '管理者' : '一般'
+              td.l-table__data data-label='状態' = user.activated? ? '有効' : '無効'
+              td.l-table__data data-label='最終更新' = l(user.created_at, format: :long)
+              td.l-table__btn = react_component 'album_form', user: user.as_json, categories: Album.categories.keys.map {|k| [I18n.t("enums.album.category.#{k}"),k]}.as_json
+              td.l-table__btn = link_to '編集', edit_admin_user_path(user.id), class: 'l-btn__edit'
+              td.l-table__btn = link_to '削除', admin_user_path(user.id), method: :delete, data: {confirm: "#{user.name}のデータを削除します。よろしいですか?"}, class: 'l-btn__delete'
     .l-pagination
       = paginate @users
       = page_entries_info @users

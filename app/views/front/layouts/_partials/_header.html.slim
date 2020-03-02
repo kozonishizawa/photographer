@@ -11,8 +11,17 @@ header.l-header
                 = link_to 'ダウンロードリスト', front_photos_path, class: 'l-header__link'
               li.l-header__nav-item
                 = link_to 'ログアウト', logout_path, class: 'l-header__link'
+              li.l-header__nav-item
+              
             - else
               li.l-header__nav-item
                 = link_to "初めてのご依頼", new_front_user_path, class: "l-header__link"
               li.l-header__nav-item
                 = link_to "ログイン", login_path, class: "l-header__link"
+        nav.l-header__drawer
+          input#drawer-checkbox type='checkbox'
+          label#drawer-icon for='drawer-checkbox'
+            span
+          label#drawer-close for='drawer-checkbox'
+          div#drawer-content
+

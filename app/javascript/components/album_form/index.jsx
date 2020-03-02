@@ -7,11 +7,11 @@ export default class AlbumForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: this.props.album === undefined ? '' : this.props.album.title,
-      date: this.props.album === undefined ? '' : this.props.album.photographed_at,
-      category: this.props.album === undefined ? '' : this.props.album.category,
-      description: this.props.album === undefined ? '' : this.props.album.description,
-      openPeriod: this.props.album === undefined ? '' : this.props.album.open_period,
+      title: this.props.album ? this.props.album.title : '',
+      date: this.props.album ? this.props.album.photographed_at : '',
+      category: this.props.album ? this.props.album.category : '',
+      description: this.props.album ? this.props.album.description : '',
+      openPeriod: this.props.album ? this.props.album.open_period : '',
       selectedOption: 'closed',
       showPopup: false,
       fixedBackground: false,
@@ -116,8 +116,7 @@ export default class AlbumForm extends React.Component {
                     <label className={Style.Form__label}>
                       公開日数（必須）
                     </label>
-                    <input className={Style.Form__number} type="number" min='0' step='1' name='openPeriod' value={this.state.openPeriod} onChange={this.handleChange} required />
-                    <span>　日</span>
+                    <input className={Style.Form__number} type="number" min='0' step='1' name='openPeriod' value={this.state.openPeriod} onChange={this.handleChange} placeholder='単位：日' required />
                   </div>
                   <div className={Style.Form__formItem}>
                     <label className={Style.Form__label}>
