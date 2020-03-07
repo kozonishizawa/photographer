@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
+
+  resources :users, only: [:new, :create]
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
   
@@ -39,7 +41,7 @@ Rails.application.routes.draw do
     root 'home#index'
 
     #ユーザー
-    resources :users, except: [:index, :destroy] do
+    resources :users, except: [:index, :new, :create, :destroy] do
       post :download
       post :re_download
     end

@@ -5,21 +5,6 @@ class Front::UsersController < Front::ApplicationController
   before_action :login_required, only: [:edit, :update]
   before_action :required_selection, only: [:download]
 
-  def new
-    @user = User.new
-    @user.contacts.build
-  end
-
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      @user.send_activation_email
-      redirect_to root_url, flash: { info: 'アカウント有効化メールを送信いたしました。ご確認ください。' }
-    else
-      render :new
-    end
-  end
-
   def show
     @user = User.find(params[:id])
   end

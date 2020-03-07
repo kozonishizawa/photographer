@@ -6,7 +6,7 @@
         .p-form__heading
           h1 お仕事のご依頼（初めての方）
 
-        = form_with model: [:front, @user], local: true do |f|
+        = form_with model: @user, local: true do |f|
 
           .p-form__formItem
             = render 'shared/error_messages', object: f.object
@@ -42,4 +42,4 @@
               = c.text_area :request, class: 'p-form__area'
 
           .p-form__submit
-            = f.submit '送信する', class: 'p-form__button'
+            = f.submit '送信する', class: 'l-btn__home form-btn'
