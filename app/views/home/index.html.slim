@@ -1,4 +1,8 @@
 .p-home
   .p-home__inner
-    .p-home__topImage
-      = image_tag("/images/top.jpg", :alt=>"MSC", :width=>"100%", class: "p-top__top")
+    section.p-home__main
+      .p-home__titleWrapper 
+        h2.p-home__title 思い出をスマートにお届け
+        p 撮影した写真をいつでもダウンロードできるオンライン納品システム
+      .p-home__btnWrapper
+        = link_to 'ログインはこちら', login_path, class: 'l-btn__home'

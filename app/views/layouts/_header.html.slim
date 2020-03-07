@@ -1,24 +1,10 @@
 header.l-header
   .l-header__inner
-    .l-header__siteIcon
-      - if current_user
-        = link_to current_user&.admin? ? admin_root_path : front_root_path, id: "logo" , class: 'l-header__link' do
-          = image_tag("/images/logo.png", :alt=>"logo", :width=>"100%", class: "l-header__logo")
-      - else
-        = link_to root_path, id: "logo" , class: 'l-header__link' do
-          = image_tag("/images/logo.png", :alt=>"logo", :width=>"100%", class: "l-header__logo")
-nav.l-nav
-  ul.l-nav__list
-    li.l-nav__item = link_to "HOME", root_path, class: "l-nav__link"
-    li.l-nav__item = link_to "NEWS", front_articles_path, class: "l-nav__link"
-    li.l-nav__item = link_to "GALLERY", root_path, class: "l-nav__link"
-    li.l-nav__item = link_to "CALENDAR", root_path, class: "l-nav__link"
-    li.l-nav__item = link_to "PRICE", root_path, class: "l-nav__link"
-    li.l-nav__item = link_to "PRODUCT", root_path, class: "l-nav__link"
-    li.l-nav__item = link_to "INFORMATION", root_path, class: "l-nav__link"
-    li.l-nav__item = link_to "PROFILE", root_path, class: "l-nav__link"
-    - unless logged_in?
-      li.l-nav__item = link_to "初めてのご依頼", new_front_user_path, class: "l-nav__link"
-      li.l-nav__item = link_to "ログイン", login_path, class: "l-nav__link"
-    - else
-      li.l-nav__item = link_to "ログアウト", logout_path, class: "l-nav__link"
+    .flex-row
+      h1.col-6
+        = link_to 'DropStudio', root_path, class: 'l-header__logo'
+      .col-6
+        nav.l-header__nav
+          ul.l-header__nav-list
+            li.l-header__nav-item
+              = link_to 'お問い合わせ', new_front_user_path, class: 'l-header__link'

@@ -6,16 +6,19 @@ html
     = csrf_meta_tags
     = csp_meta_tag
 
-    / = stylesheet_link_tag 'project/pc/admin/application', media: 'all', 'data-turbolinks-track': :reload
-    = stylesheet_link_tag 'project/pc/front/application', media: 'all', 'data-turbolinks-track': :reload
+    = stylesheet_link_tag 'project/pc/home/application', media: 'all', 'data-turbolinks-track': :reload
     = stylesheet_link_tag 'fonts/application', 'data-turbolinks-track': :reload
+    = stylesheet_link_tag 'project/pc/home/application', media: 'all', 'data-turbolinks-track': :reload
+
+    link href='https://fonts.googleapis.com/css?family=Noto+Sans+JP' rel='stylesheet'
+    link href='https://fonts.googleapis.com/css?family=Lato&display=swap' rel='stylesheet'
 
   body.l-body
 
     /  ----------------------------------------------
     /  ヘッダ
     /  ----------------------------------------------
-    = render 'front/layouts/_partials/header'
+    = render 'layouts/header'
 
     .message
       - flash.each do |message_type, message|
@@ -39,4 +42,4 @@ html
 
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    = debug(params) if Rails.env.development?
+    / = debug(params) if Rails.env.development?

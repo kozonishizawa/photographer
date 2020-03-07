@@ -18,7 +18,7 @@ body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   -webkit-text-size-adjust: 100%
-  font-family: application, 'Yu Gothic', 'YuGothic', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Osaka', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', 'sans-serif'
+  font-family: application, 'Noto Sans JP', 'Lato', 'Yu Gothic', 'YuGothic', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Osaka', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', 'sans-serif'
   font-feature-settings: 'palt'
   line-height: 1.5
   letter-spacing: #{(100/1000)}em
@@ -33,7 +33,8 @@ body
   padding: 0
 .full-screen
   flex: 1
-  background-color: #f4f4f4
+  display: flex
+  // background-color: #f4f4f4
 input
   &::selection
     background: map-get($layoutColors, 'main')

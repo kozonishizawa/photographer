@@ -11,17 +11,18 @@ html
     = stylesheet_link_tag 'fonts/application', 'data-turbolinks-track': :reload
 
   body.l-body
+    / ----------------------------------------------
+    / ヘッダ
+    / ----------------------------------------------
+
+    = render 'admin/layouts/_partials/header'
+
+    .message
+      - flash.each do |message_type, message|
+        = content_tag(:div, message, class: "alert alert-#{message_type}")
+        
     .full-screen
 
-      / ----------------------------------------------
-      / ヘッダ
-      / ----------------------------------------------
-
-      = render 'admin/layouts/_partials/header'
-
-      .message
-        - flash.each do |message_type, message|
-          = content_tag(:div, message, class: "alert alert-#{message_type}")
 
       = yield
 
