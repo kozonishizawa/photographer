@@ -5,16 +5,20 @@
 // HEADER (PC)
 // ==============================================
 .l-header
-  background-color: $headerColor
+  background-image: $theme-gradient
   width: 100%
+  font-weight: bold
   @include mq('tab')
-    background-color: $headerColor
+    background-image: $theme-gradient
     position: fixed
     top: 0
     z-index: 1000
   &__logo
     color: map-get($fontColors, 'white')
     font-size: 2em
+    display: inline-block
+    margin-top: 4px
+
     @include mq('tab')
       font-size: 1.5em
     &:visited

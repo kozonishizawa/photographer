@@ -4,9 +4,10 @@
 
 // site colors
 // ------------------------------------
-$main-color:  var(--main-color);
+$main-color:  #0068f0;
+$second-color: #67c5ff;
 $accent-color: var(--accent-color);
-
+$theme-gradient: linear-gradient(-30deg,#00b6f8 0,#0068f0 100%);
 // font weights
 // ------------------------------------
 $fontWeights: (

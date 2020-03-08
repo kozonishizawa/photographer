@@ -16,8 +16,7 @@
           th.l-table__header 公開設定
           th.l-table__header 作成日
           th.l-table__header 公開期限
-          th.l-table__header
-          th.l-table__header
+          th.l-table__header colspan='2' アクション
       tbody.l-table__body
         - @albums.each do |album|
           tr.l-table__row
@@ -28,8 +27,8 @@
             td.l-table__data data-label='公開設定' = album.status_i18n
             td.l-table__data data-label='作成日' = album.created_at.to_date
             td.l-table__data data-label='公開期限' = album.created_at.to_date + album.open_period
-            td.l-table__data = react_component 'album_form', user: album.user.as_json, categories: Album.categories.keys.map {|k| [I18n.t("enums.album.category.#{k}"),k]}.as_json, album: album.as_json
-            td.l-table__data = link_to '削除', admin_album_path(album.id), method: :delete, data: { confirm: '削除してよろしいですか？' }, class: 'l-btn__delete'
+            td.l-table__btn = react_component 'album_form', user: album.user.as_json, categories: Album.categories.keys.map {|k| [I18n.t("enums.album.category.#{k}"),k]}.as_json, album: album.as_json
+            td.l-table__btn = link_to '削除', admin_album_path(album.id), method: :delete, data: { confirm: '削除してよろしいですか？' }, class: 'l-btn__delete'
     .l-pagination
       = paginate @albums
       = page_entries_info @albums
