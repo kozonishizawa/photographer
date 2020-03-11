@@ -49,13 +49,11 @@ class Photo < ApplicationRecord
   #----------------------------------------
   # トリミング（正方形）
   def square_image(length)
-    self.image
-    # self.image.variant(resize: "#{length}x#{length}^").processed
+    self.image.variant(resize_to_fill: [length, length])
   end
   # トリミング（縦横長さ指定）
   def rectangle_image(height,width)
-    self.image
-    # self.image.variant(resize: "#{height}x#{width}^").processed
+    self.image.variant(resize_to_fill: [height, width])
   end
   
 end
