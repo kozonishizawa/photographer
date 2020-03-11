@@ -51,7 +51,7 @@
     background-color: #fff
     border-radius: 4px
     text-shadow: none
-    color: #0096f4
+    color: $second-color
     font-size: 14px
     padding: 14px 20px 13px
     display: inline-block
@@ -65,6 +65,26 @@
     &:hover
       background-color: rgba(255,255,255,0.1)
       color: rgba(255,255,255,1)
+  &__wide
+    background-color: $second-color
+    letter-spacing: 8px
+    border-radius: 4px
+    text-shadow: none
+    color: #fff
+    font-size: 24px
+    padding: 8px 24px
+    text-align: center
+    border: 1px solid $second-color
+    transition: .3s
+    margin: 8px 0
+    width: 100%
+    display: block
+    box-shadow: 1px 1px 2px #ccc
+
+    &:hover
+      background-color: rgba(255,255,255,0.1)
+      color: $second-color
+      border-color: $second-color
 .form-btn
   margin: 8px 0
   width: 100%

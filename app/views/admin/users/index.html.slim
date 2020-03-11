@@ -3,14 +3,13 @@
     = link_to 'メニューへ戻る', admin_root_path, class: 'p-users__prev'
     span |
     = link_to '新規ユーザー登録', new_admin_user_path, class: 'p-users__new'
-    .p-users__heading
-      h1 ユーザー一覧
+    h1.p-users__heading ユーザー一覧
     = search_form_for @q, url: admin_users_path, class: 'l-search' do |f|
       .l-search__item
         = f.search_field :name_cont, placeholder: 'ユーザー名', class: 'l-search__field'
         = f.submit class: 'l-btn__submit'
 
-    .p-users__listWrapper
+    section.p-users__list
       table.l-table
         thead.l-table__head
           tr.l-table__row
@@ -25,7 +24,7 @@
           - @users.each do |user|
             tr.l-table__row
               td.l-table__data data-label='ID' = user.id
-              td.l-table__data data-label='名前' = link_to user.name, admin_user_path(user.id)
+              td.l-table__data data-label='名前' = link_to user.name, admin_user_path(user.id), class: 'l-table__link'
               td.l-table__data data-label='ダウンロード上限' = user.downloadable_limit
               td.l-table__data data-label='権限' = user.admin? ? '管理者' : '一般'
               td.l-table__data data-label='状態' = user.activated? ? '有効' : '無効'

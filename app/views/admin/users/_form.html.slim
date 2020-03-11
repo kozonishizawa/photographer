@@ -1,52 +1,53 @@
 .p-users
   .p-users__inner
     = link_to '一覧へ戻る', admin_users_path, class: 'p-users__prev'
-    .p-users__heading
-      .p-users__form
-        .p-users__formInner
-          = form_with model: [:admin, @user], local: true do |f|
-            = render 'shared/error_messages', object: f.object
+    .l-form__form
+      .l-form__formInner
+        h1.l-form__heading 新規ユーザー登録
+        = form_with model: [:admin, @user], local: true do |f|
+          = render 'shared/error_messages', object: f.object
 
-            .c-form-field
-              = f.label :name, 'ユーザー名', class: 'c-form-label'
-              span.c-form-reqired.u-ml-10 必須
-              = f.text_field :name, placeholder: 'ユーザー名', class: 'c-form-text', required: :true
+          .l-form__formItem
+            = f.label :name, 'ユーザー名', class: 'l-form__formItem'
+            span.l-form__required 必須
+            = f.text_field :name, placeholder: 'ユーザー名', class: 'l-form__field', required: :true
 
-            .c-form-field
-              = f.label :email, 'メールアドレス', class: 'c-form-label'
-              span.c-form-reqired.u-ml-10 必須
-              = f.text_field :email, placeholder: 'メールアドレス', class: 'c-form-text', required: :true
+          .l-form__formItem
+            = f.label :email, 'メールアドレス', class: 'l-form__formItem'
+            span.l-form__required 必須
+            = f.text_field :email, placeholder: 'メールアドレス', class: 'l-form__field', required: :true
 
-            .c-form-field
-              = f.label :tel, '電話番号', class: 'c-form-label'
-              span.c-form-reqired.u-ml-10 必須
-              = f.text_field :tel, placeholder: '電話番号', class: 'c-form-text', required: :true
+          .l-form__formItem
+            = f.label :tel, '電話番号', class: 'l-form__formItem'
+            span.l-form__required 必須
+            = f.text_field :tel, placeholder: '電話番号', class: 'l-form__field', required: :true
 
-            .c-form-field
-              = f.label :password, 'パスワード（６字以上10字以内）', class: 'c-form-label'
-              span.c-form-reqired.u-ml-10 必須
-              = f.password_field :password, placeholder: 'パスワード（６字以上10字以内）', class: 'c-form-text', reqired: :true
+          .l-form__formItem
+            = f.label :password, 'パスワード（６字以上10字以内）', class: 'l-form__formItem'
+            span.l-form__required 必須
+            = f.password_field :password, placeholder: 'パスワード（６字以上10字以内）', class: 'l-form__field', reqired: :true
 
-            .c-form-field
-              = f.label :password_confirmation, 'パスワード(確認)', class: 'c-form-label'
-              span.c-form-reqired.u-ml-10 必須
-              = f.password_field :password_confirmation, placeholder: 'パスワード(確認)', class: 'c-form-text', reqired: :true
+          .l-form__formItem
+            = f.label :password_confirmation, 'パスワード(確認)', class: 'l-form__formItem'
+            span.l-form__required 必須
+            = f.password_field :password_confirmation, placeholder: 'パスワード(確認)', class: 'l-form__field', reqired: :true
 
-            .c-form-field
-              = f.label :downloadable_limit, 'ダウンロード上限'
-              span.c-form-reqired.u-ml-10 必須
-              = f.number_field :downloadable_limit, reqired: :true
+          .l-form__formItem
+            = f.label :downloadable_limit, 'ダウンロード上限'
+            span.l-form__required 必須
+            = f.number_field :downloadable_limit, reqired: :true, class: 'l-form__number'
 
-            .c-form-field
-              = f.label :admin, class: 'form-check-label' do
-                = f.check_box :admin, class: 'form-check-input'
-                | 管理者権限
+          .l-form__formItem
+            = f.label :admin, class: 'l-form__remember' do
+              = f.check_box :admin, class: 'l-form__checkBox'
+              span.l-form__input 管理者権限
 
-            .c-form-field
-              = f.label :activated, class: 'form-check-label' do
-                = f.check_box :activated, class: 'form-check-input'
-                | 有効にする
-            
-            .u-mt-30= f.submit '登録する', class: 'c-btn-main'
+          .l-form__formItem
+            = f.label :activated, class: 'l-form__remember' do
+              = f.check_box :activated, class: 'l-form__checkBox'
+              span.l-form__input アカウント有効化
+
+          .p-home__submit
+            = f.submit '登録', class: 'l-btn__wide'
 
 

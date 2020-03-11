@@ -1,10 +1,7 @@
 import React from 'react';
 import Loading from '../loading'
 import Style from './style.sass';
-
-// fileアップロード
 import Dropzone from 'react-dropzone'
-
 import Xhr from '../../lib/xhr'
 
 export default class Uploader extends React.Component {
@@ -91,7 +88,7 @@ export default class Uploader extends React.Component {
                           <input {...getInputProps()} />
                           <p className={Style.Uploader__text_pc}>この部分に画像をドラッグ＆ドロップするとアップロードを開始します</p>
                           <p className={Style.Uploader__text_sp}>この部分をタップして画像をアップロード</p>
-                          <img src={this.state.image} />
+                          {/* <img src={this.state.image} /> */}
                         </div>
                       )}
                     </Dropzone>

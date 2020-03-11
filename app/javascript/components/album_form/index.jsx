@@ -102,19 +102,19 @@ export default class AlbumForm extends React.Component {
                   <input type="hidden" value={this.props.user.id} />
                   <div className={Style.Form__formItem}>
                     <label className={Style.Form__label}>
-                      タイトル（必須）
+                      タイトル <span className={Style.Form__required}>必須</span>
                     </label>
                     <input className={Style.Form__field} type="text" name='title' value={this.state.title} onChange={this.handleChange} required />
                   </div>
                   <div className={Style.Form__formItem}>
                     <label className={Style.Form__label}>
-                      撮影日（必須）
+                      撮影日 <span className={Style.Form__required}>必須</span>
                     </label>
                     <input className={Style.Form__field} type="date" name='date' value={this.state.date} onChange={this.handleChange} required />
                   </div>
                   <div className={Style.Form__formItem}>
                     <label className={Style.Form__label}>
-                      公開日数（必須）
+                      公開日数 <span className={Style.Form__required}>必須</span>
                     </label>
                     <input className={Style.Form__number} type="number" min='0' step='1' name='openPeriod' value={this.state.openPeriod} onChange={this.handleChange} placeholder='単位：日' required />
                   </div>
