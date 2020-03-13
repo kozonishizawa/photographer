@@ -11,13 +11,13 @@ export default class Uploader extends React.Component {
     super(props);
 
     this.state = {
-      image: null,
+      image: [],
       show: true,
     }
   }
 
   // アップロード
-  upload = (files) => {
+  upload = files => {
     // ドロップゾーンに画像が入っていない場合メッセージとともにfalseを返す
     if (!this.state.image) {
       window.alert('画像を登録してください')
@@ -67,8 +67,14 @@ export default class Uploader extends React.Component {
 
   // ファイルドロップ時
   _onDrop = files => {
+    let images = [];
+
     // ファイルのブラウザ上でのURLを取得する
-    this.setState({ image: (window.URL || window.webkitURL).createObjectURL(files[0]) });
+    // this.setState({ image: (window.URL || window.webkitURL).createObjectURL(files[0]) });
+    files.forEach(file => {
+      images.push((window.URL || window.webkitURL).createObjectURL(file));
+    })
+    this.setState({ image: images });
   }
 
   // 表示処理
@@ -81,18 +87,21 @@ export default class Uploader extends React.Component {
             <div className={Style.Uploader} onMouseDown={this._close}>
               <div className={Style.Uploader__body} onMouseDown={e => { e.stopPropagation() }}>
                 <div className={Style.Uploader__main}>
-                  <div className='u-mt-15'>
-                    <Dropzone onDrop={this._onDrop} onDropAccepted={this.upload}>
-                      {({getRootProps, getInputProps}) => (
-                        <div {...getRootProps()} className={Style.Uploader__dropzone}>
-                          <input {...getInputProps()} />
-                          <p className={Style.Uploader__text_pc}>この部分に画像をドラッグ＆ドロップするとアップロードを開始します</p>
-                          <p className={Style.Uploader__text_sp}>この部分をタップして画像をアップロード</p>
-                          <img src={this.state.image} />
-                        </div>
-                      )}
-                    </Dropzone>
-                  </div>
+                  <Dropzone onDrop={this._onDrop} onDropAccepted={this.upload}>
+                    {({getRootProps, getInputProps}) => (
+                      <div {...getRootProps()} className={Style.Uploader__dropzone}>
+                        <input {...getInputProps()} />
+                        <p className={Style.Uploader__text_pc}>この部分に画像をドラッグ＆ドロップするとアップロードを開始します</p>
+                        <p className={Style.Uploader__text_sp}>この部分をタップして画像をアップロード</p>
+                        {this.state.image.map((url, i) => (
+                          <div className={Style.Uploader__images}>
+                            <img src={url} key={i}/>
+                          </div>
+                        ))
+                        }
+                      </div>
+                    )}
+                  </Dropzone>
                 </div>
               </div>
             </div>

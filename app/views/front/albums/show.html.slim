@@ -34,8 +34,8 @@
                         .p-photos__mark.marked data-id="#{photo.id}"
                           i.fa.fa-heart
                       - else
-                        .p-photos__mark.complete data-id="#{photo.id}"
-                          i.fa.fa-ban
+                        .p-photos__mark. data-id="#{photo.id}"
+                          span.complete
                       = image_tag photo.rectangle_image(300,200), class: 'image', 'data-index': index
                     .p-photos__caption
                       - if photo.download_status == 'unselected'

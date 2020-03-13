@@ -1,6 +1,6 @@
 .l-dashboard
   .l-dashboard__inner
-    h1.l-dashboard__heading マイページ
+    p.l-dashboard__heading #{current_user.name}様
     .l-dashboard__menu
       - user_menu.each do |menu|
         = link_to menu[:url], class: 'l-dashboard__card' do

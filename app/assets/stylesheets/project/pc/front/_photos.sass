@@ -149,7 +149,19 @@
     transition: .3s
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4)
   .complete
-    color: rgba(1,1,1,0.5)
+    &::after
+      content: ''
+      display: block
+      position: absolute
+      top: -2px
+      left: 5px
+      width: 7px
+      height: 14px
+      transform: rotate(40deg)
+      border-bottom: 3px solid #0096f4
+      border-right: 3px solid #0096f4
+
+
 
   &__linkWrapper
     padding: 50px
