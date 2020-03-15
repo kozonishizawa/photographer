@@ -10,8 +10,7 @@ module ApplicationHelper
 
 	def user_menu
 		[
-			{ name: '写真をダウンロードする', url: front_albums_path},
-			{ name: '撮影依頼', url: new_front_contact_path},
+			{ name: '写真の受け取りを開始する', url: front_albums_path},
 		]
 	end
 

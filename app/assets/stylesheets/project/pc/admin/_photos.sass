@@ -9,6 +9,7 @@
     margin: 50px 0
     font-weight: 700
   &__list
+    cursor: default
   &__listItem
     text-align: center
     display: inline-flex
@@ -30,23 +31,28 @@
       object-fit: cover
   .delete
     position: absolute
+    color: glay
+    font-size: 24px
+    line-height: 24px
     top: 0
     right: 0
-    width: 16px
-    height: 16px
-    background-color: rgba(0, 0, 0, .1)
-    border-radius: 50%
-    &::before, &::after
-      content: ''
-      display: block
-      position: absolute
-      top: 0px
-      right: 6px
-      height: 16px
-      transform: rotate(45deg)
-      border-right: 3px solid $accent-color
-    &::before
-      transform: rotate(-45deg)
+    width: 20px
+    height: 20px
+    background-color: #fff
+    span
+      &::before, &::after
+        content: ''
+        display: block
+        position: absolute
+        top: 2px
+        right: 8px
+        transform: translateY(-50%) translateX(-50%)
+        -webkit-transform: translateY(-50%) translateX(-50%)
+        height: 16px
+        transform: rotate(45deg)
+        border-right: 3px solid gray
+      &::before
+        transform: rotate(-45deg)
 
 
 

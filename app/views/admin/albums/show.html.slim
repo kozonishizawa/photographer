@@ -13,7 +13,8 @@
               li.p-photos__listItem
                 .p-photos__imageContainer
                   = image_tag photo.square_image(150)
-                  = link_to '', admin_photo_path(photo.id), method: :delete, remote: true, class: 'delete'
+                  = link_to admin_photo_path(photo.id), method: :delete, remote: true, class: 'delete' do
+                    span
                     
     - else
       .p-photos__none

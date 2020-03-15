@@ -1,7 +1,7 @@
 .l-dashboard
   .l-dashboard__inner
-    p.l-dashboard__heading #{current_user.name}様
     .l-dashboard__menu
+      p.l-dashboard__heading #{current_user.name}様、ご利用ありがとうございます。
       - user_menu.each do |menu|
         = link_to menu[:url], class: 'l-dashboard__card' do
           p.l-dashboard__name = menu[:name]

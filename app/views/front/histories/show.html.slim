@@ -44,9 +44,10 @@
       = paginate @photos
       = page_entries_info @photos
 
-    .p-histories__linkWrapper
+    .p-histories__btnWrapper
       - if @photos.present?
-        = link_to '再ダウンロードリストに進む', front_histories_path, class: 'p-histories__next'
+        = link_to '再ダウンロードリストに進む', front_histories_path, class: 'l-btn__download'
       - else
         = react_component 'kawaii'
-      = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-histories__prev'
+    .p-histories__linkWrapper
+      = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-histories__link'

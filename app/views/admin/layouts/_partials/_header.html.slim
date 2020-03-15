@@ -1,10 +1,10 @@
 header.l-header
   .l-header__inner
     .flex-row
-      .col-6
+      .col-6.l-header__left
         = link_to 'DropStudio', admin_root_path, class: 'l-header__logo'
       .col-6
         nav.l-header__nav
           ul.l-header__nav-list
             li.l-header__nav-item
-              = link_to 'ログアウト', logout_path, class: 'l-header__link'
+              = link_to 'ログアウト', logout_path, class: 'l-btn__logout'

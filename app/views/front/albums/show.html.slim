@@ -15,7 +15,7 @@
           ul.c-carousel__list
             - @photos.each do |photo|
               - if photo.image.attached?
-                li.c-carousel__item = image_tag photo.rectangle_image(900, 600)
+                li.c-carousel__item = image_tag photo.rectangle_image(600, 450)
           .c-carousel__prev
           .c-carousel__next
           .c-carousel__nav
@@ -50,10 +50,10 @@
         .l-pagination
           = paginate @photos
           = page_entries_info @photos
-
+        .p-photos__btnWrapper
+          = link_to 'ダウンロード画面に進む', front_photos_path, class: 'l-btn__download'
         .p-photos__linkWrapper
-          = link_to 'ダウンロード画面に進む', front_photos_path, class: 'p-photos__next'
-          = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-photos__prev'
+          = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-photos__link'
 
       - else
         = react_component 'kawaii'

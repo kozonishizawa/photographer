@@ -8,18 +8,19 @@
 .l-header
   background-image: $theme-gradient
   width: 100%
-  font-weight: bold
   @include mq('tab')
     background-image: $theme-gradient
     position: fixed
     top: 0
     z-index: 1000
   &__logo
+    font-weight: bold
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
     color: map-get($fontColors, 'white')
     font-size: 2em
     display: inline-block
-    margin-top: 4px
-
     @include mq('tab')
       font-size: 1.5em
     &:visited
@@ -28,6 +29,8 @@
       color: map-get($fontColors, 'white')
   &__inner
     @include inner
+  &__left
+    position: relative
   &__nav
     text-align: right
     @include mq('tab')
@@ -37,15 +40,17 @@
     flex-direction: row
     justify-content: flex-end
   &__nav-item
-    display: inline-block
-    padding: 1em
+    padding: 8px
   &__link
+    display: inline-block
     text-decoration: none
+    padding: 8px 16px
     color: map-get($fontColors, 'white')
     &:visited
       color: map-get($fontColors, 'white')
     &:hover
-      color: map-get($fontColors, 'white')   
+      color: map-get($fontColors, 'white')
+      text-decoration-line: underline
   &__drawer
     display: inline-block
     float: right

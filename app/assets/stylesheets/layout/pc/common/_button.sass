@@ -46,6 +46,34 @@
     @include mq('tab')
       margin-left: 0
 
+  &__download
+    display: inline-block
+    background-color: $second-color
+    border: 1px solid $second-color
+    border-radius: 50px
+    letter-spacing: 8px
+    font-size: 24px
+    color: #fff
+    padding: 16px 32px
+    transition: .3s ease-out
+    margin: 0 auto
+    &:hover
+      background-image: none
+      background-color: transparent
+      color: $second-color
+      
+  &__logout
+    font-size: 14px
+    display: inline-block
+    border: 1px solid #fff
+    border-radius: 4px
+    padding: 8px 16px
+    color: #ffffff
+    transition: .3s ease-out
+    &:hover
+      color: $second-color
+      background-color: #fff
+
 
   &__home
     background-color: #fff
