@@ -20,6 +20,7 @@
       - if @photos.present?
         = link_to '再ダウンロード', front_user_download_path(current_user.id), method: :post, class: 'l-btn__download', data: { confirm: '一度ダウンロードされると選び直すことができなくなります。ダウンロードしてよろしいですか？' }
       - else
+        p.p-photos__comment 期限までは何度でもダウンロードできるよ！
         = react_component 'kawaii'
     .p-photos__linkWrapper
       = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-photos__link'

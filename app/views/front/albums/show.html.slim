@@ -45,7 +45,9 @@
                         .p-photos__btn.on data-id="#{photo.id}"
                           i.fa.fa-heart
                       - else
-                        .p-photos__complete ダウンロード済
+                        = link_to front_history_path(photo.album.id), class: 'p-photos__reselect' do 
+                          i.fa.fa-heart
+                          | もう一度ダウンロードする
 
         .l-pagination
           = paginate @photos
@@ -56,5 +58,8 @@
           = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-photos__link'
 
       - else
-        = react_component 'kawaii'
-        p まだ写真がアップロードされていません
+        .p-photos__linkWrapper
+          p.p-photos__comment まだ写真がアップロードされていません
+          = react_component 'kawaii'
+          = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-photos__link'
+  

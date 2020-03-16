@@ -4,56 +4,26 @@
 .l-dashboard
   flex: 1
   &__inner
-    padding: 0 5%
-    margin: 0 auto
+    @include inner
   &__heading
     font-weight: bold
-    font-size: 2.5em
-  &__body
-    display:flex
-    flex-direction: column
-  &__image
-    width: 15%
-    padding: 28px
-  &__name
-    font-size: 1.2em
-    padding: 35px
-  &__form
-    padding: 20px
-    width: 15%
-    &_item
-      display: flex
-      flex-direction: row
-      justify-content: space-between
-      padding: 2px 5px
-      font-size: 1.2em
+    font-size: 32px
   &__menu
-    padding: 2em 0
-    height: 10%
+    padding: 24px
     text-align: center
-    display: flex
     margin: 0 auto
-    align-content: space-around
-    flex-wrap: wrap
-    padding: 50px
   &__card
-    width: 200px
-    height: 200px
-    margin: 15px
-    display: inline-flex
-    align-items: center
-    justify-content: center
-    font-weight: bold
-    background-color: #fff
-    border: 2px solid rgba(0,0,0,0.5)
+    display: block
+    border: 1px solid rgba(0,0,0,0.5)
+    margin-bottom: 16px
     border-radius: 4px
-    transition: all .1s ease-in 0s
-    position: relative
-    text-align: center
-    text-decoration: none
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.4)
+    transition: .3s
     &:hover
-      transform: translate(-3px,-3px)
-      background-color: #3dc49d
-      box-shadow: 0 0 #19a67e, 1px 1px 0 #19a67e, 2px 2px 0 #19a67e, 3px 3px 0 #19a67e
-      text-decoration: none
+      background-color: $second-color
+      border-color: $second-color
       color: #fff
+  &__name
+    font-size: 28px
+    padding: 36px
+    letter-spacing: 8px
