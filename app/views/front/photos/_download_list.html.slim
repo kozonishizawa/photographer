@@ -11,8 +11,8 @@
               .p-photos__card
                 .p-photos__imageWrapper
                   = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail', 'data-index': index
-                .p-photos__caption
-                  = link_to '選び直す', front_album_path(photo.album.id), class: 'p-photos__reselect' 
+                .p-photos__caption data-turbolinks='false'
+                  = link_to '選び直す', front_album_path(photo.album.id), class: 'p-photos__reselect'
     .l-pagination
       = paginate @photos
       = page_entries_info @photos

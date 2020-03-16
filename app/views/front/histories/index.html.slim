@@ -18,7 +18,7 @@
       = page_entries_info @photos
     .p-photos__btnWrapper
       - if @photos.present?
-        = link_to '再ダウンロード', front_user_download_path(current_user.id), method: :post, class: 'l-btn__download', data: { confirm: '一度ダウンロードされると選び直すことができなくなります。ダウンロードしてよろしいですか？' }
+        = link_to '再ダウンロード', front_user_re_download_path(current_user.id), method: :post, class: 'l-btn__download', data: { confirm: '一度ダウンロードされると選び直すことができなくなります。ダウンロードしてよろしいですか？' }
       - else
         p.p-photos__comment 期限までは何度でもダウンロードできるよ！
         = react_component 'kawaii'

@@ -45,9 +45,12 @@
                         .p-photos__btn.on data-id="#{photo.id}"
                           i.fa.fa-heart
                       - else
-                        = link_to front_history_path(photo.album.id), class: 'p-photos__reselect' do 
-                          i.fa.fa-heart
-                          | もう一度ダウンロードする
+                        = link_to '履歴', front_history_path(photo.album.id), class: 'p-photos__history'
+                        / = link_to front_history_path(photo.album.id), class: 'p-photos__reselect' do 
+                        /   i.fa.fa-heart
+                        /   | もう一度ダウンロードする
+                        .p-photos__complete
+                          | ダウンロード済
 
         .l-pagination
           = paginate @photos
