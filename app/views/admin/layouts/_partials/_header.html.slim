@@ -8,3 +8,9 @@ header.l-header
           ul.l-header__nav-list
             li.l-header__nav-item
               = link_to 'ログアウト', logout_path, class: 'l-btn__logout'
+        nav.l-header__drawer
+          input#drawer-checkbox type='checkbox'
+          label#drawer-icon for='drawer-checkbox'
+            span
+          label#drawer-close for='drawer-checkbox'
+          div#drawer-content
