@@ -1,5 +1,7 @@
 .p-albums
   .p-albums__inner
+    = link_to 'メインメニュー', admin_root_path, class: 'p-photos__link'
+    = link_to 'ユーザー一覧', admin_users_path, class: 'p-photos__link'
     h1.p-albums__heading アルバム一覧
     = search_form_for @q, url: admin_albums_path, class: 'l-search' do |f|
       .l-search__item

@@ -18,7 +18,7 @@ document.addEventListener('turbolinks:load', () => {
   
   if (counter) {
     var color = counter.style.color
-  };
+  }
   // 写真選択
   document.querySelectorAll('.p-photos__btn').forEach((btn) => {
     btn.addEventListener('click', () => {

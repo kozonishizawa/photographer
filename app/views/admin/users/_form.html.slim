@@ -1,6 +1,9 @@
 .p-users
   .p-users__inner
-    = link_to '一覧へ戻る', admin_users_path, class: 'p-users__prev'
+    = link_to 'メインメニュー', admin_root_path, class: 'p-users__link'
+    = link_to 'アルバム一覧', admin_albums_path, class: 'p-users__link'
+    = link_to 'ユーザー一覧', admin_users_path, class: 'p-users__link'
+
     .l-form__form
       .l-form__formInner
         h1.l-form__heading 新規ユーザー登録

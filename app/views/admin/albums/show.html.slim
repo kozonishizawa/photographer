@@ -1,5 +1,9 @@
 .p-photos
   .p-photos__inner
+    = link_to 'メインメニュー', admin_root_path, class: 'p-photos__link'
+    = link_to 'アルバム一覧', admin_albums_path, class: 'p-photos__link'
+    = link_to 'ユーザー一覧', admin_users_path, class: 'p-photos__link'
+  
     .p-photos__heading
       h2 = @album.title
       
@@ -11,11 +15,20 @@
           - @photos.each do |photo|
             - if photo.image.attached?
               li.p-photos__listItem
-                .p-photos__imageContainer
-                  = image_tag photo.square_image(150)
-                  = link_to admin_photo_path(photo.id), method: :delete, remote: true, class: 'delete' do
-                    span
-                    
+                .p-photos__photograph
+                  .p-photos__imageContainer
+                    = image_tag photo.square_image(150)
+                    = link_to admin_photo_path(photo.id), method: :delete, remote: true, class: 'delete' do
+                      span
+                  .p-photos__caption
+                    - if photo.download_status == 'selected'
+                      p.p-photos__selected 選択中
+                    - elsif photo.download_status == 'unselected'
+                      p.p-photos__unselected 未選択
+                    - elsif photo.download_status == 'complete'
+                      p.p-photos__complete ダウンロード済
+                    - elsif photo.download_status == 're_selected'
+                      p.p-photos__re_selected 再選択中
     - else
       .p-photos__none
         = react_component 'kawaii'

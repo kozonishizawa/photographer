@@ -28,6 +28,16 @@
 @mixin inner
   padding: 0 5%
 
+@mixin general_link
+  text-align: center
+  display: inline
+  color: $main-color
+  text-decoration-line: underline
+  transition: .3s ease-out
+  margin-right: 16px
+  &:hover
+    color: $second-color
+
 @mixin mq($breakpoint: sp)
   @media #{map-get($breakpoints, $breakpoint)}
     @content
