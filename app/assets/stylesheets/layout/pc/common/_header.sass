@@ -8,11 +8,10 @@
 .l-header
   background-image: $theme-gradient
   width: 100%
-  @include mq('tab')
-    background-image: $theme-gradient
-    position: fixed
-    top: 0
-    z-index: 1000
+  background-image: $theme-gradient
+  position: fixed
+  top: 0
+  z-index: 100
   &__logo
     font-weight: bold
     position: absolute
@@ -52,6 +51,7 @@
     &:hover
       color: map-get($fontColors, 'white')
       text-decoration-line: underline
+  
   &__drawer
     display: inline-block
     float: right
@@ -159,3 +159,30 @@
 #drawer-checkbox:checked ~ #drawer-close
   display: block
   opacity: 0.3
+
+.l-navbar
+  position: fixed
+  right: 0
+  z-index: 100
+  box-sizing: border-box
+  padding-right: 8px
+  &__counter
+    color: $second-color
+    border: 1px solid $main-color
+    border-radius: 4px
+    background-color: #fff
+    padding: 8px 0
+    margin-right: 5vw
+    width: 200px
+    text-align: center
+    margin-top: 8px
+    display: inline-block
+  &__link
+    text-align: center
+    display: inline
+    color: $main-color
+    text-decoration-line: underline
+    transition: .3s ease-out
+    &:hover
+      color: $second-color
+

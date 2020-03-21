@@ -1,6 +1,7 @@
 .p-photos
   .p-photos__inner
-    h1.p-photos__heading 再ダウンロードリスト
+    = link_to 'アルバム一覧へ', front_albums_path, class: 'p-photos__link'
+    h1.p-photos__heading 再選択中の写真
     - if @photos.present?
       p.p-photos__lead 以下の写真が選択されています。
     .p-photos__thumbnails
@@ -23,4 +24,4 @@
         p.p-photos__comment 期限までは何度でもダウンロードできるよ！
         = react_component 'kawaii'
     .p-photos__linkWrapper
-      = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-photos__link'
+      = link_to 'アルバム一覧へ', front_albums_path, class: 'p-photos__link'

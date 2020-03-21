@@ -1,37 +1,37 @@
 .p-users
   .p-users__inner
-    = link_to 'メインメニューへ戻る', front_root_path, class: 'p-users__prev'
-    .p-users__profileWrapper
-      .p-users__heading
-        h1 ユーザー情報
-      .p-users__profileContainer
-        .p-users__profileItem
-          .p-users__profileLabel
-            | 名前
-          .p-users__profileData
-            = @user.name
-        .p-users__profileItem
-          .p-users__profileLabel
-            | メールアドレス
-          .p-users__profileData
-            = @user.email
-        .p-users__profileItem
-          .p-users__profileLabel
-            | 電話番号
-          .p-users__profileData
-            = @user.tel
-        .p-users__profileItem
-          .p-users__profileLabel
-            | ダウンロード可能上限
-          .p-users__profileData
-            = @user.downloadable_limit
-        .p-users__profileItem
-          .p-users__profileLabel
-            | 管理者権限
-          .p-users__profileData
-            = @user.admin? ? '有' : '無'
-        .p-users__profileItem
-          .p-users__profileLabel
-           | アカウントの状態
-          .p-users__profileData
-            = @user.activated? ? '有効' : '無効'
+    nav
+      = link_to 'メインメニュー', admin_root_path, class: 'p-users__link'
+      = link_to 'ユーザー一覧', admin_users_path, class: 'p-users__link'
+
+    h1.p-users__heading ユーザー情報
+    .p-users__tableWrapper
+      table.p-users__table
+        tr.p-users__row
+          th.p-users__header ID
+          td.p-users__data = @user.id
+        tr.p-users__row
+          th.p-users__header ユーザー名
+          td.p-users__data = @user.name
+        tr.p-users__row
+          th.p-users__header メールアドレス
+          td.p-users__data = @user.email
+        tr.p-users__row
+          th.p-users__header 電話番号
+          td.p-users__data = @user.tel
+        tr.p-users__row
+          th.p-users__header ダウンロード上限
+          td.p-users__data = @user.downloadable_limit
+        tr.p-users__row
+          th.p-users__header 管理者権限
+          td.p-users__data = @user.admin? ? '有' : '無'
+        tr.p-users__row
+          th.p-users__header アカウントの状態
+          td.p-users__data = @user.activated? ? '有効' : '無効'
+        tr.p-users__row
+          th.p-users__header 作成日
+          td.p-users__data = l(@user.created_at, format: :long)
+        tr.p-users__row
+          th.p-users__header 最終更新
+          td.p-users__data = l(@user.updated_at, format: :long)
+

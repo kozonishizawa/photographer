@@ -35,7 +35,7 @@ document.addEventListener('turbolinks:load', () => {
           heart.classList.toggle('marked');
         } else if (selectable == 'over') {
           counter.style.color = 'red'
-          counter.innerHTML = 'ダウンロードの上限を超えました';
+          counter.innerHTML = 'これ以上選択できません';
         }
       })
       .catch((error) => {

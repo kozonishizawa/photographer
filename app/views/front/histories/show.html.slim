@@ -1,5 +1,6 @@
 .p-histories
   .p-histories__inner
+    = link_to 'アルバム一覧へ', front_albums_path, class: 'p-photos__link'
     .p-histories__heading
       h1.p-histories__title ダウンロード履歴
     - if @photos.blank?
@@ -47,9 +48,9 @@
       .p-histories__btnWrapper
         = link_to '再ダウンロードリストに進む', front_histories_path, class: 'l-btn__download'
       .p-histories__linkWrapper
-        = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-histories__link'
+        = link_to 'アルバム一覧へ', front_albums_path, class: 'p-histories__link'
     - else
       .p-histories__linkWrapper
           p.p-photos__comment ダウンロードした写真はここに表示されるよ！
           = react_component 'kawaii'
-          = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-histories__link'
+          = link_to 'アルバム一覧へ', front_albums_path, class: 'p-histories__link'

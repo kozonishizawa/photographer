@@ -1,4 +1,4 @@
-header.l-header
+header.l-header#header
   .l-header__inner
     .flex-row
       .col-6.l-header__left
@@ -14,3 +14,6 @@ header.l-header
             span
           label#drawer-close for='drawer-checkbox'
           div#drawer-content
+.message
+  - flash.each do |message_type, message|
+      = content_tag(:div, message, class: "alert alert-#{message_type}")

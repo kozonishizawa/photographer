@@ -8,3 +8,6 @@ header.l-header
           ul.l-header__nav-list
             li.l-header__nav-item
               = link_to 'お問い合わせ', new_user_path, class: 'l-header__link'
+.message
+  - flash.each do |message_type, message|
+      = content_tag(:div, message, class: "alert alert-#{message_type}")

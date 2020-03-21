@@ -1,16 +1,17 @@
-header.l-header
+header.l-header#header
   .l-header__inner
     .flex-row
       .col-6.l-header__left
         = link_to 'DropStudio', logged_in? ? front_albums_path : root_path, class: 'l-header__logo'
+
       .col-6
         nav.l-header__nav
           ul.l-header__nav-list
             - if logged_in?
               li.l-header__nav-item
-                = link_to '選択中の写真', front_photos_path, class: 'l-header__link'
+                = link_to '選択中', front_photos_path, class: 'l-header__link'
               li.l-header__nav-item
-                = link_to '再ダウンロード', front_histories_path, class: 'l-header__link'
+                = link_to '再選択中', front_histories_path, class: 'l-header__link'
               li.l-header__nav-item
                 = link_to 'お問い合わせ', new_front_contact_path, class: 'l-header__link'
               li.l-header__nav-item
@@ -27,4 +28,12 @@ header.l-header
             span
           label#drawer-close for='drawer-checkbox'
           div#drawer-content
+- if logged_in?
+  nav.l-navbar
+    p#counter.l-navbar__counter
+      | あと#{downloadable_counter}枚選択可能
+
+.message
+  - flash.each do |message_type, message|
+      = content_tag(:div, message, class: "alert alert-#{message_type}")
 

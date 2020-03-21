@@ -1,6 +1,6 @@
 .l-dashboard
   .l-dashboard__inner
-    h1.l-dashboard__heading 管理メニュー
+    h1.l-dashboard__heading メインメニュー
     .l-dashboard__menu
       - admin_menu.each do |menu|
         = link_to menu[:url], class: 'l-dashboard__card' do
