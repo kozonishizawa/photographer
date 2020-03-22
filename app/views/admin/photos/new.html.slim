@@ -1,7 +1,0 @@
-.p-photos
-  .p-photos__inner
-    .p-photos__form
-      = form_with model: [:admin, @photo], local: true do |f|
-        .p-photos__formInner
-          = f.file_field :images, multiple: :true
-          .p-photos__submit = f.submit '登録'

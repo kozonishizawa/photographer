@@ -5,9 +5,10 @@ import Xhr from '../lib/xhr';
 document.addEventListener('turbolinks:load', function() {
   document.querySelectorAll('.delete').forEach(function(a) {
     a.addEventListener('ajax:success', function() {
-      const div = a.parentNode;
-      const li = div.parentNode;
-      li.style.display = 'none';
+      const imageContainer = a.parentNode;
+      const photograph = imageContainer.parentNode;
+      const listItem = photograph.parentNode;
+      listItem.style.display = 'none';
     });
   });
 });

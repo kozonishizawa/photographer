@@ -1,7 +1,8 @@
 - content_for(:body_attributes) do
   .p-photos data-turbolinks='false'
+    nav.l-navbar#navbar
+      = link_to 'アルバム一覧へ', front_albums_path, class: 'l-navbar__link'
     .p-photos__inner
-      = link_to 'アルバム一覧へ', front_albums_path, class: 'p-photos__link'
       .p-photos__heading
         h1 = @album.title
       .p-photos__lead

@@ -1,13 +1,28 @@
 .p-home
   flex: 1
+  position: relative
+  &__inner
+    width: 100%
+    padding: 0 48px
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
   &__main
+    @include mq('tab')
+      text-align: center
+      width: 100%
   &__titleWrapper
     text-align: center
     padding-top: 100px
-    font-weight: lighter
+    font-size: 24px
+    @include mq('tab')
+      padding-top: 0
   &__title
-    font-size: 44px
+    font-size: 48px
     margin: 0 0 40px
+    @include mq('tab')
+      font-size: 72px
   &__btnWrapper
     text-align: center
     margin-top: 48px

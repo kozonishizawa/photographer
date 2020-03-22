@@ -1,6 +1,7 @@
 .p-photos
   .p-photos__inner
-    = link_to 'アルバム一覧へ', front_albums_path, class: 'p-photos__link'
+    .l-navbar#navbar
+      = link_to 'アルバム一覧へ', front_albums_path, class: 'l-navbar__link'
     h1.p-photos__heading 再選択中の写真
     - if @photos.present?
       p.p-photos__lead 以下の写真が選択されています。

@@ -1,8 +1,9 @@
 .p-photos
+  nav.l-navbar#navbar
+    = link_to 'メインメニュー', admin_root_path, class: 'l-navbar__link'
+    = link_to 'アルバム一覧', admin_albums_path, class: 'l-navbar__link'
+    = link_to 'ユーザー一覧', admin_users_path, class: 'l-navbar__link'
   .p-photos__inner
-    = link_to 'メインメニュー', admin_root_path, class: 'p-photos__link'
-    = link_to 'アルバム一覧', admin_albums_path, class: 'p-photos__link'
-    = link_to 'ユーザー一覧', admin_users_path, class: 'p-photos__link'
   
     .p-photos__heading
       h2 = @album.title

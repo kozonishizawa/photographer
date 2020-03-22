@@ -12,7 +12,7 @@ export default class AlbumForm extends React.Component {
       category: this.props.album ? this.props.album.category : '',
       description: this.props.album ? this.props.album.description : '',
       openPeriod: this.props.album ? this.props.album.open_period : '',
-      selectedOption: 'closed',
+      selectedOption: this.props.album ? this.props.album.status : 'closed',
       showPopup: false,
       fixedBackground: false,
     };

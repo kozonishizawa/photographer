@@ -160,7 +160,7 @@
   display: block
   opacity: 0.3
 
-.l-navbar
+.l-counter
   position: fixed
   right: 0
   z-index: 100
@@ -177,11 +177,18 @@
     text-align: center
     margin-top: 8px
     display: inline-block
+.l-navbar
+  padding-top: 8px
+  @include inner
+  width: 100%
+  background-color: transparent
+  // position: fixed
+  // z-index: 100
   &__link
-    text-align: center
-    display: inline
+    display: inline-block
+    font-weight: bold
+    margin: 8px 16px 0 0
     color: $main-color
-    text-decoration-line: underline
     transition: .3s ease-out
     &:hover
       color: $second-color
