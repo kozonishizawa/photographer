@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       if user.activated?
         log_in(user)
         session_params[:remember_me] == '1' ? remember(user) : forget(user)
-        redirect_to user.admin? ? admin_root_url : front_root_url, flash: {success: 'ログインしました'}
+        redirect_to user.admin? ? admin_root_url : front_root_url
       else
         message = 'アカウントが有効ではありません'
         message += 'Eメールの有効化リンクにアクセスしてください'

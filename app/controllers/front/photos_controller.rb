@@ -16,7 +16,7 @@ class Front::PhotosController < Front::ApplicationController
       photo.update!(download_status: 'unselected')
     end
     selected = Photo.selected.joins(album: :user).merge(User.where(id: current_user.id)).count
-    selectable = current_user.downloadable_limit.to_i - selected
+    selectable = current_user.downloadable_limit - selected
     render json: { status: :sccess, selectable: selectable }
   end
 
@@ -34,7 +34,7 @@ class Front::PhotosController < Front::ApplicationController
     def verify_downloadable_limit
       photo = Photo.find(params[:id])
       selected_quantity = Photo.selected.where(user_id: current_user.id).count
-      if selected_quantity >= current_user.downloadable_limit.to_i && photo.download_status == 'unselected'
+      if selected_quantity >= current_user.downloadable_limit && photo.download_status == 'unselected'
         render json: { selectable: 'over' }
       end
     end

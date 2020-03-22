@@ -127,8 +127,8 @@ class User < ApplicationRecord
   # ユーザーのダウンロード可能数量を消費し、写真をダウンロード完了状態にする
   def complete_download(photos)
     ActiveRecord::Base.transaction do
-      self.downloadable_limit.to_i -= photos.count
-      raise 'ダウンロード可能上限を超えています' if self.downloadable_limit.to_i < 0
+      self.downloadable_limit -= photos.count
+      raise 'ダウンロード可能上限を超えています' if self.downloadable_limit < 0
       self.save!
       photos.update(download_status: 'complete')
     end
