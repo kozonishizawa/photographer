@@ -14,6 +14,10 @@
     border: 1px solid #e6e6e6
     border-radius: 4px
     background-color: #fff
+    @include mq('sp')
+      width: 100%
+      margin: 0
+      border: none
   &__formInner
     padding: 60px 30px
     margin: 0 auto
@@ -21,7 +25,9 @@
     width: 100%
     padding-bottom: 16px
   &__label
-    font-size: 1em
+    font-size: 1.6rem
+    @include mq('sp')
+      font-size: 1rem
   &__field
     font-size: 1em
     color: #000

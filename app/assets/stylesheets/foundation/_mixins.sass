@@ -27,7 +27,8 @@
 
 @mixin inner
   padding: 0 5%
-
+  @include mq('tab')
+    padding: 0 30px
 @mixin general_heading
   font-size: 24px
   font-weight: bold
@@ -43,6 +44,7 @@
   &:hover
     color: $second-color
 
+// メディアクエリ
 @mixin mq($breakpoint: sp)
   @media #{map-get($breakpoints, $breakpoint)}
     @content

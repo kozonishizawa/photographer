@@ -1,3 +1,4 @@
+@import '../foundation/mixins'
 .col
   &-1
     width: 100% / 12
@@ -32,3 +33,20 @@
 .flex-col
   display: flex
   flex-direction: column
+
+.marquee
+  @include mq('sp')
+    margin: 0
+    padding-left: 0
+    display: inline-block
+    white-space: nowrap
+    animation-name: marquee
+    animation-timing-function: linear
+    animation-duration: 15s
+    animation-iteration-count: infinite
+
+@keyframes marquee
+  0% 
+    transform: translate(0%)
+  100%
+    transform: translate(-100%)

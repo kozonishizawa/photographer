@@ -145,3 +145,6 @@ $layerLevel-overlay: 10000;
 $layerLevel-drawer:   8000;
 // 5000 〜 7999
 $layerLevel-header:   5000;
+
+$layout-width-inner: 1024px;
+$breakpoints: ("sp": "screen and (max-width: 767px)", "tab": "screen and (max-width: #{$layout-width-inner - 1px})", "pc": "screen and (min-width: #{$layout-width-inner})");

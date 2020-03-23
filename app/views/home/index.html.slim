@@ -3,6 +3,8 @@
     section.p-home__main
       .p-home__titleWrapper 
         h2.p-home__title 思い出をスマートにお届け
-        p 撮影した写真をいつでもダウンロードできるオンライン納品システム
+        p.marquee 撮影した写真をいつでもダウンロードできるオンライン納品システム
       .p-home__btnWrapper
         = link_to '初めてのご依頼はこちら', new_user_path, class: 'l-btn__home'
+      .p-home__btnWrapper-mq
+        = link_to 'ログイン', login_path, class: 'l-btn__home'

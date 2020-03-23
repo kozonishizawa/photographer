@@ -62,7 +62,7 @@
       background-color: transparent
       color: $second-color
       
-  &__logout
+  &__session
     font-size: 14px
     display: inline-block
     border: 1px solid #fff
@@ -80,26 +80,22 @@
     border-radius: 4px
     text-shadow: none
     color: $second-color
-    font-size: 14px
-    padding: 14px 20px 13px
+    font-size: 16px
+    padding: 16px 24px
     display: inline-block
     text-decolation: none
     text-align: center
     border: 1px solid #fff
     transition: background-color .3s ease-out
     position: relative
-    width: 250px
     overflow: hidden
     &:hover
       background-color: transparent
       color: rgba(255,255,255,1)
     @include mq('tab')
+      width: 400px
+    @include mq('sp')
       width: 100%
-      font-size: 48px
-      margin-top: 160px
-      padding: 48px 72px
-      border-radius: 16px
-      font-weight: bold
   &__wide
     background-color: $second-color
     letter-spacing: 8px

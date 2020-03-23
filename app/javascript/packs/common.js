@@ -1,9 +1,11 @@
 // body要素をヘッダーの高さ分下げる
 document.addEventListener('turbolinks:load', () => {
   var header = document.getElementById('header');
-  var headerStyle = window.getComputedStyle(header);
-  var headerHeight = headerStyle.height;
-  document.body.style.paddingTop = headerHeight;
+  if (header) {
+    var headerStyle = window.getComputedStyle(header);
+    var headerHeight = headerStyle.height;
+    document.body.style.paddingTop = headerHeight;
+  }
 })
 // var mediaQuery = matchMedia('(max-width: 1023px)');
 // handle(mediaQuery);
