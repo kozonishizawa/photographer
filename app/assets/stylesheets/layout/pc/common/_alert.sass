@@ -1,9 +1,16 @@
 .alert
   display: inline-block
   margin-top: 8px
-  color: $accent-color
-  text-shadow: 1px 1px 1px rgba(0,0,0,.3)
-  text-align: left
+  color: $second-color
+  padding: 8px 16px
+  background-color: #fff
+  border-radius: 4px
+  text-align: center
   position: fixed
   left: 50%
   transform: translateX(-50%)
+  @include mq('sp')
+    width: 100%
+    font-size: 1rem
+  &-danger
+    color: $accent-color

@@ -4,4 +4,5 @@
     .l-dashboard__menu
       - admin_menu.each do |menu|
         = link_to menu[:url], class: 'l-dashboard__card' do
-          p.l-dashboard__name = menu[:name]
+          h2.l-dashboard__name = menu[:name]
+          / p.l-dashboard__lead = menu[:description]
