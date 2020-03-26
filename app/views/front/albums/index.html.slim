@@ -19,7 +19,7 @@
                 = album.photographed_at
               td.l-table__data data-label='枚数'
                 = album.photos.count
-              td.l-table__data data-turbolinks='false' data-label='ダウンロード済'
+              td.l-table__data data-turbolinks='false' data-label='DL済'
                 = link_to "#{album.photos.where(download_status: 'complete').count + album.photos.where(download_status: 're_selected').count}", front_history_path(album), class: 'l-table__link'
               td.l-table__data data-label='公開期限'
                 = album.created_at.to_date + album.open_period

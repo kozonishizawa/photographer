@@ -162,7 +162,7 @@
 .l-counter
   position: fixed
   right: 0
-  z-index: 100
+  z-index: 5
   box-sizing: border-box
   padding-right: 8px
   &__counter
@@ -176,6 +176,10 @@
     text-align: center
     margin-top: 8px
     display: inline-block
+    @include mq('sp')
+      width: auto
+      padding: .8rem 1.6rem
+
 .l-navbar
   padding-top: 8px
   @include inner

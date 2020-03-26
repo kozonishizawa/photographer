@@ -27,7 +27,12 @@ header.l-header#header
           label#drawer-icon for='drawer-checkbox'
             span
           label#drawer-close for='drawer-checkbox'
-          div#drawer-content
+          div#drawer-content.l-drawer
+            = link_to 'アルバム一覧', front_albums_path, class: 'l-drawer__link'
+            = link_to '選択中の写真', front_photos_path, class: 'l-drawer__link'
+            = link_to '再選択中の写真', front_histories_path, class: 'l-drawer__link'
+            = link_to 'お問い合わせ', new_front_contact_path, class: 'l-drawer__link'
+            = link_to 'ログアウト', logout_path, class: 'l-drawer__link'
 - if logged_in?
   .l-counter
     p#counter.l-counter__counter
