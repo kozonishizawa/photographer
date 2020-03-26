@@ -14,6 +14,8 @@
     color: rgba(0,0,0,0.6)
     text-align: center
     letter-spacing: 4px
+    @include mq('sp')
+      font-size: 1.6rem
   &__body
     display:flex
     flex-direction: column
@@ -21,7 +23,8 @@
     width: 15%
     padding: 28px
   &__name
-    font-size: 2em
+    font-size: 1.6rem
+    letter-spacing: 0.4rem
   &__form
     padding: 20px
     width: 15%
@@ -36,11 +39,13 @@
     position: absolute
     top: 50%
     left: 50%
+    width: 100%
+    padding: 0 16px
     -webkit-transform : translate(-50%,-50%)
     transform : translate(-50%,-50%)
   &__card
     color: #fff
-    padding: 8px 40px
+    padding: 1.6rem 2.4rem
     letter-spacing: 8px
     display: inline-flex
     align-items: center
@@ -48,7 +53,7 @@
     font-weight: bold
     background-color: $second-color
     border: 1px solid $second-color
-    border-radius: 32px
+    border-radius: 4px
     transition: all .3s ease-out
     text-align: center
     text-decoration: none

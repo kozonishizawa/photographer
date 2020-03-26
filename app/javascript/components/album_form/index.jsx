@@ -145,11 +145,11 @@ export default class AlbumForm extends React.Component {
                       <label className={Style.Form__radioButton} htmlFor="closed">
                         非公開
                       </label>
-                      <input className={Style.Form__radio} type="radio" name="selectedOption" value="personal" id="personal"
+                      {/* <input className={Style.Form__radio} type="radio" name="selectedOption" value="personal" id="personal"
                         checked={this.state.selectedOption === 'personal'} onChange={this.handleChange}/>
                       <label className={Style.Form__radioButton} htmlFor="personal">
                         本人のみ
-                      </label>
+                      </label> */}
                       <input className={Style.Form__radio} type="radio" name="selectedOption" value="open" id="open"
                         checked={this.state.selectedOption === 'open'} onChange={this.handleChange}/>
                       <label className={Style.Form__radioButton} htmlFor="open">
