@@ -27,7 +27,7 @@
                 = user.id
               td.l-table__data data-label='名前'
                 = link_to user.name, admin_user_path(user.id), class: 'l-table__link'
-              td.l-table__data data-label='ダウンロード上限'
+              td.l-table__data data-label='DL上限'
                 = user.downloadable_limit
               td.l-table__data data-label='権限'
                 = user.admin? ? '管理者' : '一般'

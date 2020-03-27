@@ -130,18 +130,17 @@
   overflow: auto
   position: fixed
   top: 0
-  left: 0
+  right: 0
   z-index: 40
-  width: 80%
+  width: 85%
   max-width: 90%
   height: 100%
   transition: all 0.3s ease-in-out 0s
-  transform: translateX(-100%)
+  transform: translateX(100%)
 
 #drawer-checkbox:checked ~ #drawer-content
   transform: translateX(0)
   box-shadow: 6px 0 24px rgba(0, 0, 0, 0.16)
-
 
 #drawer-close
   display: none
@@ -151,13 +150,25 @@
   left: 0
   width: 100%
   height: 100%
-  background: #000
-  opacity: 0
+  background-color: rgba(0,0,0,0)
   transition: all 0.3s ease-in-out 0s
+  & span::before, span::after
+    content: ''
+    display: block
+    position: absolute
+    top: 32px
+    left: 6px
+    width: 40px
+    height: 2px
+    background-color: #fff
+  & span::before
+    transform: rotate(-45deg)
+  & span::after
+    transform: rotate(45deg)
 
 #drawer-checkbox:checked ~ #drawer-close
   display: block
-  opacity: 0.3
+  background-color: rgba(0,0,0,0.6)
 
 .l-counter
   position: fixed
@@ -205,3 +216,6 @@
     text-align: left
     font-size: 2.4rem
     padding: 1.6rem 0
+  &__close
+    height: 80px
+    background: #fff

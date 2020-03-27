@@ -10,6 +10,8 @@
     font-size: 2em
     margin: 50px 0
     font-weight: 700
+    @include mq('sp')
+      margin: 2.4rem 0 1.6rem 
   &__list
     cursor: default
   &__listItem
@@ -18,16 +20,11 @@
     flex-direction: column
     flex-wrap: wrap
     justify-content: flex-start
-    margin: 15px
-    img
-      width: 150px
-      height: 150px
-      object-fit: cover
   &__photograph
-    padding: 8px
     background-color: #fff
     position: relative
   &__caption
+    font-size: 0.4rem
     position: absolute
     bottom: 0
     left: 0
@@ -40,8 +37,8 @@
     flex-direction: column
     position: relative
     img
-      width: 150px
-      height: 150px
+      width: 100px
+      height: 100px
       object-fit: cover
   .delete
     position: absolute
