@@ -92,7 +92,8 @@ export default class AlbumForm extends React.Component {
         <button className={Style.generalBtn} onClick={this.togglePopup}>{this.props.album ? '編集' : 'アルバム作成'}</button>
         {this.state.showPopup ? 
           <div className={Style.Form__wrapper} >
-            <div className={Style.Form__overlay} onClick={this.togglePopup}></div>
+            <div className={Style.Form__overlay} onClick={this.togglePopup}>
+            </div>
             <div className={Style.Form__form}>
               <div className={Style.closeBtn} onClick={this.togglePopup}><span></span></div>
               <div className={Style.Form__container}>
