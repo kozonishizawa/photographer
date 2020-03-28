@@ -111,7 +111,7 @@ export default class AlbumForm extends React.Component {
                     <label className={Style.Form__label}>
                       撮影日 <span className={Style.Form__required}>必須</span>
                     </label>
-                    <input className={Style.Form__field} type="date" name='date' value={this.state.date} onChange={this.handleChange} required />
+                    <input className={Style.Form__date} type="date" name='date' value={this.state.date} onChange={this.handleChange} required />
                   </div>
                   <div className={Style.Form__formItem}>
                     <label className={Style.Form__label}>
