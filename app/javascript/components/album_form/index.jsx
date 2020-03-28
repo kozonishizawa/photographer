@@ -88,16 +88,16 @@ export default class AlbumForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <button className={Style.generalBtn} onClick={this.togglePopup}>{this.props.album === undefined ? 'アルバム作成' : '編集'}</button>
+      <React.Fragment>
+        <button className={Style.generalBtn} onClick={this.togglePopup}>{this.props.album ? '編集' : 'アルバム作成'}</button>
         {this.state.showPopup ? 
           <div className={Style.Form__wrapper} >
-            <div className={Style.Form__overlay} onClick={this.togglePopup}> </div>
+            <div className={Style.Form__overlay} onClick={this.togglePopup}></div>
             <div className={Style.Form__form}>
-              <button className={Style.closeBtn} onClick={this.togglePopup}>×</button>
+              <div className={Style.closeBtn} onClick={this.togglePopup}><span></span></div>
               <div className={Style.Form__container}>
                 <form onSubmit={this.handleSubmit} className={Style.Form}>
-                  <h1 className={Style.Form__heading}>{this.props.album === undefined ? '新規アルバム作成' : 'アルバム情報編集'}</h1>
+                  <h1 className={Style.Form__heading}>{this.props.album ? 'アルバム情報編集' : '新規アルバム作成'}</h1>
                   <p>ユーザー名：{this.props.user.name}</p>
                   <input type="hidden" value={this.props.user.id} />
                   <div className={Style.Form__formItem}>
@@ -164,7 +164,7 @@ export default class AlbumForm extends React.Component {
             </div>
           </div> : null
         }
-      </div>
+      </React.Fragment>
     )
   }
 }
