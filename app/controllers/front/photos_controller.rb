@@ -5,15 +5,15 @@ class Front::PhotosController < Front::ApplicationController
   before_action :verify_downloadable_limit, only: [:update]
 
   def index
-    @photos = Photo.selected.joins(album: :user).merge(User.where(id: current_user.id)).merge(Album.where.not(status: 'closed')).reverse_order.page(params[:page]).per(20)
+    @photos = Photo.selected.joins(album: :user).merge(User.where(id: current_user.id)).merge(Album.where.not(status: :closed)).reverse_order.page(params[:page]).per(20)
   end
   
   def update
     photo = Photo.find(params[:id])
     if photo.unselected?
-      photo.update!(download_status: 'selected')
+      photo.selected!
     elsif photo.selected?
-      photo.update!(download_status: 'unselected')
+      photo.unselected!
     end
     selected = Photo.selected.joins(album: :user).merge(User.where(id: current_user.id)).count
     selectable = current_user.downloadable_limit - selected

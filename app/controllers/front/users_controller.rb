@@ -21,16 +21,16 @@ class Front::UsersController < Front::ApplicationController
 
   # 初回ダウンロード 
   def download
-    photos = Photo.selected.joins(album: :user).merge(User.where(id: params[:user_id])).merge(Album.where.not(status: 'closed'))
+    photos = Photo.selected.joins(album: :user).merge(User.where(id: params[:user_id])).merge(Album.where.not(status: :closed))
     to_zip(photos)
     current_user.complete_download(photos)
   end
 
   # 再ダウンロード
   def re_download
-    photos = Photo.re_selected.joins(album: :user).merge(User.where(id: params[:user_id])).merge(Album.where.not(status: 'closed'))
+    photos = Photo.re_selected.joins(album: :user).merge(User.where(id: params[:user_id])).merge(Album.where.not(status: :closed))
     to_zip(photos)
-    photos.update(download_status: 'complete')
+    photos.update(download_status: :complete)
   end
 
   private

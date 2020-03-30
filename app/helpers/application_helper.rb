@@ -32,7 +32,7 @@ module ApplicationHelper
 
 	def full_title(page_title = '')
 
-		"#{page_title.blank?? nil : page_title+' | '}BigDay_photograph"
+		"#{page_title.blank?? nil : page_title+' | '}DropStudio"
 	end
 
 end

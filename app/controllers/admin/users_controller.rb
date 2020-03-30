@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).page(params[:page])
+    @users = @q.result.distinct.page(params[:page])
   end
 
   def new

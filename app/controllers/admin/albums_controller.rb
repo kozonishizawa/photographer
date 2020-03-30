@@ -3,12 +3,12 @@ class Admin::AlbumsController < Admin::ApplicationController
 
   def index
     @q = Album.ransack(params[:q])
-    @albums = @q.result(distinct: true).reverse_order.page(params[:page])
+    @albums = @q.result.distinct.reverse_order.page(params[:page])
   end
   
   def show
     @album = Album.find(params[:id])
-    @photos = @album.photos.order('created_at DESC').page(params[:page])
+    @photos = @album.photos.order(created_at: :desc).page(params[:page])
   end
 
   def new

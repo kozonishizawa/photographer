@@ -33,6 +33,9 @@ Rails.application.routes.draw do
     #お問い合わせ
     resources :contacts, only: [:index, :show]
 
+    # 問い合せステータス
+    resources :contact_statuses, except: [:show]
+
   end
 
   # フロント

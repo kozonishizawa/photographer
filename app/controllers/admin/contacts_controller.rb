@@ -3,7 +3,7 @@ class Admin::ContactsController < Admin::ApplicationController
   
   def index
     @q = Contact.ransack(params[:q])
-    @contacts = @q.result(distinct: true).reverse_order.page(params[:page])
+    @contacts = @q.result.distinct.reverse_order.page(params[:page])
   end
 
   def show
