@@ -1,4 +1,10 @@
 .p-contacts
+  nav.l-navbar#navbar
+    = link_to 'メインメニュー', admin_root_path, class: 'l-navbar__link'
+    = link_to 'お問い合わせステータス作成', new_admin_contact_status_path, class: 'l-navbar__link'
+    = link_to 'ユーザー一覧', admin_users_path, class: 'l-navbar__link'
+    = link_to 'アルバム一覧', admin_albums_path, class: 'l-navbar__link'
+
   .p-contacts__inner
     h1.p-contacts__heading お問い合わせ一覧
     section.p-contacts__list

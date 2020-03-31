@@ -1,6 +1,7 @@
 .p-users
   nav.l-navbar#navbar
     = link_to 'メインメニュー', admin_root_path, class: 'l-navbar__link'
+    = link_to '新規ユーザー登録', new_admin_user_path, class: 'l-navbar__link'
     = link_to 'アルバム一覧', admin_albums_path, class: 'l-navbar__link'
 
   .p-users__inner
