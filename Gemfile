@@ -23,6 +23,8 @@ gem 'html2slim'
 
 gem 'rubyzip'
 
+gem 'acts_as_list'
+
 gem 'font-awesome-rails'
 
 

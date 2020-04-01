@@ -1,5 +1,4 @@
 class Admin::ContactStatusesController < ApplicationController
-  after_create :set_order, only: [:create]
 
   def index
     @contact_statuses = ContactStatus.all
@@ -36,6 +35,6 @@ class Admin::ContactStatusesController < ApplicationController
 
   private
     def contact_status_params
-      params.require(:contact_status).permit :name, :description, :order, :color
+      params.require(:contact_status).permit :name, :description, :position, :color
     end
 end

@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2020_03_29_013818) do
   create_table "contact_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "order"
+    t.integer "position"
     t.integer "color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
