@@ -1,15 +1,9 @@
-class Admin::SortContactStatusesController < ApplicationController
+class Admin::SortContactStatusesController < Admin::ApplicationController
+  before_action :required_admin
+
   def update
     contact_status = ContactStatus.find(params[:id])
-    case params[:move]
-    when 'up'
-      contact_status.move_higher
-      target = contact_status.lower_item
-    when 'down'
-      contact_status.move_lower
-      target = contact_status.higher_item
-    else
-      return head :ok
-    end
+    contact_status.insert_at(params[:after_position].to_i + 1)
+    head :ok
   end
 end

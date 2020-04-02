@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     # 問い合せステータス
     resources :contact_statuses, except: [:show]
 
+    resources :sort_contact_statuses, only: [:update]
+
   end
 
   # フロント
@@ -66,7 +68,7 @@ Rails.application.routes.draw do
 
     # お問い合わせ
     resources :contacts, only: [:index, :new, :create]
-    
+
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

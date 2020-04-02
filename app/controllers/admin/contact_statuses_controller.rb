@@ -1,7 +1,8 @@
-class Admin::ContactStatusesController < ApplicationController
+class Admin::ContactStatusesController < Admin::ApplicationController
+  before_action :required_admin
 
   def index
-    @contact_statuses = ContactStatus.all
+    @contact_statuses = ContactStatus.order(:position)
   end
 
   def new
