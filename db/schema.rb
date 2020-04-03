@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_013818) do
+ActiveRecord::Schema.define(version: 2020_04_02_134650) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(version: 2020_03_29_013818) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
+    t.bigint "contact_status_id"
+    t.index ["contact_status_id"], name: "index_contacts_on_contact_status_id"
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 

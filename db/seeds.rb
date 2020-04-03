@@ -23,3 +23,13 @@ User.create!(
   activated: true,
   activated_at: Time.zone.now
 )
+ContactStatus.create!(
+  name: STATUS_NOT_YET,
+  description: '未対応です',
+  position: 1
+)
+ContactStatus.create!(
+  name: STATUS_DONE,
+  description: '完了しています',
+  position: 2
+)

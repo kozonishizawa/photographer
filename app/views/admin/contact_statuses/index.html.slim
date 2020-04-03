@@ -1,6 +1,6 @@
 .p-contact_statuses
   .p-contact_statuses__inner
-    .p-contact_statuses__heading
+    h1.p-contact_statuses__heading 並び順を変更
     ul.p-contact_statuses__list#sortable_list
       - @contact_statuses.each do |contact_status|
         li.p-contact_statuses__item data-id="#{contact_status.id}"
