@@ -6,4 +6,5 @@ class Admin::SortContactStatusesController < Admin::ApplicationController
     contact_status.insert_at(params[:new_position].to_i + 1)
     head :ok
   end
+  
 end

@@ -6,5 +6,6 @@
         li.p-contact_statuses__item data-id="#{contact_status.id}"
           .p-contact_statuses__card
             = contact_status.name
+            = link_to '削除', admin_contact_status_path(contact_status), method: :delete, class: 'p-contact_statuses__delete'
 
    

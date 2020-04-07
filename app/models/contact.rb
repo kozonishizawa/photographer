@@ -2,14 +2,15 @@
 #
 # Table name: contacts
 #
-#  id         :integer          not null, primary key
-#  subject    :integer          not null
-#  date       :date             not null
-#  location   :string(255)      not null
-#  request    :text(65535)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :integer          not null
+#  id                :integer          not null, primary key
+#  subject           :integer          not null
+#  date              :date             not null
+#  location          :string(255)      not null
+#  request           :text(65535)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  user_id           :integer          not null
+#  contact_status_id :integer
 #
 
 class Contact < ApplicationRecord
@@ -33,13 +34,14 @@ class Contact < ApplicationRecord
   validates :subject, presence: true
   validates :date, presence: true
   validates :location, presence: true
+  after_create :set_default_status
 
 
   #----------------------------------------
   #  ** Associations **
   #----------------------------------------
   belongs_to :user
-  belongs_to :contact_status
+  belongs_to :contact_status, optional: true
 
   #----------------------------------------
   #  ** Delegates **
@@ -52,5 +54,10 @@ class Contact < ApplicationRecord
   #----------------------------------------
   #  ** Methods **
   #----------------------------------------
-
+  private
+  
+    def set_default_status
+      contact_status = ContactStatus.find_by(position: 1)
+      contact_status.contacts << self
+    end
 end

@@ -20,7 +20,7 @@ class ContactStatus < ApplicationRecord
   #----------------------------------------
   #  ** Constants **
   #----------------------------------------
-  
+
   #----------------------------------------
   #  ** Enums **
   #----------------------------------------
@@ -28,11 +28,11 @@ class ContactStatus < ApplicationRecord
   #----------------------------------------
   #  ** Validations **
   #----------------------------------------
-
+  before_destroy :validate_number_of_statuses
   #----------------------------------------
   #  ** Associations **
   #----------------------------------------
-  has_many :contacts
+  has_many :contacts, dependent: :restrict_with_exception
   #----------------------------------------
   #  ** Delegates **
   #----------------------------------------
@@ -45,5 +45,12 @@ class ContactStatus < ApplicationRecord
   #  ** Methods **
   #----------------------------------------
   acts_as_list
+
+  private
+    # ステータス数の下限を検証
+    def validate_number_of_statuses
+      min_number_of_contact_statuses = 2
+      raise RuntimeError if ContactStatus.count <= min_number_of_contact_statuses
+    end
 
 end
