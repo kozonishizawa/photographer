@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_224015) do
+ActiveRecord::Schema.define(version: 2020_04_02_134650) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_224015) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
+    t.integer "open_period", default: 0, null: false
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
@@ -59,6 +60,15 @@ ActiveRecord::Schema.define(version: 2019_12_05_224015) do
     t.string "title"
     t.text "body"
     t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "contact_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "position"
+    t.integer "color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -71,6 +81,8 @@ ActiveRecord::Schema.define(version: 2019_12_05_224015) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
+    t.bigint "contact_status_id"
+    t.index ["contact_status_id"], name: "index_contacts_on_contact_status_id"
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
@@ -115,7 +127,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_224015) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
-    t.integer "downloadable_limit"
+    t.integer "downloadable_limit", default: 0
     t.index ["email"], name: "index_user_email", unique: true
   end
 

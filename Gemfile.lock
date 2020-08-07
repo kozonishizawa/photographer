@@ -56,6 +56,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.1, >= 2.1.8)
+    acts_as_list (1.0.1)
+      activerecord (>= 4.2)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
     annotate (2.6.5)
@@ -153,6 +155,8 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    polyamorous (2.3.2)
+      activerecord (>= 5.2.1)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -193,9 +197,15 @@ GEM
       thor (>= 0.20.3, < 2.0)
     raindrops (0.19.0)
     rake (13.0.0)
+    ransack (2.3.2)
+      activerecord (>= 5.2.1)
+      activesupport (>= 5.2.1)
+      i18n
+      polyamorous (= 2.3.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    rb-readline (0.5.5)
     react-rails (2.6.0)
       babel-transpiler (>= 0.7.0)
       connection_pool
@@ -265,6 +275,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
   annotate
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
@@ -288,6 +299,8 @@ DEPENDENCIES
   pry-byebug
   puma (~> 3.11)
   rails (~> 6.0.0)
+  ransack
+  rb-readline
   react-rails
   rubyzip
   sass-rails (~> 5)

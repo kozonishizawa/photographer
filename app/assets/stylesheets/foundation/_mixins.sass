@@ -24,3 +24,28 @@
     content: ''
     height: 100%
     width: 100%
+
+@mixin inner
+  padding: 0 5%
+  @include mq('tab')
+    padding: 0 30px
+@mixin general_heading
+  font-size: 24px
+  font-weight: bold
+  margin-top: 24px
+
+@mixin general_link
+  text-align: center
+  display: inline
+  color: $main-color
+  text-decoration-line: underline
+  transition: .3s ease-out
+  margin-right: 16px
+  &:hover
+    color: $second-color
+
+// メディアクエリ
+@mixin mq($breakpoint: sp)
+  @media #{map-get($breakpoints, $breakpoint)}
+    @content
+

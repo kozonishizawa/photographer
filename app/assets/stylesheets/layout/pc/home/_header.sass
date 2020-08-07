@@ -1,0 +1,148 @@
+@import '../../../utility/*'
+@import '../../../foundation/_mixins'
+@import '../../../foundation/variables'
+// ==============================================
+// HEADER (PC)
+// ==============================================
+.l-header
+  width: 100%
+  &__logo
+    display: inline-block
+    font-weight: bold
+    padding-top: 50px
+    color: map-get($fontColors, 'white')
+    font-size: 2.4rem
+    &:visited
+      color: map-get($fontColors, 'white')
+    &:hover
+      color: map-get($fontColors, 'white')
+  &__inner
+    padding: 0 10%
+    @include mq('tab')
+      padding: 0 32px
+  &__nav
+    padding-top: 50px
+    text-align: right
+    @include mq('tab')
+      display: none
+  &__nav-list
+    display: inline-flex
+    flex-direction: row
+    justify-content: flex-end
+  &__nav-item
+    display: inline-block
+    padding: 1em
+  &__link
+    text-decoration: none
+    color: map-get($fontColors, 'white')
+    &:visited
+      color: map-get($fontColors, 'white')
+    &:hover
+      color: map-get($fontColors, 'white')   
+  &__drawer
+    display: inline-block
+    float: right
+    display: flex
+    justify-content: center
+    align-items: center
+    @include mq('pc')
+      display: none
+#drawer-checkbox
+  display: none
+
+#drawer-icon
+  cursor: pointer
+  display: inline-block
+  height: 50px
+  position: relative
+  width: 50px
+
+#drawer-icon span
+  background: #fff
+  border-radius: 4px
+  display: block
+  height: 8%
+  left: 50%
+  margin: -8% 0 0 -42%
+  position: absolute
+  top: 50%
+  transition: all 0.3s ease-in-out 0s
+  width: 84%
+
+#drawer-icon span::before,
+#drawer-icon span::after
+  -webkit-transform: rotate(0)
+  background: #fff
+  border-radius: 4px
+  content: ""
+  display: block
+  height: 100%
+  left: 50%
+  margin: -8% 0 0 -50%
+  position: absolute
+  top: 50%
+  transform: rotate(0)
+  transition: all 0.3s ease-in-out
+  width: 100%
+
+#drawer-icon span::before
+  margin-top: -32%
+
+#drawer-icon span::after
+  margin-top: 22%
+
+#drawer-checkbox:checked ~ #drawer-icon span
+  background: rgba(51, 51, 51, 0)
+
+#drawer-checkbox:checked ~ #drawer-icon span::before,
+#drawer-checkbox:checked ~ #drawer-icon span::after
+  content: ""
+  display: block
+  height: 100%
+  left: 50%
+  margin: -8% 0 0 -42%
+  position: absolute
+  top: 50%
+  width: 100%
+
+#drawer-checkbox:checked ~ #drawer-icon span::before
+  -webkit-transform: rotate(-45deg)
+          transform: rotate(-45deg)
+
+#drawer-checkbox:checked ~ #drawer-icon span::after
+  -webkit-transform: rotate(45deg)
+          transform: rotate(45deg)
+
+#drawer-content
+  overflow: auto
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 40
+  width: 80%
+  max-width: 90%
+  height: 100%
+  background: #fff
+  transition: all 0.3s ease-in-out 0s
+  transform: translateX(-100%)
+
+#drawer-checkbox:checked ~ #drawer-content
+  transform: translateX(0)
+  box-shadow: 6px 0 24px rgba(0, 0, 0, 0.16)
+
+
+#drawer-close
+  display: none
+  position: fixed
+  z-index: 39
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background: #000
+  opacity: 0
+  transition: all 0.3s ease-in-out 0s
+
+#drawer-checkbox:checked ~ #drawer-close
+  display: block
+  opacity: 0.3

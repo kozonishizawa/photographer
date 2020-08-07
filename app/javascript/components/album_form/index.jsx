@@ -7,11 +7,12 @@ export default class AlbumForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: this.props.album === undefined ? '' : this.props.album.title,
-      date: this.props.album === undefined ? '' : this.props.album.photographed_at,
-      category: this.props.album === undefined ? '' : this.props.album.category,
-      description: this.props.album === undefined ? '' : this.props.album.description,
-      selectedOption: 'closed',
+      title: this.props.album ? this.props.album.title : '',
+      date: this.props.album ? this.props.album.photographed_at : '',
+      category: this.props.album ? this.props.album.category : '',
+      description: this.props.album ? this.props.album.description : '',
+      openPeriod: this.props.album ? this.props.album.open_period : '',
+      selectedOption: this.props.album ? this.props.album.status : 'closed',
       showPopup: false,
       fixedBackground: false,
     };
@@ -64,6 +65,7 @@ export default class AlbumForm extends React.Component {
     data.append('album[category]', this.state.category);
     data.append('album[photographed_at]', this.state.date);
     data.append('album[user_id]', this.props.user.id);
+    data.append('album[open_period]', this.state.openPeriod);
 
     if (this.props.album === undefined) {
       Xhr.request.post('/admin/albums', data)
@@ -86,29 +88,36 @@ export default class AlbumForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <button className={Style.generalBtn} onClick={this.togglePopup}>{this.props.album === undefined ? 'アルバム作成' : '編集'}</button>
+      <React.Fragment>
+        <button className={Style.generalBtn} onClick={this.togglePopup}>{this.props.album ? '編集' : 'アルバム作成'}</button>
         {this.state.showPopup ? 
           <div className={Style.Form__wrapper} >
-            <div className={Style.Form__overlay} onClick={this.togglePopup}> </div>
+            <div className={Style.Form__overlay} onClick={this.togglePopup}>
+            </div>
             <div className={Style.Form__form}>
-              <button className={Style.closeBtn} onClick={this.togglePopup}>×</button>
+              <div className={Style.closeBtn} onClick={this.togglePopup}><span></span></div>
               <div className={Style.Form__container}>
                 <form onSubmit={this.handleSubmit} className={Style.Form}>
-                  <h1 className={Style.Form__heading}>{this.props.album === undefined ? '新規アルバム作成' : 'アルバム情報編集'}</h1>
+                  <h1 className={Style.Form__heading}>{this.props.album ? 'アルバム情報編集' : '新規アルバム作成'}</h1>
                   <p>ユーザー名：{this.props.user.name}</p>
                   <input type="hidden" value={this.props.user.id} />
                   <div className={Style.Form__formItem}>
                     <label className={Style.Form__label}>
-                      タイトル（必須）
+                      タイトル <span className={Style.Form__required}>必須</span>
                     </label>
                     <input className={Style.Form__field} type="text" name='title' value={this.state.title} onChange={this.handleChange} required />
                   </div>
                   <div className={Style.Form__formItem}>
                     <label className={Style.Form__label}>
-                      撮影日（必須）
+                      撮影日 <span className={Style.Form__required}>必須</span>
                     </label>
-                    <input className={Style.Form__field} type="date" name='date' value={this.state.date} onChange={this.handleChange} required />
+                    <input className={Style.Form__date} type="date" name='date' value={this.state.date} onChange={this.handleChange} required />
+                  </div>
+                  <div className={Style.Form__formItem}>
+                    <label className={Style.Form__label}>
+                      公開日数 <span className={Style.Form__required}>必須</span>
+                    </label>
+                    <input className={Style.Form__number} type="number" min='0' step='1' name='openPeriod' value={this.state.openPeriod} onChange={this.handleChange} placeholder='単位：日' required />
                   </div>
                   <div className={Style.Form__formItem}>
                     <label className={Style.Form__label}>
@@ -137,11 +146,11 @@ export default class AlbumForm extends React.Component {
                       <label className={Style.Form__radioButton} htmlFor="closed">
                         非公開
                       </label>
-                      <input className={Style.Form__radio} type="radio" name="selectedOption" value="personal" id="personal"
+                      {/* <input className={Style.Form__radio} type="radio" name="selectedOption" value="personal" id="personal"
                         checked={this.state.selectedOption === 'personal'} onChange={this.handleChange}/>
                       <label className={Style.Form__radioButton} htmlFor="personal">
                         本人のみ
-                      </label>
+                      </label> */}
                       <input className={Style.Form__radio} type="radio" name="selectedOption" value="open" id="open"
                         checked={this.state.selectedOption === 'open'} onChange={this.handleChange}/>
                       <label className={Style.Form__radioButton} htmlFor="open">
@@ -156,7 +165,7 @@ export default class AlbumForm extends React.Component {
             </div>
           </div> : null
         }
-      </div>
+      </React.Fragment>
     )
   }
 }

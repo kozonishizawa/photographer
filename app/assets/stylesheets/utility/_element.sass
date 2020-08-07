@@ -1,0 +1,52 @@
+@import '../foundation/mixins'
+.col
+  &-1
+    width: 100% / 12
+  &-2
+    width: 100% * 2 / 12
+  &-3
+    width: 100% * 3 / 12
+  &-4
+    width: 100% * 4 / 12
+  &-5
+    width: 100% * 5 / 12
+  &-6
+    width: 100% * 6 / 12
+  &-7
+    width: 100% * 7 / 12
+  &-8
+    width: 100% * 8 / 12
+  &-9
+    width: 100% * 9 / 12
+  &-10
+    width: 100% * 10 / 12
+  &-11
+    width: 100% * 11 / 12
+  &-12
+    width: 100%
+
+.flex-row
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+.flex-col
+  display: flex
+  flex-direction: column
+
+.marquee
+  @include mq('sp')
+    margin: 0
+    padding-left: 0
+    display: inline-block
+    white-space: nowrap
+    animation-name: marquee
+    animation-timing-function: linear
+    animation-duration: 15s
+    animation-iteration-count: infinite
+
+@keyframes marquee
+  0% 
+    transform: translate(0%)
+  100%
+    transform: translate(-100%)

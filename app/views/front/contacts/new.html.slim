@@ -1,30 +1,30 @@
-.p-form
-  .p-form__inner
-    .p-form__form
-      .p-form__formInner
-        = link_to 'メインメニュー', front_root_path, class: 'p-form__prev'
+.p-contacts
+  .p-contacts__inner
+    .l-form__form
+      .l-form__formInner
+        = link_to 'メインメニュー', front_root_path, class: 'l-form__prev'
         sapn |
-        = link_to '履歴', front_contacts_path, class: 'p-form__next'
+        = link_to '履歴', front_contacts_path, class: 'l-form__next'
 
-        .p-form__heading
+        .l-form__heading
           h1 撮影のご依頼
 
         = form_with model: [:front, @contact], local: true do |f|
           = f.hidden_field :user_id, value: current_user.id
 
-          .p-form__formItem
-            = f.label :subject, '撮影内容（必須）', class: 'p-form__label'
-            = f.select :subject, Contact.subjects.keys.map {|k| [I18n.t("enums.contact.subject.#{k}"), k]}, {}
-          .p-form__formItem
-            = f.label :date, '撮影希望日（必須）', class: 'p-form__label'
-            = f.date_field :date, required: :true, class: 'p-form__field'
-          .p-form__formItem
-            = f.label :location, '撮影地（必須）', class: 'p-form__label'
-            = f.text_field :location, required: :true, class: 'p-form__field'
+          .l-form__formItem
+            = f.label :subject, '撮影内容（必須）', class: 'l-form__label'
+            = f.select :subject, Contact.subjects.keys.map {|k| [I18n.t("enums.contact.subject.#{k}"), k]}, {}, class: 'l-form__select'
+          .l-form__formItem
+            = f.label :date, '撮影希望日（必須）', class: 'l-form__label'
+            = f.date_field :date, required: :true, class: 'l-form__field'
+          .l-form__formItem
+            = f.label :location, '撮影地（必須）', class: 'l-form__label'
+            = f.text_field :location, required: :true, class: 'l-form__field'
 
-          .p-form__formItem
-            = f.label :request, 'ご要望・ご質問', class: 'p-form__label'
-            = f.text_area :request, class: 'p-form__area'
+          .l-form__formItem
+            = f.label :request, 'ご要望・ご質問', class: 'l-form__label'
+            = f.text_area :request, class: 'l-form__area'
 
-          .p-form__submit
-            = f.submit '送信する', class: 'p-form__button'
+          .l-form__submit
+            = f.submit '送信する', class: 'l-btn__submit'

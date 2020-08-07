@@ -2,12 +2,13 @@ class Admin::AlbumsController < Admin::ApplicationController
   before_action :required_admin
 
   def index
-    @albums = Album.all
+    @q = Album.ransack(params[:q])
+    @albums = @q.result.distinct.reverse_order.page(params[:page])
   end
   
   def show
     @album = Album.find(params[:id])
-    @photos = @album.photos.order('created_at DESC')
+    @photos = @album.photos.order(created_at: :desc).page(params[:page])
   end
 
   def new
@@ -39,7 +40,7 @@ class Admin::AlbumsController < Admin::ApplicationController
 
   private
   def album_params
-    params.require(:album).permit :title, :description, :status, :photographed_at, :category, :user_id
+    params.require(:album).permit :title, :description, :status, :photographed_at, :category, :user_id, :open_period
   end
 
 end

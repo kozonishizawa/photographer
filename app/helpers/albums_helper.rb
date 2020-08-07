@@ -6,8 +6,8 @@ module AlbumsHelper
     if selectable >= 0
       return selectable
     else 
-      return "ダウンロード可能上限を超えています。"
+      return 'ダウンロード可能上限を超えています。'
     end
   end
 
-end
+end 

@@ -1,0 +1,135 @@
+@import '../../../utility/*'
+@import '../../../foundation/_mixins'
+@import '../../../foundation/variables'
+
+@mixin btn
+  border: solid 1px $second-color
+  transition: .4s
+  display: inline-block
+  font-weight: bold
+  padding: 8px 24px 
+  border-radius: 4px
+  box-shadow: 1px 1px 2px #ccc
+  @include mq('tab')
+    width: 100%
+
+.l-btn
+  &__delete
+    @include btn
+    background-color: rgba(0, 0, 0, 0.5)
+    border: 1px solid transparent
+    color: #fff
+    &:hover
+      color: #fff
+      border: 1px solid $second-color
+      background-color: $second-color
+
+  &__edit
+    @include btn
+    background-color: transparent
+    color: rgba(0,0,0,0.6)
+    &:hover
+      color: #fff
+      border: 1px solid $second-color
+      background-color: $second-color
+
+  &__submit
+    @include btn
+    background-color: $main-color
+    border-color: $main-color
+    color: #fff
+    margin-left: 8px
+    &:hover
+      color: #fff
+      border: 1px solid $second-color
+      background-color: $second-color
+    @include mq('tab')
+      margin-left: 0
+
+  &__download
+    display: inline-block
+    background-color: $second-color
+    border: 1px solid $second-color
+    border-radius: 50px
+    letter-spacing: 8px
+    font-size: 24px
+    color: #fff
+    padding: 16px 32px
+    transition: .3s ease-out
+    margin: 0 auto
+    @include mq('sp')
+      font-size: 1.8rem
+      letter-spacing: .4rem
+      border-radius: 4px
+      width: 100%
+      padding: 1.6rem 0
+    &:hover
+      background-image: none
+      background-color: transparent
+      color: $second-color
+    
+      
+  &__session
+    font-size: 14px
+    display: inline-block
+    border: 1px solid #fff
+    border-radius: 4px
+    padding: 8px 16px
+    color: #ffffff
+    transition: .3s ease-out
+    &:hover
+      color: $second-color
+      background-color: #fff
+
+
+  &__home
+    background-color: #fff
+    border-radius: 4px
+    text-shadow: none
+    color: $second-color
+    font-size: 16px
+    padding: 16px 24px
+    display: inline-block
+    text-decolation: none
+    text-align: center
+    border: 1px solid #fff
+    transition: background-color .3s ease-out
+    position: relative
+    overflow: hidden
+    &:hover
+      background-color: transparent
+      color: rgba(255,255,255,1)
+    @include mq('tab')
+      width: 400px
+    @include mq('sp')
+      width: 100%
+  &__wide
+    background-color: $second-color
+    letter-spacing: 8px
+    border-radius: 4px
+    text-shadow: none
+    color: #fff
+    font-size: 24px
+    padding: 8px 24px
+    text-align: center
+    border: 1px solid $second-color
+    transition: .3s
+    margin: 8px 0
+    width: 100%
+    display: block
+    box-shadow: 1px 1px 2px #ccc
+
+    &:hover
+      background-color: rgba(255,255,255,0.1)
+      color: $second-color
+      border-color: $second-color
+.form-btn
+  color: #fff
+  margin: 8px 0
+  width: 100%
+  display: block
+  background-color: #2a2e38
+  &:hover
+    background-color: lighten(#2a2e38, 20%)
+
+  

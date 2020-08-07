@@ -1,0 +1,57 @@
+.p-histories
+  .p-histories__inner
+    nav.l-navbar#navbar
+      = link_to 'アルバム一覧へ', front_albums_path, class: 'l-navbar__link'
+    .p-histories__heading
+      h1.p-histories__title ダウンロード履歴
+    - if @photos.blank?
+      .p-histories__lead
+        p 過去にダウンロードされた写真はありません
+    - else
+      .p-histories__lead
+        p 期間内であれば再ダウンロードが可能です
+    - if @photos.present?
+      .p-histories__overlay.overlay#overlay
+      .c-carousel.slide#slide
+        ul.c-carousel__list
+          - @photos.each do |photo|
+            - if photo.image.attached?
+              li.c-carousel__item = image_tag photo.rectangle_image(900, 600)
+        .c-carousel__prev
+        .c-carousel__next
+        .c-carousel__nav
+
+      .p-histories__thumbnails
+        ul.p-histories__list
+        - @photos.each.with_index(1) do |photo, index|
+          - if photo.image.attached?
+            li.p-histories__listItem
+              .p-histories__card
+                .p-histories__imageWrapper
+                  - if photo.download_status == 'complete'
+                    .p-histories__mark data-id="#{photo.id}"
+                      i.fa.fa-heart
+                  - elsif photo.download_status == 're_selected'
+                    .p-histories__mark.marked data-id="#{photo.id}"
+                      i.fa.fa-heart
+                  = image_tag photo.rectangle_image(300,200), class: 'image', 'data-index': index
+                .p-histories__caption
+                  = link_to photo.album.title, front_album_path(photo.album.id), class: 'p-histories__albumTitle'
+                  - if photo.download_status == 'complete'
+                    .p-histories__btn data-id="#{photo.id}"
+                      i.fa.fa-heart
+                  - elsif photo.download_status == 're_selected'
+                    .p-histories__btn.on data-id="#{photo.id}"
+                      i.fa.fa-heart
+      .l-pagination
+        = paginate @photos
+        = page_entries_info @photos
+      .p-histories__btnWrapper
+        = link_to '再ダウンロードリストに進む', front_histories_path, class: 'l-btn__download'
+      .p-histories__linkWrapper
+        = link_to 'アルバム一覧へ', front_albums_path, class: 'p-histories__link'
+    - else
+      .p-histories__linkWrapper
+          p.p-photos__comment ダウンロードした写真はここに表示されるよ！
+          = react_component 'kawaii'
+          = link_to 'アルバム一覧へ', front_albums_path, class: 'p-histories__link'

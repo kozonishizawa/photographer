@@ -11,6 +11,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  user_id         :integer
+#  open_period     :integer          default("0"), not null
 #
 
 class Album < ApplicationRecord
@@ -50,4 +51,11 @@ class Album < ApplicationRecord
   #----------------------------------------
   #  ** Methods **
   #----------------------------------------
+  def self.ransackable_attributes(auth_object = nil)
+    %w[title photographed_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[user]
+  end
 end

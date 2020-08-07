@@ -2,7 +2,8 @@ class Admin::UsersController < Admin::ApplicationController
   before_action :required_admin
 
   def index
-    @users = User.all
+    @q = User.ransack(params[:q])
+    @users = @q.result.distinct.page(params[:page])
   end
 
   def new

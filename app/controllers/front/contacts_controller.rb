@@ -19,7 +19,7 @@ class Front::ContactsController < Front::ApplicationController
 
   private
     def contact_params
-      params.require(:contact).permit :subject, :date, :location, :request, :user_id
+      params.require(:contact).permit :subject, :date, :location, :request, :user_id, :contact_status_id
     end
 
 end

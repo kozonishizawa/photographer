@@ -10,8 +10,9 @@ ja:
     models:
       user: ユーザー
       photo: 写真
-      contact: コンタクト
+      contact: お問い合わせ
       article: 記事
+      album: アルバム
     attributes:
       user:
         name: 名前
@@ -34,6 +35,11 @@ ja:
       article:
         title: タイトル
         body: 内容
+      album:
+        title: タイトル
+        photographed_at: 撮影日
+        open_period: 公開期限
+        created_at: 作成日
   date:
     abbr_day_names:
     - 日

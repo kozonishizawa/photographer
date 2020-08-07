@@ -1,25 +1,40 @@
 .p-photos
+  nav.l-navbar#navbar
+    = link_to 'メインメニュー', admin_root_path, class: 'l-navbar__link'
+    = link_to 'アルバム一覧', admin_albums_path, class: 'l-navbar__link'
+    = link_to 'ユーザー一覧', admin_users_path, class: 'l-navbar__link'
   .p-photos__inner
+  
     .p-photos__heading
       h2 = @album.title
       
     = react_component 'uploader', user_id: @album.user.id, album_id: @album.id
-    = form_with model: [:admin, Photo], local: true do |f|
-      = f.file_field :image
-      = f.hidden_field :user_id, value: @album.user.id
-      = f.hidden_field :album_id, value: @album.id
-      = f.submit '登録', class: 'p-photos__submitButton'
 
-    .p-photos__imagesWrapper
-      - if @photos.present?
-        .p-photos__thumbnail
-          ul.p-photos__list
-            - @photos.each do |photo|
-              - if photo.image.attached?
-                li.p-photos__listItem
+    - if @photos.present?
+      .p-photos__thumbnails
+        ul.p-photos__list
+          - @photos.each do |photo|
+            - if photo.image.attached?
+              li.p-photos__listItem
+                .p-photos__photograph
                   .p-photos__imageContainer
                     = image_tag photo.square_image(150)
-                    = link_to '削除', admin_photo_path(photo.id), method: :delete, remote: true, class: 'delete'
-      - else
+                    = link_to admin_photo_path(photo.id), method: :delete, remote: true, class: 'delete' do
+                      span
+                  .p-photos__caption
+                    - if photo.download_status == 'selected'
+                      p.p-photos__selected 選択中
+                    - elsif photo.download_status == 'unselected'
+                      p.p-photos__unselected 未選択
+                    - elsif photo.download_status == 'complete'
+                      p.p-photos__complete ダウンロード済
+                    - elsif photo.download_status == 're_selected'
+                      p.p-photos__re_selected 再選択中
+    - else
+      .p-photos__none
         = react_component 'kawaii'
         p まだ写真がアップロードされていません
+
+    .l-pagination
+      = paginate @photos
+      = page_entries_info @photos

@@ -1,0 +1,63 @@
+.l-table
+  border-collapse: separate
+  border-spacing: 0 8px
+  margin: 0 auto
+  min-width: 100%
+  box-sizing: border-box
+  &__head
+    @include mq('tab')
+      display: none
+  &__row
+    background-color: #fff
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1)
+    transition: box-shadow .3s ease-out
+    @include mq('tab')
+      display: flex
+      flex-direction: column
+      margin-bottom: 16px
+      padding-bottom: 16px
+    &:hover
+      box-shadow: 0 0 3px 1px $second-color
+  &__header
+    text-align: center
+    padding: 20px
+  &__data
+    text-align: center
+    word-break: break-all
+    padding: 24px 16px
+    position: relative
+    @include mq('tab')
+      padding: 8px
+    &:first-child
+      @include mq('tab')
+        background: $second-color
+        color: #fff
+        padding: 8px
+        a
+          color: #ffffff
+          font-weight: bold
+    &:before
+      @include mq('tab')
+        content: attr(data-label)
+        font-weight: bold
+        margin-left: 16px
+        float: left
+        position: absolute
+        top: 0.8rem
+        left: 0
+  &__btn
+    font-size: 0.8em
+    text-align: center
+    word-break: break-all
+    padding: 8px 0
+    @include mq('tab')
+      padding: 16px 16px 8px
+  &__link
+    font-weight: bold
+    color: $main-color
+    text-decoration: underline
+    transition: color .3s ease-out
+    &:hover
+      color: $second-color
+
+

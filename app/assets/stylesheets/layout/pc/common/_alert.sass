@@ -1,0 +1,17 @@
+.alert
+  display: inline-block
+  margin-top: 8px
+  color: $main-color
+  padding: 8px 16px
+  background-color: #fff
+  border: 1px solid $main-color
+  border-radius: 4px
+  text-align: center
+  position: fixed
+  left: 50%
+  transform: translateX(-50%)
+  z-index: 10
+  @include mq('sp')
+    font-size: 1rem
+  &-danger
+    color: $accent-color

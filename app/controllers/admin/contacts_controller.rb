@@ -2,7 +2,9 @@ class Admin::ContactsController < Admin::ApplicationController
   before_action :required_admin
   
   def index
-    @contacts = Contact.all
+    @contact_statuses = ContactStatus.all
+    @q = Contact.ransack(params[:q])
+    @contacts = @q.result.distinct.reverse_order.page(params[:page])
   end
 
   def show

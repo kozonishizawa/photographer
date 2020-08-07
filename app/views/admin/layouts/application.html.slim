@@ -7,33 +7,34 @@ html
     = csp_meta_tag
 
     = stylesheet_link_tag 'project/pc/admin/application', media: 'all', 'data-turbolinks-track': :reload
-    = stylesheet_link_tag 'project/pc/front/application', media: 'all', 'data-turbolinks-track': :reload
     = stylesheet_link_tag 'fonts/application', 'data-turbolinks-track': :reload
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
 
+    / Google Fonts
+    link href='https://fonts.googleapis.com/css?family=Noto+Sans+JP' rel='stylesheet'
+    
   body.l-body
-
-    -# ----------------------------------------------
-    -# ヘッダ
-    -# ----------------------------------------------
+    / ----------------------------------------------
+    / ヘッダ
+    / ----------------------------------------------
 
     = render 'admin/layouts/_partials/header'
 
-    .message
-      - flash.each do |message_type, message|
-        = content_tag(:div, message, class: "alert alert-#{message_type}")
+    .full-screen
 
-    = yield
 
-    -# ----------------------------------------------
-    -# フッター
-    -# ----------------------------------------------
+      = yield
 
-    -# ----------------------------------------------
-    -# flash messages
-    -# ----------------------------------------------
-    = react_component 'data_modal', flash&.to_h
-    
+    / ----------------------------------------------
+    / フッター
+    / ----------------------------------------------
+    = render 'layouts/footer'
 
+    / ----------------------------------------------
+    / flash messages
+    / ----------------------------------------------
 
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    = debug(params) if Rails.env.development?
+    = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
+
+    / = debug(params) if Rails.env.development?

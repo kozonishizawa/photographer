@@ -1,0 +1,137 @@
+.p-photos
+  user-select: none
+  flex: 1
+  &__inner
+    @include inner
+  &__link
+    @include general_link
+  &__heading
+    text-align: center
+    font-size: 2em
+    margin: 50px 0
+    font-weight: 700
+    @include mq('sp')
+      margin: 2.4rem 0 1.6rem 
+  &__list
+    cursor: default
+  &__listItem
+    text-align: center
+    display: inline-flex
+    flex-direction: column
+    flex-wrap: wrap
+    justify-content: flex-start
+  &__photograph
+    background-color: #fff
+    position: relative
+  &__caption
+    font-size: 0.4rem
+    position: absolute
+    bottom: 0
+    left: 0
+    padding: 8px 0
+    background-color: #fff
+    width: 100%
+    box-sizing: border-box
+  &__imageContainer
+    display: flex
+    flex-direction: column
+    position: relative
+    img
+      width: 100px
+      height: 100px
+      object-fit: cover
+  .delete
+    position: absolute
+    color: glay
+    font-size: 24px
+    line-height: 24px
+    top: 0
+    right: 0
+    width: 20px
+    height: 20px
+    background-color: #fff
+    span
+      &::before, &::after
+        content: ''
+        display: block
+        position: absolute
+        top: 2px
+        right: 8px
+        transform: translateY(-50%) translateX(-50%)
+        -webkit-transform: translateY(-50%) translateX(-50%)
+        height: 16px
+        transform: rotate(45deg)
+        border-right: 3px solid gray
+      &::before
+        transform: rotate(-45deg)
+
+
+
+  &__thumbnails
+    border-radius: 5px
+    cursor: pointer
+  &__formWrapper
+  &__form
+    display: block
+  &__unselected
+    color: rgba(0,0,0,0)
+  &__selected
+    color: $accent-color
+  &__complete
+    color: rgba(0,0,0,0.5)
+  &__re_selected
+    color: $second-color
+  &__linkWrapper
+    padding: 50px
+    text-align: center
+  &__next
+    text-align: center
+    display: block
+    position: relative
+    font-weight: bold
+    width: 30%
+    padding: 0.5em 0.5em
+    margin: 0 auto
+    text-decoration: none
+    color: #FFF
+    background: #00bcd4
+    transition: .4s
+    border-radius: 5px
+    cursor: pointer
+    box-shadow: 1px 1px 2px #ccc
+    &:visited
+      color: #FFF
+  &__prev
+    text-align: center
+    display: block
+    margin-top: 10px
+  &__overlay
+    display: none
+    z-index: 9999
+    position: fixed
+    left: 0px
+    top: 0px
+    width: 100%
+    height: 100%
+    background-color: black
+    opacity: 0.5
+  &__btn
+    margin-top: 10px
+    width: 45px
+    height: 45px
+    position: relative
+    display: inline-block
+    font-weight: bold
+    padding: 0.25em 0.5em
+    text-decoration: none
+    color: #00bcd4
+    border-radius: 45px
+    border: none
+    background-color: rgba(1,1,1,0.1)
+    cursor: pointer
+  .on
+    color: #fff
+    background-color: #00bcd4
+    border: 7px solid rgba(1,1,1,0.1)
+  &__none
+    text-align: center

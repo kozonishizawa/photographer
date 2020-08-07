@@ -1,0 +1,45 @@
+.p-form
+  .p-form__inner
+    .p-form__form
+      .p-form__formInner
+
+        .p-form__heading
+          h1 お仕事のご依頼（初めての方）
+
+        = form_with model: @user, local: true do |f|
+
+          .p-form__formItem
+            = render 'shared/error_messages', object: f.object
+          .p-form__formItem
+            = f.label :name, "お名前（必須）", class: 'p-form__label'
+            = f.text_field :name, required: :true, class: 'p-form__field'
+          .p-form__formItem
+            = f.label :tel, "電話番号（必須）", class: 'p-form__label'
+            = f.telephone_field :tel, required: :true, class: 'p-form__field'
+          .p-form__formItem
+            = f.label :email, "メールアドレス（必須）", class: 'p-form__label'
+            = f.email_field :email, required: :true, class: 'p-form__field'
+          .p-form__formItem
+            = f.label :password, "パスワード(6字以上10字以内)（必須）", class: 'p-form__label'
+            = f.password_field :password, required: :true, class: 'p-form__field'
+          .p-form__formItem
+            = f.label :password_confirmation, "パスワード(確認のため再度入力して下さい。)（必須）", class: 'p-form__label'
+            = f.password_field :password_confirmation, required: :true, class: 'p-form__field'
+
+          = f.fields_for :contacts do |c|
+            .p-form__formItem
+              = c.label :subject, '撮影内容（必須）', class: 'p-form__label'
+              = c.select :subject, Contact.subjects.keys.map {|k| [I18n.t("enums.contact.subject.#{k}"), k]}, {}
+            .p-form__formItem
+              = c.label :date, '撮影希望日（必須）', class: 'p-form__label'
+              = c.date_field :date, required: :true, class: 'p-form__field'
+            .p-form__formItem
+              = c.label :location, '撮影地（必須）', class: 'p-form__label'
+              = c.text_field :location, required: :true, class: 'p-form__field'
+
+            .p-form__formItem
+              = c.label :request, 'ご要望・ご質問', class: 'p-form__label'
+              = c.text_area :request, class: 'p-form__area'
+
+          .p-form__submit
+            = f.submit '送信する', class: 'l-btn__home form-btn'

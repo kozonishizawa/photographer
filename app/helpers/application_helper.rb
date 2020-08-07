@@ -1,26 +1,38 @@
 module ApplicationHelper
 	def admin_menu
 		[
-			{ name: 'ユーザー管理', url: admin_users_path},
-			{ name: 'アルバム管理', url: admin_albums_path},
-			{ name: '記事管理', url: admin_articles_path},
-			{ name: 'チャット', url: admin_rooms_path}, 
-			{ name: 'お問い合わせ', url: admin_contacts_path}
+			{
+				name: '新規ユーザー登録',
+				url: new_admin_user_path,
+				description: 'ユーザーアカウントを作成します。',
+			},
+			{
+				name: 'ユーザー管理',
+				url: admin_users_path,
+				description: 'ユーザー情報の編集やアルバムを作成することができます。',
+			},
+			{
+				name: 'アルバム管理',
+				url: admin_albums_path,
+				description: 'アルバムに写真を登録することができます。',
+			},
+			{
+				name: 'お問い合わせ',
+				url: admin_contacts_path,
+				description: 'お問い合わせを閲覧することができます。',
+			}
 		]
 	end
 
 	def user_menu
 		[
-			{ name: '利用者情報', url: front_user_path(current_user.id)},
-			{ name: 'アルバム', url: front_albums_path},
-			{ name: '撮影依頼', url: new_front_contact_path},
-			{ name: 'チャット', url: front_room_path(current_user.id)},
+			{ name: '写真の受け取りを開始する', url: front_albums_path},
 		]
 	end
 
 	def full_title(page_title = '')
 
-		"#{page_title.blank?? nil : page_title+' | '}BigDay_photograph"
+		"#{page_title.blank?? nil : page_title+' | '}DropStudio"
 	end
 
 end

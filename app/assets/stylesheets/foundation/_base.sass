@@ -1,7 +1,7 @@
 // ==============================================
 //  初期値
 // ==============================================
-
+@import './*'
 *
   box-sizing: border-box
   background-clip: padding-box
@@ -13,22 +13,28 @@ html
   background: map-get($layoutColors, 'white')
   font-size: 62.5%
   max-width: 100vw
+  min-height: 100vh
 body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   -webkit-text-size-adjust: 100%
-  font-family: application, 'Yu Gothic', 'YuGothic', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Osaka', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', 'sans-serif'
+  font-family: application, 'Noto Sans JP', 'Lato', 'Yu Gothic', 'YuGothic', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Osaka', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', 'sans-serif'
   font-feature-settings: 'palt'
   line-height: 1.5
   letter-spacing: #{(100/1000)}em
   font-size: map-get($fontSizes, 'm')
   color: map-get($fontColors, 'black')
   max-width: 100vw
-  min-height: 100vh !important
-
+  min-height: 100vh
+  display: flex
+  flex-direction: column
   overflow: auto
   margin: 0
   padding: 0
+.full-screen
+  flex: 1
+  display: flex
+  // background-color: #f4f4f4
 input
   &::selection
     background: map-get($layoutColors, 'main')

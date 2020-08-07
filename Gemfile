@@ -23,6 +23,8 @@ gem 'html2slim'
 
 gem 'rubyzip'
 
+gem 'acts_as_list'
+
 gem 'font-awesome-rails'
 
 
@@ -52,6 +54,9 @@ group :development, :test do
 end
 
 group :development do
+
+  gem 'rb-readline'
+
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -68,6 +73,7 @@ gem 'hirb'
 gem 'hirb-unicode'
 gem 'enum_help'
 gem 'kaminari'
+gem 'ransack'
 
 # Use Capistrano for deployment
 gem 'capistrano', '~> 3.11',    require: false

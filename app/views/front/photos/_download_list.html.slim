@@ -1,0 +1,28 @@
+.p-photos
+  .p-photos__inner
+    = link_to 'アルバム一覧へ', front_albums_path, class: 'p-photos__link'
+    h1.p-photos__heading = yield(:title)
+    - if @photos.present?
+      p.p-photos__lead 以下の写真が選択されています。
+    .p-photos__thumbnails
+      ul.p-photos__list
+        - @photos.each.with_index(1) do |photo, index|
+          - if photo.image.attached?
+            li.p-photos__listItem-s
+              .p-photos__card
+                .p-photos__imageWrapper
+                  = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail', 'data-index': index
+                .p-photos__caption data-turbolinks='false'
+                  = link_to '選び直す', front_album_path(photo.album.id), class: 'p-photos__reselect'
+    .l-pagination
+      = paginate @photos
+      = page_entries_info @photos
+    .p-photos__btnWrapper
+      - if @photos.present?
+        = link_to yield(:btn_text), front_user_download_path(current_user.id), method: :post, class: 'l-btn__download', data: { confirm: '一度ダウンロードされると選び直すことができなくなります。ダウンロードしてよろしいですか？' }
+      - else
+        p.p-photos__comment アルバムから写真を選んでね！
+        = react_component 'kawaii'
+    .p-photos__linkWrapper
+      = link_to 'アルバム一覧へ', front_albums_path, class: 'p-photos__link'
+

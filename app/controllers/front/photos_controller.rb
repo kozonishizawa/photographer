@@ -1,17 +1,23 @@
 class Front::PhotosController < Front::ApplicationController
+
   before_action :login_required
   before_action :validate_user, only: [:update]
   before_action :verify_downloadable_limit, only: [:update]
+
+  def index
+    @photos = Photo.selected.joins(album: :user).merge(User.where(id: current_user.id)).merge(Album.where.not(status: :closed)).reverse_order.page(params[:page]).per(20)
+  end
   
   def update
     photo = Photo.find(params[:id])
-    album = Album.find(photo.album.id)
-    if photo.download_status == 'unselected'
-      photo.update!(download_status: 'selected')
-    elsif photo.download_status == 'selected'
-      photo.update!(download_status: 'unselected')
+    if photo.unselected?
+      photo.selected!
+    elsif photo.selected?
+      photo.unselected!
     end
-    head :ok
+    selected = Photo.selected.joins(album: :user).merge(User.where(id: current_user.id)).count
+    selectable = current_user.downloadable_limit - selected
+    render json: { status: :sccess, selectable: selectable }
   end
 
   private
@@ -24,18 +30,12 @@ class Front::PhotosController < Front::ApplicationController
       end
     end
 
-    def exceed_downloadable_limit
-      if Photo.where(user_id: current_user).where(download_status: 'selected').count > current_user.downloadable_limit
-        redirect_to front_album_path(photo.album.id), flash: { danger: '選択できる上限を超えています'}
-      end
-    end
-
     # ダウンロード上限を検証
     def verify_downloadable_limit
       photo = Photo.find(params[:id])
       selected_quantity = Photo.selected.where(user_id: current_user.id).count
       if selected_quantity >= current_user.downloadable_limit && photo.download_status == 'unselected'
-        redirect_to front_album_path(photo.album.id), flash: { danger: '選択できる上限を超えています'}
+        render json: { selectable: 'over' }
       end
     end
 

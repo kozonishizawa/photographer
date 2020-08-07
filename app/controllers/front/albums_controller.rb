@@ -1,14 +1,16 @@
 class Front::AlbumsController < Front::ApplicationController
   before_action :login_required
   before_action :validate_user, only: [:show]
+  before_action :close_album, only: [:index, :show]
+  before_action :overdue, only: [:show]
 
   def index
-    @albums = current_user.albums.all
+    @albums = current_user.albums.where.not(status: :closed).page(params[:page])
   end
 
   def show
     @album = Album.find(params[:id])
-    @photos = @album.photos.reverse_order
+    @photos = @album.photos.reverse_order.page(params[:page]).per(20)
     @user = @album.user
   end
 
@@ -19,8 +21,8 @@ class Front::AlbumsController < Front::ApplicationController
       album = Album.find(params[:id])
       user = album.user
       unless user.id === current_user.id
-        redirect_to front_root_url, flash: { danger: 'アクセス権限がありません'}
+        redirect_to front_root_url, flash: { danger: 'アクセス権限がありません' }
       end
     end
-    
+
 end

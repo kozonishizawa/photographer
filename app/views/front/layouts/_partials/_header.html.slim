@@ -1,8 +1,44 @@
-header.l-dashboard__header
+header.l-header#header
+  .l-header__inner
+    .flex-row
+      .col-6.l-header__left
+        = link_to 'DropStudio', logged_in? ? front_albums_path : root_path, class: 'l-header__logo'
 
-  .l-dashboard__headerTabs
-    = link_to 'メインメニュー', front_root_path
+      .col-6
+        nav.l-header__nav
+          ul.l-header__nav-list
+            - if logged_in?
+              li.l-header__nav-item
+                = link_to '選択中', front_photos_path, class: 'l-header__link'
+              li.l-header__nav-item
+                = link_to '再選択中', front_histories_path, class: 'l-header__link'
+              li.l-header__nav-item
+                = link_to 'お問い合わせ', new_front_contact_path, class: 'l-header__link'
+              li.l-header__nav-item
+                = link_to 'ログアウト', logout_path, class: 'l-btn__session'
+              
+            - else
+              li.l-header__nav-item
+                = link_to "お問い合わせ", new_front_user_path, class: "l-header__link"
+              li.l-header__nav-item
+                = link_to "ログイン", login_path, class: "l-header__link"
+        nav.l-header__drawer
+          input#drawer-checkbox type='checkbox'
+          label#drawer-icon for='drawer-checkbox'
+            span
+          label#drawer-close for='drawer-checkbox'
+          div#drawer-content.l-drawer
+            = link_to 'アルバム一覧', front_albums_path, class: 'l-drawer__link'
+            = link_to '選択中の写真', front_photos_path, class: 'l-drawer__link'
+            = link_to '再選択中の写真', front_histories_path, class: 'l-drawer__link'
+            = link_to 'お問い合わせ', new_front_contact_path, class: 'l-drawer__link'
+            = link_to 'ログアウト', logout_path, class: 'l-drawer__link'
+- if logged_in?
+  .l-counter
+    p#counter.l-counter__counter
+      | あと#{downloadable_counter}枚選択可能
 
-  .l-dashboard__headerMenus
-    = link_to 'プロフィール編集', edit_front_user_path(current_user), class: 'l-dashboard__headerMenu'
-    = link_to 'ログアウト', logout_path, class: 'l-dashboard__headerMenu'
+.message
+  - flash.each do |message_type, message|
+      = content_tag(:div, message, class: "alert alert-#{message_type}")
+

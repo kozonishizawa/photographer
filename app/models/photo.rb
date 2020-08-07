@@ -22,7 +22,7 @@ class Photo < ApplicationRecord
   #----------------------------------------
   #  ** Enums **
   #----------------------------------------
-  enum download_status: { unselected: 0, selected: 1, complete: 2 }
+  enum download_status: { unselected: 0, selected: 1, complete: 2, re_selected: 3 }
   
   #----------------------------------------
   #  ** Validations **
@@ -43,20 +43,19 @@ class Photo < ApplicationRecord
   #----------------------------------------
   #  ** Scopes **
   #----------------------------------------
-  # 未選択の写真
-  scope :unselected, -> { where(download_status: 'unselected') }
-  # 選択された写真
-  scope :selected, -> { where(download_status: 'selected') }
+  
   #----------------------------------------
   #  ** Methods **
   #----------------------------------------
   # トリミング（正方形）
   def square_image(length)
-    self.image.variant(combine_options: {resize: "#{length}x#{length}^", crop:"#{length}x#{length}+0+0",gravity: :center}).processed
+    # self.image.variant(resize_to_fill: [length, length])
+    self.image
   end
   # トリミング（縦横長さ指定）
   def rectangle_image(height,width)
-    self.image.variant(combine_options: {resize: "#{height}x#{width}^", crop:"#{height}x#{width}+0+0",gravity: :center}).processed
+    # self.image.variant(resize_to_fill: [height, width])
+    self.image
   end
   
 end

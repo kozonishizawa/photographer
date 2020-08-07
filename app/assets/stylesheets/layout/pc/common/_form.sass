@@ -1,0 +1,133 @@
+.l-form
+  flex: 1
+  &__heading
+    text-align: center
+    font-size: 2rem
+    padding-bottom: 16px
+  &__lead
+    padding-bottom: 16px
+  &__form
+    width: 480px
+    margin: 56px auto 
+    border: 1px solid rgba(255,255,255,0.6)
+    border-radius: 4px
+    background-color: #fff
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1)
+    @include mq('sp')
+      width: 100%
+      margin-top: 8px
+  &__formInner
+    padding: 24px 24px 48px
+    margin: 0 auto
+  &__formItem
+    width: 100%
+    padding-bottom: 16px
+  &__label
+  &__required
+    color: #ea4c89
+    margin-left: 8px
+    font-size: 0.8rem
+  &__field
+    color: rgba(0,0,0,0.8)
+    padding: 8px
+    width: 100%
+    border: 1px solid rgba(0,0,0,0.4)
+    border-radius: 4px
+    box-sizing: border-box
+    background: transparent
+    transition: border-color .3s ease-out, background-color .3s ease-out
+    &:hover, &:focus
+      border-color: #0096f4
+      background-color: transparent
+  &__area
+    font-size: 1em
+    color: rgba(0,0,0,0.8)
+    padding: 8px
+    width: 100%
+    border: 1px solid rgba(0,0,0,0.4)
+    border-radius: 4px
+    box-sizing: border-box
+    background: transparent
+    transition: border-color .3s ease-out, background-color .3s ease-out
+    &:hover, &:focus
+      border-color: $second-color
+      background-color: transparent
+  &__remember
+    color: rgba(255,255,255,0.7)
+    transition: color .3s ease-out
+    &:hover
+      color: rgba(255,255,255,1)
+  &__checkBox
+    display: none
+  &__input
+    padding-left: 20px
+    position: relative
+    margin-right: 20px
+    color: rgba(0,0,0,0.8)
+    &::before
+      content: ''
+      display: block
+      position: absolute
+      top: 0
+      left: 0
+      width: 15px
+      height: 15px
+      border: 1px solid rgba(0,0,0,0.4)
+      border-radius: 4px
+      &:hover
+        border-color: #0096f4
+  &__checkBox:checked + &__input
+    color: rgba(0,0,0,0.8)
+  &__checkBox:checked + &__input::after
+    content: ''
+    display: block
+    position: absolute
+    top: -2px
+    left: 5px
+    width: 7px
+    height: 14px
+    transform: rotate(40deg)
+    border-bottom: 3px solid #0096f4
+    border-right: 3px solid #0096f4
+  &__number
+    display: block
+    border: 1px solid rgba(0,0,0,.4)
+    border-radius: 4px
+    padding: 8px
+    transition: border-color .3s ease-out
+    &:hover, &:focus
+      border-color: #0096f4
+  &__button
+    margin: 20px 0
+    background-color: #30c8d6
+    color: #fff
+    font-size: 1.2em
+    border: none
+    box-shadow: 1px 1px 2px #ccc
+    border-radius: 4px
+    padding: 7px 60px 8px!important
+    max-width: 100%!important
+    box-sizing: border-box!important
+    height: auto
+    text-shadow: none
+    float: none!important
+    display: block
+    width: 100%
+  &__link
+    color: rgba(255,255,255,0.7)
+    transition: color .3s ease-out
+    &:hover
+      color: rgba(255,255,255,1)
+  select
+    font-size: 1em
+    color: #fff
+    padding: 8px
+    width: 100%
+    border: 1px solid rgba(255,255,255,0.6)
+    border-radius: 4px
+    box-sizing: border-box
+    background: rgba(255,255,255,0.1)
+    transition: border-color .3s ease-out, background-color .3s ease-out
+    &:hover, &:focus
+      border-color: rgba(255,255,255,1)
+      background-color: transparent

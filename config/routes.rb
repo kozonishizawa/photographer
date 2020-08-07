@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
+
+  resources :users, only: [:new, :create]
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
   
@@ -31,6 +33,11 @@ Rails.application.routes.draw do
     #お問い合わせ
     resources :contacts, only: [:index, :show]
 
+    # 問い合せステータス
+    resources :contact_statuses, except: [:show]
+
+    resources :sort_contact_statuses, only: [:update]
+
   end
 
   # フロント
@@ -39,8 +46,9 @@ Rails.application.routes.draw do
     root 'home#index'
 
     #ユーザー
-    resources :users, except: [:index, :destroy] do
+    resources :users, except: [:index, :new, :create, :destroy] do
       post :download
+      post :re_download
     end
 
     # 記事
@@ -50,14 +58,17 @@ Rails.application.routes.draw do
     resources :albums, only: [:index, :show]
 
     # 写真
-    resources :photos, only: [:update]
+    resources :photos, only: [:index, :update]
+
+    # 履歴
+    resources :histories, only: [:index, :show, :update]
 
     # チャット
     resources :rooms, only: [:show]
 
     # お問い合わせ
     resources :contacts, only: [:index, :new, :create]
-    
+
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

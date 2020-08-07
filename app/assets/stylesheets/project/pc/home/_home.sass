@@ -1,0 +1,32 @@
+.p-home
+  flex: 1
+  position: relative
+  &__inner
+    @include inner
+    width: 100%
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+  &__main
+    @include mq('tab')
+      text-align: center
+      width: 100%
+  &__titleWrapper
+    text-align: center
+    font-size: 1.6rem
+    overflow: hidden
+    
+  &__title
+    font-size: 4.8rem
+    margin: 0 0 24px
+    @include mq('sp')
+      font-size: 2.4rem
+  &__btnWrapper
+    text-align: center
+    margin-top: 48px
+  &__btnWrapper-mq
+    display: none
+    @include mq('tab')
+      display: block
+      margin-top: 1.6rem

@@ -1,39 +1,64 @@
-.p-photos
-  .p-photos__inner
-    .p-photos__heading
-      h1 = @album.title
-      span#counter data-quantity="#{downloadable_counter}"
-        | あと#{downloadable_counter}枚選択できます
+- content_for(:body_attributes) do
+  .p-photos data-turbolinks='false'
+    nav.l-navbar#navbar
+      = link_to 'アルバム一覧へ', front_albums_path, class: 'l-navbar__link'
+    .p-photos__inner
+      .p-photos__heading
+        h1 = @album.title
+      .p-photos__lead
+        p ダウンロードする写真を選択して下さい。
 
-    - if @photos.present?
-      .p-photos__overlay#overlay
-      .c-carousel.slide#slide
-        ul.c-carousel__list
-          - @photos.each do |photo|
-            - if photo.image.attached?
-              li.c-carousel__item = image_tag photo.rectangle_image(900, 600)
-        .c-carousel__prev
-        .c-carousel__next
-        .c-carousel__nav
+      - if @photos.present?
+        .p-photos__overlay.overlay#overlay
+        .c-carousel.slide#slide
+          ul.c-carousel__list
+            - @photos.each do |photo|
+              - if photo.image.attached?
+                li.c-carousel__item = image_tag photo.rectangle_image(600, 450)
+          .c-carousel__prev
+          .c-carousel__next
+          .c-carousel__nav
 
-      .p-photos__thumbnails
-        ul.p-photos__list
-          - @photos.each.with_index(1) do |photo, index|
-            - if photo.image.attached?
-              li.p-photos__listItem
-                .p-photos__imageWrapper
-                  = image_tag photo.rectangle_image(300,200), class: 'p-photos__thumbnail', 'data-index': index
-                .p-photos__formWrapper
-                  - if photo.download_status == 'complete'
-                      .p-photos__complete ダウンロード済
-                  - else
-                    = form_with model: photo, url: front_photo_path(photo), class: 'p-photos__form', id: photo.id, remote: :true do |f|
-                      = f.submit '', class: photo.download_status == 'unselected' ? 'p-photos__unselected' : 'p-photos__selected'
+        .p-photos__thumbnails
+          ul.p-photos__list
+            - @photos.each.with_index(1) do |photo, index|
+              - if photo.image.attached?
+                li.p-photos__listItem
+                  .p-photos__card
+                    .p-photos__imageWrapper
+                      - if photo.download_status == 'unselected'
+                        .p-photos__mark data-id="#{photo.id}"
+                          i.fa.fa-heart
+                      - elsif photo.download_status == 'selected'
+                        .p-photos__mark.marked data-id="#{photo.id}"
+                          i.fa.fa-heart
+                      - else
+                        .p-photos__mark. data-id="#{photo.id}"
+                          span.complete
+                      = image_tag photo.rectangle_image(300,200), class: 'image', 'data-index': index
+                    .p-photos__caption
+                      - if photo.download_status == 'unselected'
+                        .p-photos__btn data-id="#{photo.id}"
+                          i.fa.fa-heart
+                      - elsif photo.download_status == 'selected'
+                        .p-photos__btn.on data-id="#{photo.id}"
+                          i.fa.fa-heart
+                      - else
+                        = link_to '履歴', front_history_path(photo.album.id), class: 'p-photos__history'
+                        .p-photos__complete
+                          | ダウンロード済
 
-      .p-photos__linkWrapper
-        = link_to '選択中の写真を一括ダウンロード', front_user_download_path({ user_id: current_user.id, album_id: @album.id }), method: :post, class: 'p-photos__next', data: {confirm: '一度ダウンロードされると選び直すことができなくなります。ダウンロードしてよろしいですか？'}, id: 'download'
-        = link_to 'アルバム一覧に戻る', front_albums_path, class: 'p-photos__prev'
-              
-    - else
-      = react_component 'kawaii'
-      p まだ写真がアップロードされていません
+        .l-pagination
+          = paginate @photos
+          = page_entries_info @photos
+        .p-photos__btnWrapper
+          = link_to 'ダウンロード画面に進む', front_photos_path, class: 'l-btn__download'
+        .p-photos__linkWrapper
+          = link_to 'アルバム一覧へ', front_albums_path, class: 'p-photos__link'
+
+      - else
+        .p-photos__linkWrapper
+          p.p-photos__comment まだ写真がアップロードされていません
+          = react_component 'kawaii'
+          = link_to 'アルバム一覧へ', front_albums_path, class: 'p-photos__link'
+  

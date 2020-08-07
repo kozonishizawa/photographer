@@ -1,24 +1,35 @@
 .p-contacts
+  nav.l-navbar#navbar
+    = link_to 'メインメニュー', admin_root_path, class: 'l-navbar__link'
+    = link_to 'お問い合わせステータス作成', new_admin_contact_status_path, class: 'l-navbar__link'
+    = link_to 'ユーザー一覧', admin_users_path, class: 'l-navbar__link'
+    = link_to 'アルバム一覧', admin_albums_path, class: 'l-navbar__link'
+
   .p-contacts__inner
-    .p-contacts__heading
-      h2 お問い合わせ一覧
-    table.l-table
-      thread.l-table__thread
-        tr.l-table__row
-          th.l-table__header ID
-          th.l-table__header 受付
-          th.l-table__header 送信者
-          th.l-table__header 内容
-          th.l-table__header 撮影希望日
-          th.l-table__header 撮影地
-          th.l-table__header 要望等
-      tbody.l-table__tbody
-        - @contacts.each do |contact|
+    h1.p-contacts__heading お問い合わせ一覧
+    section.p-contacts__list
+      table.l-table
+        thead.l-table__head
           tr.l-table__row
-            td.l-table__data = contact.id
-            td.l-table__data = l(contact.created_at, format: :long)
-            td.l-table__data = contact.user.name
-            td.l-table__data = contact.subject_i18n
-            td.l-table__data = contact.date
-            td.l-table__data = contact.location
-            td.l-table__data = contact.request
+            th.l-table__header ID
+            th.l-table__header 受付
+            th.l-table__header 送信者
+            th.l-table__header 内容
+            th.l-table__header 撮影希望日
+            th.l-table__header 撮影地
+            th.l-table__header 要望等
+        tbody.l-table__body
+          - @contacts.each do |contact|
+            tr.l-table__row
+              td.l-table__data = contact.id
+              td.l-table__data = l(contact.created_at, format: :long)
+              td.l-table__data = contact.user.name
+              td.l-table__data = contact.subject_i18n
+              td.l-table__data = contact.date
+              td.l-table__data = contact.location
+              td.l-table__data = contact.request
+
+    .l-pagination
+      = paginate @contacts
+      = page_entries_info @contacts
+
